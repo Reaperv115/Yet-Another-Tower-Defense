@@ -4,47 +4,63 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    GameObject[] path;
-    int pathIndex;
+    [SerializeField]
+    GameObject cam;
+    SetMap mapInfo;
 
     [SerializeField]
-    Transform[] pathway;
-    int pathwayIndex;
+    GameObject tower;
+
+    GameObject bullet;
+    GameObject tmpBullet;
+    Transform originalbulletPos;
 
     // Start is called before the first frame update
     void Start()
     {
-
-        path = Resources.LoadAll<GameObject>("Path");
-        for (int i = 0; i < pathway.Length; ++i)
-        {
-            Debug.Log("pathway" + i + ": " + pathway[i].position);
-            Instantiate(path[i], pathway[i].position, path[i].transform.rotation);
-            path[i].transform.position = pathway[i].position;
-            Debug.Log("path" + i + ": " + path[i].transform.position);
-        }
-        pathwayIndex = 0;
-        pathIndex = 0;
+        mapInfo = cam.GetComponent<SetMap>();
+        bullet = transform.GetChild(0).gameObject;
+        originalbulletPos = bullet.transform;
+        Debug.Log(tower.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.Equals(path[pathIndex].transform.position))
+
+        if (mapInfo.path.Length.Equals(0))
         {
-            if (pathIndex.Equals(path.Length - 1))
-            {
-                Destroy(this);
-            }
-            else
-            {
-                ++pathIndex;
-                transform.position = Vector3.MoveTowards(transform.position, path[pathIndex].transform.position, .02f);
-            }
+            mapInfo.path = Resources.LoadAll<GameObject>("Path");
+            transform.position = Vector3.MoveTowards(transform.position, mapInfo.path[mapInfo.pathIndex].transform.position, 0.02f);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, path[pathIndex].transform.position, .02f);
+
+            if (transform.position.Equals(mapInfo.path[mapInfo.pathIndex].transform.position))
+            {
+                if (mapInfo.pathIndex.Equals(mapInfo.path.Length - 1))
+                {
+                    if (bullet.transform.position.Equals(tower.transform.position))
+                    {
+                        bullet.transform.position = Vector3.zero;
+                        Destroy(bullet);
+                    }
+                    else
+                    {
+                        bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, tower.transform.position, .02f);
+
+                    }
+                }
+                else
+                {
+                    ++mapInfo.pathIndex;
+                    transform.position = Vector3.MoveTowards(transform.position, mapInfo.path[mapInfo.pathIndex].transform.position, .02f);
+                }
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, mapInfo.path[mapInfo.pathIndex].transform.position, .02f);
+            }
         }
     }
 }
