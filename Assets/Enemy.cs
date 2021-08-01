@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,23 +12,19 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     GameObject tower;
 
-    GameObject bullet;
-    GameObject tmpBullet;
-    Transform originalbulletPos;
+    GameObject towerhealthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         mapInfo = cam.GetComponent<SetMap>();
-        bullet = transform.GetChild(0).gameObject;
-        originalbulletPos = bullet.transform;
-        Debug.Log(tower.transform.position);
+        towerhealthBar = GameObject.Find("tower health");
+        towerhealthBar.GetComponent<Slider>().onValueChanged.AddListener(onValueChanged);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (mapInfo.path.Length.Equals(0))
         {
             mapInfo.path = Resources.LoadAll<GameObject>("Path");
@@ -40,16 +37,11 @@ public class Enemy : MonoBehaviour
             {
                 if (mapInfo.pathIndex.Equals(mapInfo.path.Length - 1))
                 {
-                    if (bullet.transform.position.Equals(tower.transform.position))
-                    {
-                        bullet.transform.position = Vector3.zero;
-                        Destroy(bullet);
-                    }
-                    else
-                    {
-                        bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, tower.transform.position, .02f);
-
-                    }
+                    Destroy(this.gameObject);
+                    //towerHealth.transform.GetChild(0).GetComponent<Slider>().value -= 1;
+                    Debug.Log(tower.GetComponent<Tower>().getHealth());
+                    float tmpvar = tower.GetComponent<Tower>().getHealth();
+                    onValueChanged(tmpvar -= 1);
                 }
                 else
                 {
@@ -62,5 +54,10 @@ public class Enemy : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, mapInfo.path[mapInfo.pathIndex].transform.position, .02f);
             }
         }
+    }
+
+    public void onValueChanged(float towerHealth)
+    {
+        tower.GetComponent<Tower>().setHealth(towerHealth);
     }
 }
