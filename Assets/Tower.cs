@@ -8,8 +8,8 @@ public class Tower : MonoBehaviour
 {
     private float fHealth;
 
-    GameObject towerhealthDisplay;
     GameObject[] enemy;
+    RectTransform bar;
 
     TextMeshProUGUI gameOver;
     bool isgameOver;
@@ -17,11 +17,11 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fHealth = 5f;
-        towerhealthDisplay = GameObject.Find("tower health");
-        
+        fHealth = 1f;
+        bar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
         isgameOver = false;
+        //bar.localScale = new Vector3(.4f, 1f);
     }
 
     // Update is called once per frame
@@ -41,10 +41,6 @@ public class Tower : MonoBehaviour
         fHealth = health;
     }
 
-    public GameObject gettowerhealthDisplay()
-    {
-        return towerhealthDisplay;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -52,7 +48,8 @@ public class Tower : MonoBehaviour
         {
             Destroy(collision.gameObject);
             
-            fHealth -= 1;
+            fHealth -= .1f;
+            bar.localScale = new Vector3(fHealth, 1f);
             if (fHealth <= 0.0f)
             {
                 gameOver.text = "Game Over";
@@ -68,6 +65,7 @@ public class Tower : MonoBehaviour
 
         }
     }
+
 
     public bool getisgameOver()
     {
