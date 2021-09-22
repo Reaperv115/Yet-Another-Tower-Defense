@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 399772560151025375}
   - component: {fileID: 399772560151025184}
   - component: {fileID: 399772560151025186}
-  - component: {fileID: 399772560151025185}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -84,23 +83,3 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399772560151025187}
   m_Enabled: 1
---- !u!114 &399772560151025185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399772560151025187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3869d052d7b10314b9cf0edf2dbc2588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathwayMarkers:
-  - {fileID: 7446876302267881467, guid: 0bdf479c94707164a95c0764cb8de03c, type: 3}
-  - {fileID: 3738844883846181775, guid: e542eacaabd60ef44975292fdf16fa2c, type: 3}
-  - {fileID: 2247682085939259168, guid: 39b94777245839a4b8713ad89558a1d7, type: 3}
-  - {fileID: 1042686111834068531, guid: 39cfbb0c56f03f74fb8cad41cac4b3ba, type: 3}
-  - {fileID: 1502009933666078211, guid: 8e35918ca2528f44db463dd76b488667, type: 3}
-  enemy: {fileID: 8568387701978533312, guid: 60e7be244096eca4981965bbc9a9db65, type: 3}
-  enemystartPos: {fileID: 5105444778185014843, guid: 7f1cf6e4a757ba14198907d3ccd2132e, type: 3}

@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class SetMap : MonoBehaviour
 {
-    [HideInInspector]
-    public GameObject[] path;
-    [HideInInspector]
-    public int pathIndex;
 
-    [SerializeField]
-    Transform[] pathwayMarkers;
+    GameObject path;
+    GameObject barricade;
 
+    float spawnY;
+    Vector2 spawnPosition;
+
+    [HideInInspector]
+    public Transform[] pathwayMarkers;
     // Start is called before the first frame update
     void Start()
     {
-        path = Resources.LoadAll<GameObject>("Path");
+
+        path = Resources.Load<GameObject>("Path/pathway");
+        barricade = Resources.Load<GameObject>("Path/Path Accessories/barricade");
+        pathwayMarkers = Resources.LoadAll<Transform>("Path Markers");
+
         for (int i = 0; i < pathwayMarkers.Length; ++i)
         {
-            Instantiate(path[i], pathwayMarkers[i].position, path[i].transform.rotation);
-            path[i].transform.position = pathwayMarkers[i].position;
+            Instantiate(barricade, path.transform.GetChild(0).transform.position, barricade.transform.rotation);
+            Instantiate(barricade, path.transform.GetChild(1).transform.position, barricade.transform.rotation);
+            Instantiate(path, pathwayMarkers[i].position, path.transform.rotation);
+            path.transform.position = pathwayMarkers[i].position;
         }
-        pathIndex = 0;
     }
 }
