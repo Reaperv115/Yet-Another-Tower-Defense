@@ -11,22 +11,35 @@ public class SetMap : MonoBehaviour
     float spawnY;
     Vector2 spawnPosition;
 
-    [HideInInspector]
-    public Transform[] pathwayMarkers;
+   
+    public GameObject[] pathwayMarkers;
     // Start is called before the first frame update
     void Start()
     {
 
         path = Resources.Load<GameObject>("Path/pathway");
         barricade = Resources.Load<GameObject>("Path/Path Accessories/barricade");
-        pathwayMarkers = Resources.LoadAll<Transform>("Path Markers");
+        pathwayMarkers = GameObject.FindGameObjectsWithTag("pathway");
+        Debug.Log(pathwayMarkers.Length);
+
+        for (int i = 2; i < pathwayMarkers.Length; ++i)
+        {
+            Instantiate(barricade, pathwayMarkers[i].transform.GetChild(0).transform.position, pathwayMarkers[i].transform.rotation);
+            Instantiate(barricade, pathwayMarkers[i].transform.GetChild(1).transform.position, pathwayMarkers[i].transform.rotation);
+        }   
 
         for (int i = 0; i < pathwayMarkers.Length; ++i)
         {
-            Instantiate(barricade, path.transform.GetChild(0).transform.position, barricade.transform.rotation);
-            Instantiate(barricade, path.transform.GetChild(1).transform.position, barricade.transform.rotation);
-            Instantiate(path, pathwayMarkers[i].position, path.transform.rotation);
-            path.transform.position = pathwayMarkers[i].position;
+            if (i.Equals(3))
+            {
+                pathwayMarkers[i] = GameObject.Find("corner 0");
+            }
+            if (i.Equals(4))
+            {
+                pathwayMarkers[i] = GameObject.Find("corner 1");
+            }
+            if (i != 3 && i != 4)
+                pathwayMarkers[i] = GameObject.Find("pathway " + i);
         }
     }
 }

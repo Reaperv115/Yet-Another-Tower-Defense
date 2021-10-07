@@ -11,15 +11,15 @@ public class Enemy : MonoBehaviour
     SetMap mapInfo;
 
     int pathIndex = 0;
+    int pathindexPoint = 2;
 
-    [SerializeField]
     GameObject tower;
 
     bool attackTower;
 
     Rigidbody2D enemyRb;
 
-    
+    float speed = .02f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,31 +34,41 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (attackTower)
-            transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, .02f);
+        {
+            tower = GameObject.FindGameObjectWithTag("tower");
+            transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, speed);
+        }
         else
         {
-            if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].position))
+            if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
             {
                 //Debug.Log("At the next marker." + mapInfo.pathwayMarkers.Length);
-                if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
+                if (pathindexPoint.Equals(3))
                 {
-                    attackTower = true;
-                    //transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, .02f);
+                    if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
+                    {
+                        attackTower = true;
+
+                    }
+                    else
+                    {
+                        ++pathIndex;
+                        pathindexPoint = 2;
+                        transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
+                    }
                 }
                 else
                 {
-                    ++pathIndex;
-                    //Debug.Log("updating path index. " + mapInfo.pathwayMarkers.Length);
-                    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].position, .02f);
+                    ++pathindexPoint;
+                    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
                 }
 
             }
             else
             {
                 //Debug.Log("simply moving the enemy forward. " + mapInfo.pathwayMarkers.Length);
-                transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].position, .02f);
+                transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
             }
 
             //if (mapInfo.pathwayMarkers.Length.Equals(0))
@@ -71,10 +81,10 @@ public class Enemy : MonoBehaviour
             //{
 
 
-                
+
             //}
 
-            
+
         }
 
     }

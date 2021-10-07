@@ -39,6 +39,6 @@ public class SpawnEnemy : MonoBehaviour
                 //Debug.Log(spawnTimer);
             }
         }
-        
+
     }
 }
