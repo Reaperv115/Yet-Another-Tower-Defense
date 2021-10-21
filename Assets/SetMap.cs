@@ -20,12 +20,14 @@ public class SetMap : MonoBehaviour
         path = Resources.Load<GameObject>("Path/pathway");
         barricade = Resources.Load<GameObject>("Path/Path Accessories/barricade");
         pathwayMarkers = GameObject.FindGameObjectsWithTag("pathway");
-        Debug.Log(pathwayMarkers.Length);
 
-        for (int i = 2; i < pathwayMarkers.Length; ++i)
+        for (int i = 0; i < pathwayMarkers.Length; ++i)
         {
-            Instantiate(barricade, pathwayMarkers[i].transform.GetChild(0).transform.position, pathwayMarkers[i].transform.rotation);
-            Instantiate(barricade, pathwayMarkers[i].transform.GetChild(1).transform.position, pathwayMarkers[i].transform.rotation);
+            if (i.Equals(4) || i.Equals(5))
+                continue;
+            else
+                Instantiate(barricade, pathwayMarkers[i].transform.GetChild(0).transform.position, pathwayMarkers[i].transform.rotation);
+                Instantiate(barricade, pathwayMarkers[i].transform.GetChild(1).transform.position, pathwayMarkers[i].transform.rotation);
         }   
 
         for (int i = 0; i < pathwayMarkers.Length; ++i)

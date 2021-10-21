@@ -9,6 +9,7 @@ TagManager:
   - tower
   - enemy
   - corner
+  - weapon
   layers:
   - Default
   - TransparentFX

@@ -61,7 +61,7 @@ public class Tower : MonoBehaviour
                 }
                 isgameOver = true;
             }
-            Debug.Log(isgameOver);
+            //Debug.Log(isgameOver);
 
         }
     }
