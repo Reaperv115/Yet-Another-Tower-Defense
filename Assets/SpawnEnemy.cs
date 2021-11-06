@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     GameObject enemy;
-
     GameObject tower;
     GameObject playButton;
 
@@ -27,6 +26,7 @@ public class SpawnEnemy : MonoBehaviour
     {
         if (playButton.GetComponent<PlayGame>().hasStarted())
         {
+            //Debug.Log("start spawning");
             spawn = true;
         }
 
@@ -46,8 +46,8 @@ public class SpawnEnemy : MonoBehaviour
                 }
                 else
                 {
-                    spawnTimer -= .025f;
-                    //Debug.Log(spawnTimer);
+                    spawnTimer -= .05f;
+                    Debug.Log(spawnTimer);
                 }
             }
         }

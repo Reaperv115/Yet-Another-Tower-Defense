@@ -23,7 +23,8 @@ public class SetMap : MonoBehaviour
 
         for (int i = 0; i < pathwayMarkers.Length; ++i)
         {
-            if (i.Equals(4) || i.Equals(5))
+            Debug.Log(pathwayMarkers[i].name, pathwayMarkers[i]);
+            if (i.Equals(3) || i.Equals(2))
                 continue;
             else
                 Instantiate(barricade, pathwayMarkers[i].transform.GetChild(0).transform.position, pathwayMarkers[i].transform.rotation);

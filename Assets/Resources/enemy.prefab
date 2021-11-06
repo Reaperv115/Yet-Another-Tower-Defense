@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2987312296747455333}
   - component: {fileID: -3038410386010159396}
   - component: {fileID: 9063112319157354110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: enemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -116,7 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 399772560151025187, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
-  tower: {fileID: 5251430888902682922, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
 --- !u!1 &2641349110654022348
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3890258618958624816}
   - component: {fileID: 2376472911850434180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship1-lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3379568410200514514}
   - component: {fileID: 3419019987044936526}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship1-flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     Rigidbody2D enemyRb;
 
-    float speed = .02f;
+    float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +27,15 @@ public class Enemy : MonoBehaviour
         mapInfo = GameObject.Find("battlefield").GetComponent<SetMap>();
         enemyRb = GetComponent<Rigidbody2D>();
         attackTower = false;
-
-        
+        Health = 100f;
+        speed = 10f * Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Health <= 0f)
+            Destroy(gameObject);
         if (attackTower)
         {
             tower = GameObject.FindGameObjectWithTag("tower");
@@ -93,4 +95,6 @@ public class Enemy : MonoBehaviour
     {
         return tower;
     }
+
+    public float Health { get; set; }
 }

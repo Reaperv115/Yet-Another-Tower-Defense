@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class selectWeapon : MonoBehaviour
 {
+    TextMeshProUGUI weapontoPlace;
     GameObject weaponsPanel;
     GameObject mainWeapon;
     GameObject mainweaponInstantiated;
@@ -20,6 +22,7 @@ public class selectWeapon : MonoBehaviour
     void Start()
     {
         weaponsPanel = GameObject.Find("Weapons Panel");
+        weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
         Debug.Log(weaponsPanel);
         selectingWeapon = false;
         rotationSpeed = rotationAngle;
@@ -31,27 +34,7 @@ public class selectWeapon : MonoBehaviour
         //you have selected a weapon
         if (mainweaponInstantiated)
         {
-            oldworldPoint = newworldPoint;
-            newworldPoint = Input.mousePosition;
-            if (!newworldPoint.Equals(oldworldPoint))
-            {
-                
-                //mainWeapon = Resources.Load<GameObject>("turret");
-                newworldPoint = Input.mousePosition;
-                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                mouseWorldPosition.z = 0f;
-
-                Quaternion tmpRot = mainweaponInstantiated.transform.rotation;
-                Destroy(mainweaponInstantiated);
-                mainweaponInstantiated = Instantiate(mainWeapon, mouseWorldPosition, tmpRot);
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Vector3 weaponRotation = new Vector3(0, 0, rotationSpeed);
-                Debug.Log(weaponRotation);
-                mainweaponInstantiated.transform.Rotate(weaponRotation);
-            }
+            
             newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
             mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
             mouseWorldPosition.z = 0f;
@@ -96,6 +79,7 @@ public class selectWeapon : MonoBehaviour
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
         mouseWorldPosition.z = 0f;
         mainweaponInstantiated = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+        weapontoPlace.text = "turret";
         Debug.Log("turret selected");
     }
 }
