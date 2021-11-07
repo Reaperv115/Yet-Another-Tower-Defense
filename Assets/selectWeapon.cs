@@ -41,22 +41,6 @@ public class selectWeapon : MonoBehaviour
             mainweaponInstantiated.transform.position = mouseWorldPosition;
         }
 
-        // placing the chosen weapon where you clicked the mouse
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!mainweaponInstantiated) { }
-            else
-            {
-                newworldPoint = Input.mousePosition;
-                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                mouseWorldPosition.z = 0f;
-
-                mainweaponInstantiated.transform.position = mouseWorldPosition;
-                mainweaponInstantiated = null;
-            }
-        }
-
         if (selectingWeapon)
             weaponsPanel.gameObject.SetActive(true);
         else
@@ -74,11 +58,6 @@ public class selectWeapon : MonoBehaviour
         mainWeapon = Resources.Load<GameObject>("turret");
         Debug.Log(mainWeapon);
         selectingWeapon = !selectingWeapon;
-        newworldPoint = Input.mousePosition;
-        newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-        mouseWorldPosition.z = 0f;
-        mainweaponInstantiated = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
         weapontoPlace.text = "turret";
         Debug.Log("turret selected");
     }
