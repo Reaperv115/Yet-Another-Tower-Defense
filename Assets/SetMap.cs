@@ -24,7 +24,7 @@ public class SetMap : MonoBehaviour
         for (int i = 0; i < pathwayMarkers.Length; ++i)
         {
             Debug.Log(pathwayMarkers[i].name, pathwayMarkers[i]);
-            if (i.Equals(3) || i.Equals(2))
+            if (pathwayMarkers[i].name.Contains("corner"))
                 continue;
             else
                 Instantiate(barricade, pathwayMarkers[i].transform.GetChild(0).transform.position, pathwayMarkers[i].transform.rotation);
