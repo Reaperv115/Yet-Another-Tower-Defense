@@ -9,16 +9,18 @@ public class selectWeapon : MonoBehaviour
     TextMeshProUGUI weapontoPlace;
     GameObject weaponDirection;
     GameObject weaponsPanel;
-    GameObject mainWeapon;
+    GameObject mainWeapon, instantiatedWeapon;
     GameObject spot;
     GameObject startButton;
     Sprite pointer;
+    Transform tPointer;
     Ray ray;
     RaycastHit hit;
-    bool placingWeapon;
+    Touch touch;
 
     Vector3 newworldPoint, oldworldPoint;
     Vector3 mouseWorldPosition;
+    bool placingWeapon;
 
     float rotationAngle = 90;
     float rotationSpeed;
@@ -37,6 +39,7 @@ public class selectWeapon : MonoBehaviour
         rotationSpeed = rotationAngle;
         spot = Resources.Load<GameObject>("touch test");
         Debug.Log(spot);
+        tPointer = weaponDirection.transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -65,18 +68,33 @@ public class selectWeapon : MonoBehaviour
         // }
         
 
-        // if (placingWeapon)
-        // {
-        //     if (Input.touchCount > 0)
-        //     {
-        //         Touch t = Input.GetTouch(0);
-        //         newworldPoint = t.position;
-        //         newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-        //         mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-        //         mouseWorldPosition.z = 0f;
-        //         Instantiate(spot, mouseWorldPosition, spot.transform.rotation);
-        //     }
-        // }
+        if (placingWeapon)
+        {
+            newworldPoint = touch.position;
+            newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+            mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+            mouseWorldPosition.z = 0f;
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+                oldworldPoint = newworldPoint;
+                newworldPoint = touch.position;
+                if (!newworldPoint.Equals(oldworldPoint))
+                {
+                    newworldPoint = touch.position;
+                    newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+                    mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+                    mouseWorldPosition.z = 0f;
+                    Destroy(instantiatedWeapon);
+                    instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+                }
+                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+                mouseWorldPosition.z = 0f;
+                Destroy(instantiatedWeapon);
+                instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+            }
+        }
     }
 
     public void onClick()
@@ -87,11 +105,13 @@ public class selectWeapon : MonoBehaviour
 
     public void getTurret()
     {
-        // mainWeapon = Resources.Load<GameObject>("turret");
-        // placingWeapon = true;
-        // Debug.Log(mainWeapon);
+        mainWeapon = Resources.Load<GameObject>("turret");
+        Debug.Log(mainWeapon);
+        placingWeapon = true;
         // //selectingWeapon = !selectingWeapon;
-        // weapontoPlace.text = "turret";
+        weapontoPlace.text = "turret";
+        tPointer.GetComponent<SpriteRenderer>().sprite = pointer;
+        instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
         // Debug.Log("turret selected");
         //gameObject.SetActive(false);
         weaponsPanel.SetActive(false);

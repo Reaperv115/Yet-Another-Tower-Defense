@@ -5,6 +5,9 @@ using UnityEngine;
 public class Rotate_Negative_90 : MonoBehaviour
 {
     GameObject weaponDirection;
+    GameObject mainweapon;
+    [SerializeField]
+    GameObject cam;
     Transform pointer;
 
     // Start is called before the first frame update
@@ -23,6 +26,6 @@ public class Rotate_Negative_90 : MonoBehaviour
     public void rotate_negative_90()
     {
         Vector3 rotation = new Vector3(0, 0, -90);
-        pointer.Rotate(rotation);
+        cam.GetComponent<selectWeapon>().GetMainWeapon().transform.Rotate(rotation);
     }
 }

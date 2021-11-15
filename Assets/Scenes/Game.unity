@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6033c4be0c6dcc408c2e8d1182a6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 1434125492}
 --- !u!1 &53261127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,6 +1629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17953fb0a50430f41a6439cbfab0f5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 1434125492}
 --- !u!4 &541537791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 580360309254207403, guid: 917d0ed4f13760c45b436136d942298a, type: 3}
