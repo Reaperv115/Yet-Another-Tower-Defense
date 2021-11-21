@@ -13,8 +13,8 @@ public class Rotate90 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        weaponDirection = GameObject.Find("Weapon Direction");
-        pointer = weaponDirection.transform.GetChild(0);
+        // weaponDirection = GameObject.Find("Weapon Direction");
+        // pointer = weaponDirection.transform.GetChild(0);
     }
 
     // Update is called once per frame

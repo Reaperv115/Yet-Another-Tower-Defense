@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class selectWeapon : MonoBehaviour
 {
-    TextMeshProUGUI weapontoPlace;
-    GameObject weaponDirection;
+    TextMeshProUGUI weapontoPlace, placingweaponTimer;
     GameObject weaponsPanel;
     GameObject mainWeapon, instantiatedWeapon;
-    GameObject spot;
-    GameObject startButton;
-    Sprite pointer;
-    Transform tPointer;
+    [SerializeField]
+    GameObject startButton, rotate90, rotateneg90;
     Ray ray;
     RaycastHit hit;
     Touch touch;
@@ -24,6 +22,8 @@ public class selectWeapon : MonoBehaviour
 
     float rotationAngle = 90;
     float rotationSpeed;
+    float timetoplaceWeapon;
+    int id;
 
     // Start is called before the first frame update
     void Start()
@@ -31,45 +31,21 @@ public class selectWeapon : MonoBehaviour
         weaponsPanel = GameObject.Find("Weapons Panel");
         weaponsPanel.gameObject.SetActive(false);
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
-        weaponDirection = GameObject.Find("Weapon Direction");
-        startButton = GameObject.Find("BeginGame");
-        pointer = Resources.Load<Sprite>("Arrow1");
-        Debug.Log(weaponsPanel);
+        placingweaponTimer = GameObject.Find("Place Weapon Timer").GetComponent<TextMeshProUGUI>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
-        spot = Resources.Load<GameObject>("touch test");
-        Debug.Log(spot);
-        tPointer = weaponDirection.transform.GetChild(0);
+        timetoplaceWeapon = 1.0f;
+        startButton.SetActive(false);
+        ToggleWeaponAdjusting(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Input.touchCount > 0)
-        // {
-        //     Touch touch = Input.GetTouch(0);
-        //     newworldPoint = touch.position;
-        //     newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-        //     mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-        //     mouseWorldPosition.z = 0f;
-        //     Instantiate(spot, mouseWorldPosition, spot.transform.rotation);
-        //     //you have selected a weapon
-        //     if (mainWeapon)
-        //     {
-        //         weaponDirection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = pointer;
-        //         mainWeapon.transform.rotation = weaponDirection.transform.rotation;
-        //         Instantiate(mainWeapon, touch.position, mainWeapon.transform.rotation);
-        //         Debug.Log("instantiating weapon");
-        //     }
-        //     else
-        //     {
-        //         weaponDirection.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = null;
-        //     }
-        // }
-        
 
         if (placingWeapon)
         {
+            ToggleWeaponAdjusting(true);
             newworldPoint = touch.position;
             newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
             mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
@@ -77,45 +53,56 @@ public class selectWeapon : MonoBehaviour
             if (Input.touchCount > 0)
             {
                 touch = Input.GetTouch(0);
-                oldworldPoint = newworldPoint;
-                newworldPoint = touch.position;
-                if (!newworldPoint.Equals(oldworldPoint))
+                id = touch.fingerId;
+                if (EventSystem.current.IsPointerOverGameObject(id))
                 {
-                    newworldPoint = touch.position;
-                    newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                    mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                    mouseWorldPosition.z = 0f;
-                    Destroy(instantiatedWeapon);
-                    instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+                    Debug.Log("touched ui");
                 }
-                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                mouseWorldPosition.z = 0f;
-                Destroy(instantiatedWeapon);
-                instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+                else
+                {
+                   if (touch.phase.Equals(TouchPhase.Stationary))
+                    {
+                        mainWeapon.transform.position = mouseWorldPosition;
+                        ToggleWeaponAdjusting(false);
+                        startButton.SetActive(true);
+                        placingWeapon = false;
+                    }
+                    else
+                    {
+                        timetoplaceWeapon = 1.0f;
+                        oldworldPoint = newworldPoint;
+                        newworldPoint = touch.position;
+                        if (!newworldPoint.Equals(oldworldPoint))
+                        {
+                            newworldPoint = touch.position;
+                            newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+                            mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+                            mouseWorldPosition.z = 0f;
+                            Destroy(instantiatedWeapon);
+                            instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+                        } 
+                    }
+                }
             }
+                
+            
         }
     }
 
     public void onClick()
     {
-        
+        timetoplaceWeapon = 1.0f;
         weaponsPanel.gameObject.SetActive(true);
     }
 
     public void getTurret()
     {
         mainWeapon = Resources.Load<GameObject>("turret");
-        Debug.Log(mainWeapon);
         placingWeapon = true;
-        // //selectingWeapon = !selectingWeapon;
         weapontoPlace.text = "turret";
-        tPointer.GetComponent<SpriteRenderer>().sprite = pointer;
+        ToggleWeaponAdjusting(true);
         instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
-        // Debug.Log("turret selected");
-        //gameObject.SetActive(false);
-        weaponsPanel.SetActive(false);
-        Debug.Log("turret button pressed");
+        weaponsPanel.gameObject.SetActive(false);
     }
 
     public GameObject GetMainWeapon()
@@ -123,13 +110,25 @@ public class selectWeapon : MonoBehaviour
         return mainWeapon;
     }
 
-    public GameObject getSpot()
-    {
-        return spot;
-    }
-
     public void isselectingWeapon(bool isPlacing)
     {
         placingWeapon = isPlacing;
+    }
+
+    public void ToggleWeaponAdjusting(bool isAdjusting)
+    {
+        Debug.Log("adjusting");
+        rotate90.SetActive(isAdjusting);
+        rotateneg90.SetActive(isAdjusting);
+    }
+
+    public Vector3 GetWeaponPosition()
+    {
+        return mouseWorldPosition;
+    }
+
+    public Touch GetTouch()
+    {
+        return touch;
     }
 }

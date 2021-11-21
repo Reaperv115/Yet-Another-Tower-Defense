@@ -6,6 +6,7 @@ public class SpawnEnemy : MonoBehaviour
 {
     GameObject enemy;
     GameObject tower;
+    [SerializeField]
     GameObject playButton;
 
     float spawnTimer = 5.0f;
@@ -13,7 +14,7 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playButton = GameObject.Find("BeginGame");
+        //playButton = GameObject.Find("BeginGame");
         Debug.Log(playButton);
         spawn = false;
 
