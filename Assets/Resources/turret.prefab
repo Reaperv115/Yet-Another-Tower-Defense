@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4192745231592320658}
   - component: {fileID: 891923518405924314}
   - component: {fileID: -6604551765035832183}
+  - component: {fileID: 7019668768249286031}
   m_Layer: 0
   m_Name: turret
   m_TagString: weapon
@@ -48,7 +49,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.02
+  m_Radius: 2.86
 --- !u!50 &-6604551765035832183
 Rigidbody2D:
   serializedVersion: 4
@@ -70,6 +71,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
+--- !u!114 &7019668768249286031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135917689174574542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f5fdc8f0df8c14a9742001ac2f93d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464852743097141791
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,6 +66,7 @@ public class selectWeapon : MonoBehaviour
                         ToggleWeaponAdjusting(false);
                         startButton.SetActive(true);
                         placingWeapon = false;
+                        weapontoPlace.text = "";
                     }
                     else
                     {
