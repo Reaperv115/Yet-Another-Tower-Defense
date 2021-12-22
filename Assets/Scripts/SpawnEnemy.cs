@@ -9,7 +9,7 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField]
     GameObject playButton;
 
-    float spawnTimer = 5.0f;
+    float  spawnTimer = 5.0f;
     bool spawn;
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class SpawnEnemy : MonoBehaviour
                 if (spawnTimer <= 0.0f)
                 {
                     Instantiate(enemy, transform.position, enemy.transform.rotation);
-                    spawnTimer = 5.0f;
+                    spawnTimer = 1.0f;
                 }
                 else
                 {
