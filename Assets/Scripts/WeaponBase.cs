@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
-    protected float firerateinSeconds;
     protected int price;
+    protected static int damage;
+    protected float firerateinSeconds;
+    protected LayerMask mask;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +18,5 @@ public class WeaponBase : MonoBehaviour
     void Update()
     {
         
-    }
-    //virtual void Fire()
-
-    public void SetFireRate(float firerate)
-    {
-        firerateinSeconds = firerate;
-    }
-    public float GetFireRate()
-    {
-        return firerateinSeconds;
     }
 }

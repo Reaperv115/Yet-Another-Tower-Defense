@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4192745231592320658}
   - component: {fileID: 891923518405924314}
   - component: {fileID: -6604551765035832183}
-  - component: {fileID: 7019668768249286031}
   - component: {fileID: -2635922850110100090}
+  - component: {fileID: 6952855575301468936}
   m_Layer: 0
   m_Name: turret 2
   m_TagString: weapon
@@ -72,18 +72,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!114 &7019668768249286031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135917689174574542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f5fdc8f0df8c14a9742001ac2f93d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-2635922850110100090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +82,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b80f100b91f8e49418b7ec8ec3e0f959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6952855575301468936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135917689174574542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5075d7cc7c7d614fa05a326b83e05f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1464852743097141791

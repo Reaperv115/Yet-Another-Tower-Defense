@@ -35,6 +35,6 @@ public class TurretT3 : WeaponBase
     void Fire()
     {
         //Destroy(collider.gameObject);
-        collider.GetComponent<Enemy>().Health -= 50f;
+        //collider.GetComponent<Enemy>().Health -= 50f;
     }
 }

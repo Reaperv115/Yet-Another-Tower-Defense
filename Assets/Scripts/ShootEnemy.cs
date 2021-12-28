@@ -45,6 +45,6 @@ public class ShootEnemy : MonoBehaviour
     void Fire()
     {
         //Destroy(collider.gameObject);
-        collider.GetComponent<Enemy>().Health -= 25f;
+        //collider.GetComponent<Enemy>().Health -= 25f;
     }
 }

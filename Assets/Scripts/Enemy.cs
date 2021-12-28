@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         mapInfo = GameObject.Find("battlefield").GetComponent<SetMap>();
         enemyRb = GetComponent<Rigidbody2D>();
         attackTower = false;
-        Health = 100f;
+        Health = 100;
         speed = 10f * Time.deltaTime;
     }
 
@@ -96,5 +96,5 @@ public class Enemy : MonoBehaviour
         return tower;
     }
 
-    public float Health { get; set; }
+    public int Health { get; set; }
 }

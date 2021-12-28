@@ -7,14 +7,14 @@ public class TurretT1 : WeaponBase
     Vector3 offSet;
     Collider2D collider;
     RaycastHit2D hit;
-    [SerializeField]LayerMask mask;
+    
     Vector3 dir;
     // Start is called before the first frame update
     void Start()
     {
         price = 5;
-        firerateinSeconds = .25f;
-        //mask = LayerMask.GetMask("enemy");
+        damage = 5;
+        mask = LayerMask.GetMask("enemy");
     }
 
     // Update is called once per frame
@@ -25,9 +25,13 @@ public class TurretT1 : WeaponBase
         {
             dir = transform.position - collider.transform.position;
             hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
-            if (hit)
-                Debug.Log(hit.transform.name);
-
+            if (firerateinSeconds >= 0)
+                if (hit)
+                    Fire();
+            else
+            {
+                    firerateinSeconds -= Time.deltaTime;
+            }
         }
     }
 
@@ -49,7 +53,7 @@ public class TurretT1 : WeaponBase
     void Fire()
     {
         //Destroy(collider.gameObject);
-        collider.GetComponent<Enemy>().Health -= 5f;
+        collider.GetComponent<Enemy>().Health -= damage;
     }
 
 }
