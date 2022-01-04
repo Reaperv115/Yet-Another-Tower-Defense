@@ -11,6 +11,7 @@ public class TurretT3 : WeaponBase
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class TurretT3 : WeaponBase
         firerateinSeconds = .75f;
         mask = LayerMask.GetMask("enemy");
         scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        player = GameObject.Find("Main Camera").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -65,8 +67,9 @@ public class TurretT3 : WeaponBase
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
             Destroy(collider.gameObject);
-            score += 1;
-            scoreBoard.text = "Score: " + score.ToString();
+            int tmp = player.getScore();
+            player.setScore(tmp += 1);
+            scoreBoard.text = "Score: " + player.getScore().ToString();
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;

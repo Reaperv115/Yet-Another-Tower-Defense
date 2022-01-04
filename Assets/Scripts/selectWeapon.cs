@@ -34,7 +34,7 @@ public class selectWeapon : MonoBehaviour
         placingweaponTimer = GameObject.Find("Place Weapon Timer").GetComponent<TextMeshProUGUI>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
-        timetoplaceWeapon = 1.0f;
+        timetoplaceWeapon = .05f;
         startButton.SetActive(false);
         ToggleWeaponAdjusting(false);
     }
@@ -56,15 +56,22 @@ public class selectWeapon : MonoBehaviour
                     touch = Input.GetTouch(0);
                     if (touch.phase.Equals(TouchPhase.Stationary))
                     {
-                        mainWeapon.transform.position = mouseWorldPosition;
-                        ToggleWeaponAdjusting(false);
-                        startButton.SetActive(true);
-                        placingWeapon = false;
-                        weapontoPlace.text = "";
+                        Debug.Log(timetoplaceWeapon);
+                        if (timetoplaceWeapon <= 0f)
+                        {
+                            mainWeapon.transform.position = mouseWorldPosition;
+                            ToggleWeaponAdjusting(false);
+                            startButton.SetActive(true);
+                            placingWeapon = false;
+                            weapontoPlace.text = "";
+                            timetoplaceWeapon = .05f;
+                        }
+                        else
+                            timetoplaceWeapon -= Time.deltaTime;
                     }
                     else
                     {
-                        timetoplaceWeapon = 1.0f;
+                        timetoplaceWeapon = .05f;
                         oldworldPoint = newworldPoint;
                         newworldPoint = touch.position;
                         if (!newworldPoint.Equals(oldworldPoint))
