@@ -21,7 +21,6 @@ public class Tower : MonoBehaviour
         bar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
         isgameOver = false;
-        //bar.localScale = new Vector3(.4f, 1f);
     }
 
     // Update is called once per frame
@@ -32,7 +31,6 @@ public class Tower : MonoBehaviour
 
     public float getHealth()
     {
-        //Debug.Log(fHealth);
         return fHealth;
     }
 
@@ -54,14 +52,12 @@ public class Tower : MonoBehaviour
             {
                 gameOver.text = "Game Over";
                 enemy = GameObject.FindGameObjectsWithTag("enemy");
-                Debug.Log(enemy.Length);
                 foreach (GameObject enem in enemy)
                 {
                     Destroy(enem);
                 }
                 isgameOver = true;
             }
-            //Debug.Log(isgameOver);
 
         }
     }

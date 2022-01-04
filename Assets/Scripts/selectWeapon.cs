@@ -54,35 +54,27 @@ public class selectWeapon : MonoBehaviour
                 if (Input.touchCount > 0)
                 {
                     touch = Input.GetTouch(0);
-                    id = touch.fingerId;
-                    if (EventSystem.current.IsPointerOverGameObject(id))
+                    if (touch.phase.Equals(TouchPhase.Stationary))
                     {
-                        Debug.Log("touched ui");
+                        mainWeapon.transform.position = mouseWorldPosition;
+                        ToggleWeaponAdjusting(false);
+                        startButton.SetActive(true);
+                        placingWeapon = false;
+                        weapontoPlace.text = "";
                     }
                     else
                     {
-                        if (touch.phase.Equals(TouchPhase.Stationary))
+                        timetoplaceWeapon = 1.0f;
+                        oldworldPoint = newworldPoint;
+                        newworldPoint = touch.position;
+                        if (!newworldPoint.Equals(oldworldPoint))
                         {
-                            mainWeapon.transform.position = mouseWorldPosition;
-                            ToggleWeaponAdjusting(false);
-                            startButton.SetActive(true);
-                            placingWeapon = false;
-                            weapontoPlace.text = "";
-                        }
-                        else
-                        {
-                            timetoplaceWeapon = 1.0f;
-                            oldworldPoint = newworldPoint;
                             newworldPoint = touch.position;
-                            if (!newworldPoint.Equals(oldworldPoint))
-                            {
-                                newworldPoint = touch.position;
-                                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                                mouseWorldPosition.z = 0f;
-                                Destroy(instantiatedWeapon);
-                                instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
-                            }
+                            newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+                            mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+                            mouseWorldPosition.z = 0f;
+                            Destroy(instantiatedWeapon);
+                            instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
                         }
                     }
                 }
@@ -92,13 +84,6 @@ public class selectWeapon : MonoBehaviour
         }
         else
         {
-            //ToggleWeaponAdjusting(true);
-            // TODO: make weapon rotatable on key press
-            if (Input.GetKey(KeyCode.Q))
-            {
-                Vector3 rotation = new Vector3(0, 0, 90);
-                instantiatedWeapon.transform.Rotate(rotation);
-            }
             newworldPoint = Input.mousePosition;
             newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
             mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
@@ -130,21 +115,6 @@ public class selectWeapon : MonoBehaviour
                     }
                 }
             }
-
-
-            //if (Input.touchCount > 0)
-            //{
-            //    touch = Input.GetTouch(0);
-            //    id = touch.fingerId;
-            //    if (EventSystem.current.IsPointerOverGameObject(id))
-            //    {
-            //        Debug.Log("touched ui");
-            //    }
-            //    else
-            //    {
-
-            //    }
-            //}
         }
     }
 
@@ -194,7 +164,6 @@ public class selectWeapon : MonoBehaviour
 
     public void ToggleWeaponAdjusting(bool isAdjusting)
     {
-        Debug.Log("adjusting");
         rotate90.SetActive(isAdjusting);
         rotateneg90.SetActive(isAdjusting);
     }

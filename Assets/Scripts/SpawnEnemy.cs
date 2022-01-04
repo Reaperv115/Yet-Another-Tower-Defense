@@ -14,8 +14,6 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //playButton = GameObject.Find("BeginGame");
-        Debug.Log(playButton);
         spawn = false;
 
         enemy = Resources.Load<GameObject>("enemy");
@@ -27,16 +25,14 @@ public class SpawnEnemy : MonoBehaviour
     {
         if (playButton.GetComponent<PlayGame>().hasStarted())
         {
-            //Debug.Log("start spawning");
             spawn = true;
         }
 
-        //Debug.Log(spawn);
         if (spawn)
         {
             if (tower.GetComponent<Tower>().getHealth() <= 0f)
             {
-                return;
+                spawn = false;
             }
             else
             {
@@ -48,7 +44,7 @@ public class SpawnEnemy : MonoBehaviour
                 else
                 {
                     spawnTimer -= .05f;
-                    Debug.Log(spawnTimer);
+                    //Debug.Log(spawnTimer);
                 }
             }
         }

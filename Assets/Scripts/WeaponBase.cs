@@ -8,6 +8,7 @@ public class WeaponBase : MonoBehaviour
     protected static int damage;
     protected float firerateinSeconds;
     protected LayerMask mask;
+    protected Color[] colors = {Color.black, Color.blue, Color.red, Color.cyan, Color.grey};
     // Start is called before the first frame update
     void Start()
     {

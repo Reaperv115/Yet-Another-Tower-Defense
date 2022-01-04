@@ -34,8 +34,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health <= 0f)
-            Destroy(gameObject);
         if (attackTower)
         {
             tower = GameObject.FindGameObjectWithTag("tower");
@@ -45,7 +43,6 @@ public class Enemy : MonoBehaviour
         {
             if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
             {
-                //Debug.Log("At the next marker." + mapInfo.pathwayMarkers.Length);
                 if (pathindexPoint.Equals(3))
                 {
                     if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
@@ -69,22 +66,8 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                //Debug.Log("simply moving the enemy forward. " + mapInfo.pathwayMarkers.Length);
                 transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
             }
-
-            //if (mapInfo.pathwayMarkers.Length.Equals(0))
-            //{
-            //    mapInfo.pathwayMarkers = Resources.LoadAll<Transform>("Path Markers");
-            //    //Debug.Log("Just loaded thre markers " + mapInfo.pathwayMarkers.Length);
-            //    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.position, 0.02f);
-            //}
-            //else
-            //{
-
-
-
-            //}
 
 
         }

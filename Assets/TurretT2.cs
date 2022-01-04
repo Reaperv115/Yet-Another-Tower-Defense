@@ -1,35 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TurretT2 : WeaponBase
 {
+    TextMeshProUGUI scoreBoard;
+    int score;
     Collider2D collider;
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
         price = 10;
         damage = 10;
-        firerateinSeconds = .5f;
+        firerateinSeconds = .25f;
         mask = LayerMask.GetMask("enemy");
+        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        player = GameObject.Find("Main Camera").GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (collider)
         {
+            Debug.Log("turret 2 firerate: " + firerateinSeconds);
             dir = transform.position - collider.transform.position;
             hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
-            if (firerateinSeconds >= 0)
+            if (firerateinSeconds <= 0)
+            {
                 if (hit)
+                {
+                    firerateinSeconds = .25f;
                     Fire();
+                }
+            }
             else
             {
-                    firerateinSeconds -= Time.deltaTime;
+                firerateinSeconds -= Time.deltaTime;
             }
 
         }
@@ -49,7 +62,17 @@ public class TurretT2 : WeaponBase
 
     void Fire()
     {
-        //Destroy(collider.gameObject);
-        collider.GetComponent<Enemy>().Health -= damage;
+        Debug.Log(transform.GetChild(0).name);
+        int tmpCol = Random.Range(0, colors.Length);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
+        if (collider.GetComponent<Enemy>().Health <= 0)
+        {
+            Destroy(collider.gameObject);
+            int tmp = player.getScore();
+            player.setScore(tmp += 1);
+            scoreBoard.text = "Score: " + player.getScore().ToString();
+        }
+        else
+            collider.GetComponent<Enemy>().Health -= damage;
     }
 }

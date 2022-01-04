@@ -23,7 +23,6 @@ public class SetMap : MonoBehaviour
 
         for (int i = 0; i < pathwayMarkers.Length; ++i)
         {
-            Debug.Log(pathwayMarkers[i].name, pathwayMarkers[i]);
             if (pathwayMarkers[i].name.Contains("corner"))
                 continue;
             else
