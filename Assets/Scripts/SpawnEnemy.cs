@@ -16,7 +16,7 @@ public class SpawnEnemy : MonoBehaviour
     {
         spawn = false;
 
-        enemy = Resources.Load<GameObject>("enemy");
+        enemy = Resources.Load<GameObject>("enemy car");
         tower = GameObject.Find("tower");
     }
 
