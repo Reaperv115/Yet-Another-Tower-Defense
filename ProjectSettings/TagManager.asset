@@ -7,9 +7,12 @@ TagManager:
   - path
   - pathway
   - tower
-  - enemy
   - corner
   - weapon
+  - eT1
+  - eT2
+  - eT3
+  - scoreboard
   layers:
   - Default
   - TransparentFX

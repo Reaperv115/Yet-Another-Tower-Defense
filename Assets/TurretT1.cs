@@ -11,25 +11,20 @@ public class TurretT1 : WeaponBase
     Vector3 offSet;
     Collider2D collider;
     RaycastHit2D hit;
-    Player player;
     
     Vector3 dir;
     // Start is called before the first frame update
     void Start()
     {
-        price = 5;
+        price = 1;
         damage = 5;
-        firerateinSeconds = 1f;
+        firerateinSeconds = 0f;
         mask = LayerMask.GetMask("enemy");
-        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-        player = GameObject.Find("Main Camera").GetComponent<Player>();
-        score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (collider)
         {
             Debug.Log("turret 1 firerate: " + firerateinSeconds);
@@ -41,7 +36,7 @@ public class TurretT1 : WeaponBase
                 {
                     //Debug.Log("shooting enemy");
                     Fire();
-                    firerateinSeconds = 1f;
+                    firerateinSeconds = 0f;
                 }
             }
             else
@@ -53,8 +48,9 @@ public class TurretT1 : WeaponBase
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("enemy"))
+        if (collision.transform.tag.Contains("T"))
         {
+            Debug.Log(collision.name);
             collider = collision;
             offSet = collision.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, offSet);
@@ -71,12 +67,30 @@ public class TurretT1 : WeaponBase
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
             Destroy(collider.gameObject);
-            int tmp = player.getScore();
-            player.setScore(tmp += 1);
-            scoreBoard.text = "Score: " + player.getScore().ToString();
+            UpdateScore(collider);
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;
+    }
+
+    void UpdateScore(Collider2D collider2D)
+    {
+        int tmp = player.GetScore();
+        if (collider.transform.tag.Equals("eT1"))
+        {
+            player.SetScore(tmp += 1);
+        }
+        if (collider.transform.Equals("et2"))
+        {
+            player.SetScore(tmp += 2);
+        }
+        if (collider.transform.Equals("et3"))
+        {
+            player.SetScore(tmp += 3);
+        }
+        
+        
+        scoreBoard.text = "Score: " + player.GetScore().ToString();
     }
 
 }

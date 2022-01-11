@@ -11,16 +11,13 @@ public class TurretT3 : WeaponBase
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
-    Player player;
     // Start is called before the first frame update
     void Start()
     {
-        price = 10;
+        price = 3;
         damage = 40;
-        firerateinSeconds = .75f;
+        firerateinSeconds = 0f;
         mask = LayerMask.GetMask("enemy");
-        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-        player = GameObject.Find("Main Camera").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -36,7 +33,7 @@ public class TurretT3 : WeaponBase
             {
                 if (hit)
                 {
-                    firerateinSeconds = .75f;
+                    firerateinSeconds = 0f;
                     Fire();
                 }
             }
@@ -50,7 +47,7 @@ public class TurretT3 : WeaponBase
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("enemy"))
+        if (collision.transform.tag.Contains("T"))
         {
             collider = collision;
             offSet = collision.transform.position - transform.position;
@@ -67,9 +64,9 @@ public class TurretT3 : WeaponBase
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
             Destroy(collider.gameObject);
-            int tmp = player.getScore();
-            player.setScore(tmp += 1);
-            scoreBoard.text = "Score: " + player.getScore().ToString();
+            int tmp = player.GetScore();
+            player.SetScore(tmp += 1);
+            scoreBoard.text = "Score: " + player.GetScore().ToString();
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;

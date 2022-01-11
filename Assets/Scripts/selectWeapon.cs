@@ -7,11 +7,14 @@ using UnityEngine.EventSystems;
 
 public class selectWeapon : MonoBehaviour
 {
-    TextMeshProUGUI weapontoPlace, placingweaponTimer;
+    TextMeshProUGUI weapontoPlace;
+    [SerializeField]
+    TextMeshProUGUI t1Price, t2Price, t3Price;
     GameObject weaponsPanel;
     GameObject mainWeapon, instantiatedWeapon;
     [SerializeField]
     GameObject startButton, rotate90, rotateneg90;
+    Player player;
     Ray ray;
     RaycastHit hit;
     Touch touch;
@@ -23,7 +26,8 @@ public class selectWeapon : MonoBehaviour
     float rotationAngle = 90;
     float rotationSpeed;
     float timetoplaceWeapon;
-    int id;
+
+    bool checkfundsT1, checkfundsT2, checkfundsT3;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +35,11 @@ public class selectWeapon : MonoBehaviour
         weaponsPanel = GameObject.Find("Weapons Panel");
         weaponsPanel.gameObject.SetActive(false);
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
-        placingweaponTimer = GameObject.Find("Place Weapon Timer").GetComponent<TextMeshProUGUI>();
+        player = GameObject.Find("Main Camera").GetComponent<Player>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
+        checkfundsT1 = checkfundsT2 = checkfundsT3 = false;
         startButton.SetActive(false);
         ToggleWeaponAdjusting(false);
     }
@@ -133,30 +138,32 @@ public class selectWeapon : MonoBehaviour
 
     public void GetTurret()
     {
-        mainWeapon = Resources.Load<GameObject>("turret");
-        placingWeapon = true;
-        weapontoPlace.text = "turret";
-        ToggleWeaponAdjusting(true);
-        instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
-        weaponsPanel.gameObject.SetActive(false);
+        checkfundsT1 = true;
+        player.SetDisplayTimer(2f);
     }
     public void GetTurretT2()
     {
+        checkfundsT2 = true;
         mainWeapon = Resources.Load<GameObject>("turret 2");
         placingWeapon = true;
         weapontoPlace.text = "turret (Tier 2)";
         ToggleWeaponAdjusting(true);
         instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
         weaponsPanel.gameObject.SetActive(false);
+        int tmp = player.GetScore();
+        player.SetScore(tmp -= 2);
     }
     public void GetTurretT3()
     {
+        checkfundsT3 = true;
         mainWeapon = Resources.Load<GameObject>("turret 3");
         placingWeapon = true;
         weapontoPlace.text = "turret (Tier 3)";
         ToggleWeaponAdjusting(true);
         instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
         weaponsPanel.gameObject.SetActive(false);
+        int tmp = player.GetScore();
+        player.SetScore(tmp -= 3);
     }
 
     public GameObject GetMainWeapon()
@@ -183,5 +190,38 @@ public class selectWeapon : MonoBehaviour
     public Touch GetTouch()
     {
         return touch;
+    }
+
+    public bool checkT1Funds()
+    {
+        return checkfundsT1;
+    }
+    public void setT1Check(bool check)
+    {
+        checkfundsT1 = check;
+    }
+    public bool checkT2Funds()
+    {
+        return checkfundsT2;
+    }
+    public void setT2Check(bool check)
+    {
+        checkfundsT2 = check;
+    }
+    public bool checkT3Funds()
+    {
+        return checkfundsT3;
+    }
+    public void setT3Check(bool check)
+    {
+        checkfundsT3 = check;
+    }
+    public Vector3 getMWP()
+    {
+        return mouseWorldPosition;
+    }
+    public GameObject getweaponsPanel()
+    {
+        return weaponsPanel;
     }
 }

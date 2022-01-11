@@ -11,16 +11,14 @@ public class TurretT2 : WeaponBase
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
-    Player player;
     // Start is called before the first frame update
     void Start()
     {
-        price = 10;
+        price = 2;
         damage = 10;
-        firerateinSeconds = .25f;
+        firerateinSeconds = 0f;
         mask = LayerMask.GetMask("enemy");
-        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-        player = GameObject.Find("Main Camera").GetComponent<Player>();
+        Debug.Log(player);
     }
 
     // Update is called once per frame
@@ -36,7 +34,7 @@ public class TurretT2 : WeaponBase
             {
                 if (hit)
                 {
-                    firerateinSeconds = .25f;
+                    firerateinSeconds = 0f;
                     Fire();
                 }
             }
@@ -50,7 +48,7 @@ public class TurretT2 : WeaponBase
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("enemy"))
+        if (collision.transform.tag.Contains("T"))
         {
             collider = collision;
             offSet = collision.transform.position - transform.position;
@@ -62,15 +60,14 @@ public class TurretT2 : WeaponBase
 
     void Fire()
     {
-        Debug.Log(transform.GetChild(0).name);
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
             Destroy(collider.gameObject);
-            int tmp = player.getScore();
-            player.setScore(tmp += 1);
-            scoreBoard.text = "Score: " + player.getScore().ToString();
+            int tmp = player.GetScore();
+            player.SetScore(tmp += 1);
+            scoreBoard.text = "Score: " + player.GetScore().ToString();
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;

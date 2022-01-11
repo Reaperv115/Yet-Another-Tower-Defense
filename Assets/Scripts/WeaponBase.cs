@@ -9,7 +9,12 @@ public class WeaponBase : MonoBehaviour
     protected float firerateinSeconds;
     protected LayerMask mask;
     protected Color[] colors = {Color.black, Color.blue, Color.red, Color.cyan, Color.grey};
+    protected Player player;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>();
+    }
     void Start()
     {
         
