@@ -9,6 +9,7 @@ public class Rotate_Negative_90 : MonoBehaviour
     [SerializeField]
     GameObject cam;
     Transform pointer;
+    Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,15 @@ public class Rotate_Negative_90 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (cam)
+        {
+            player = cam.GetComponent<Player>();
+        }
     }
 
     public void rotate_negative_90()
     {
         Vector3 rotation = new Vector3(0, 0, -90);
-        cam.GetComponent<selectWeapon>().GetMainWeapon().transform.Rotate(rotation);
+        player.GetMainWeapon().transform.Rotate(rotation);
     }
 }

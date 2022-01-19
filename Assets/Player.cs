@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int score = 0;
+    private int score = 10;
     TextMeshProUGUI scoreBoard;
-    [SerializeField] TextMeshProUGUI lackoffundsDisplay;
+    TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
     selectWeapon swRef;
     GameObject mainWeapon, instantiatedWeapon;
@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
         scoreBoard = GameObject.FindGameObjectWithTag("scoreboard").GetComponent<TextMeshProUGUI>();
         swRef = GetComponent<selectWeapon>();
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
-        Debug.Log(score);
+        lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
+        //Debug.Log(score);
     }
     private void Update()
     {
@@ -27,14 +28,7 @@ public class Player : MonoBehaviour
         {
             if (score >= 1)
             {
-                mainWeapon = Resources.Load<GameObject>("turret");
-                placingWeapon = true;
-                weapontoPlace.text = "turret";
-                swRef.ToggleWeaponAdjusting(true);
-                instantiatedWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
-                swRef.getweaponsPanel().gameObject.SetActive(false);
-                score -= 1;
-                swRef.setT1Check(false);
+                LoadWeapon("turret (Tier 1)");
             }
             else
             {
@@ -47,7 +41,49 @@ public class Player : MonoBehaviour
                 {
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
-                    Debug.Log(lackoffundsdisplayTimer);
+                    Debug.Log("T1 no funds " + lackoffundsdisplayTimer);
+                }
+            }
+        }
+        if (swRef.checkT2Funds())
+        {
+            if (score >= 2)
+            {
+                LoadWeapon("turret (Tier 2)");
+            }
+            else
+            {
+                //lackoffundsdisplayTimer = 2f;
+                if (lackoffundsdisplayTimer <= 0f)
+                {
+                    lackoffundsDisplay.text = "";
+                }
+                else
+                {
+                    lackoffundsDisplay.text = "NOT ENOUGH MONEY";
+                    lackoffundsdisplayTimer -= .05f;
+                    Debug.Log("T2 no funds " + lackoffundsdisplayTimer);
+                }
+            }
+        }
+        if (swRef.checkT3Funds())
+        {
+            if (score >= 3)
+            {
+                LoadWeapon("turret (Tier 3)");
+            }
+            else
+            {
+                //lackoffundsdisplayTimer = 2f;
+                if (lackoffundsdisplayTimer <= 0f)
+                {
+                    lackoffundsDisplay.text = "";
+                }
+                else
+                {
+                    lackoffundsDisplay.text = "NOT ENOUGH MONEY";
+                    lackoffundsdisplayTimer -= .05f;
+                    Debug.Log("T3 no funds " + lackoffundsdisplayTimer);
                 }
             }
         }
@@ -68,5 +104,21 @@ public class Player : MonoBehaviour
     public void SetDisplayTimer(float time)
     {
         lackoffundsdisplayTimer = time;
+    }
+    void LoadWeapon(string weapon)
+    {
+        mainWeapon = Resources.Load<GameObject>(weapon);
+        placingWeapon = true;
+        weapontoPlace.text = weapon;
+        swRef.ToggleWeaponAdjusting(true);
+        instantiatedWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
+        swRef.getweaponsPanel().gameObject.SetActive(false);
+        score -= 1;
+        swRef.setT1Check(false);
+    }
+
+    public GameObject GetMainWeapon()
+    {
+        return instantiatedWeapon;
     }
 }

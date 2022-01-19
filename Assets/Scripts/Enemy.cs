@@ -41,37 +41,69 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
-            {
-                if (pathindexPoint.Equals(3))
-                {
-                    if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
-                    {
-                        attackTower = true;
+            Go(speed);
+            //if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
+            //{
+            //    if (pathindexPoint.Equals(3))
+            //    {
+            //        if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
+            //        {
+            //            attackTower = true;
 
-                    }
-                    else
-                    {
-                        ++pathIndex;
-                        pathindexPoint = 2;
-                        transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
-                    }
-                }
-                else
-                {
-                    ++pathindexPoint;
-                    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
-                }
+            //        }
+            //        else
+            //        {
+            //            ++pathIndex;
+            //            pathindexPoint = 2;
+            //            transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        ++pathindexPoint;
+            //        transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
+            //    }
 
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
-            }
+            //}
+            //else
+            //{
+            //    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
+            //}
 
 
         }
 
+    }
+
+    void Go(float _speed)
+    {
+        if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
+        {
+            if (pathindexPoint.Equals(3))
+            {
+                if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
+                {
+                    attackTower = true;
+
+                }
+                else
+                {
+                    ++pathIndex;
+                    pathindexPoint = 2;
+                    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, _speed);
+                }
+            }
+            else
+            {
+                ++pathindexPoint;
+                transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, _speed);
+            }
+
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, _speed);
+        }
     }
 
     public GameObject getTower()

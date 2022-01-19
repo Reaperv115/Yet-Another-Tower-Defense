@@ -9,6 +9,7 @@ public class Rotate90 : MonoBehaviour
     [SerializeField]
     GameObject cam;
     Transform pointer;
+    Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,18 @@ public class Rotate90 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(cam);
+        if (cam)
+        {
+            Debug.Log("setting main weapon");
+            player = cam.GetComponent<Player>();
+        }
     }
 
     public void rotate90()
     {
+        Debug.Log(mainweapon);
         Vector3 rotation = new Vector3(0, 0, 90);
-        cam.GetComponent<selectWeapon>().GetMainWeapon().transform.Rotate(rotation);
+        player.GetMainWeapon().transform.Rotate(rotation);
     }
 }

@@ -61,10 +61,10 @@ public class selectWeapon : MonoBehaviour
                     touch = Input.GetTouch(0);
                     if (touch.phase.Equals(TouchPhase.Stationary))
                     {
-                        Debug.Log(timetoplaceWeapon);
+                        //Debug.Log(timetoplaceWeapon);
                         if (timetoplaceWeapon <= 0f)
                         {
-                            mainWeapon.transform.position = mouseWorldPosition;
+                            player.GetMainWeapon().transform.position = mouseWorldPosition;
                             ToggleWeaponAdjusting(false);
                             startButton.SetActive(true);
                             placingWeapon = false;
@@ -144,32 +144,15 @@ public class selectWeapon : MonoBehaviour
     public void GetTurretT2()
     {
         checkfundsT2 = true;
-        mainWeapon = Resources.Load<GameObject>("turret 2");
-        placingWeapon = true;
-        weapontoPlace.text = "turret (Tier 2)";
-        ToggleWeaponAdjusting(true);
-        instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
-        weaponsPanel.gameObject.SetActive(false);
-        int tmp = player.GetScore();
-        player.SetScore(tmp -= 2);
+        player.SetDisplayTimer(2f);
     }
     public void GetTurretT3()
     {
         checkfundsT3 = true;
-        mainWeapon = Resources.Load<GameObject>("turret 3");
-        placingWeapon = true;
-        weapontoPlace.text = "turret (Tier 3)";
-        ToggleWeaponAdjusting(true);
-        instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
-        weaponsPanel.gameObject.SetActive(false);
-        int tmp = player.GetScore();
-        player.SetScore(tmp -= 3);
+        player.SetDisplayTimer(2f);
     }
 
-    public GameObject GetMainWeapon()
-    {
-        return mainWeapon;
-    }
+    
 
     public void isselectingWeapon(bool isPlacing)
     {
