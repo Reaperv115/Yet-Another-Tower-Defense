@@ -48,7 +48,7 @@ public class TurretT1 : WeaponBase
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Contains("T"))
+        if (collision.transform.tag.Contains("E"))
         {
             Debug.Log(collision.name);
             collider = collision;
@@ -76,21 +76,26 @@ public class TurretT1 : WeaponBase
     void UpdateScore(Collider2D collider2D)
     {
         int tmp = player.GetScore();
-        if (collider.transform.tag.Equals("eT1"))
+        if (collider.transform.tag.Equals("ET1"))
         {
             player.SetScore(tmp += 1);
         }
-        if (collider.transform.Equals("et2"))
+        if (collider.transform.Equals("ET2"))
         {
             player.SetScore(tmp += 2);
         }
-        if (collider.transform.Equals("et3"))
+        if (collider.transform.Equals("ET3"))
         {
             player.SetScore(tmp += 3);
         }
         
         
         scoreBoard.text = "Score: " + player.GetScore().ToString();
+    }
+
+    public int GetPrice()
+    {
+        return price;
     }
 
 }

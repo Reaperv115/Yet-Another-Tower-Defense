@@ -48,7 +48,7 @@ public class TurretT2 : WeaponBase
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag.Contains("T"))
+        if (collision.transform.tag.Contains("E"))
         {
             collider = collision;
             offSet = collision.transform.position - transform.position;
@@ -71,5 +71,10 @@ public class TurretT2 : WeaponBase
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;
+    }
+
+    public int GetPrice()
+    {
+        return price;
     }
 }

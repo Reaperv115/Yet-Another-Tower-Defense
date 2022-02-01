@@ -24,15 +24,14 @@ public class Rotate90 : MonoBehaviour
         //Debug.Log(cam);
         if (cam)
         {
-            Debug.Log("setting main weapon");
             player = cam.GetComponent<Player>();
         }
     }
 
     public void rotate90()
     {
-        Debug.Log(mainweapon);
+        //Debug.Log(mainweapon);
         Vector3 rotation = new Vector3(0, 0, 90);
-        player.GetMainWeapon().transform.Rotate(rotation);
+        player.mainWeapon.transform.Rotate(rotation);
     }
 }

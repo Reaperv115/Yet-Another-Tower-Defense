@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
     selectWeapon swRef;
-    GameObject mainWeapon, instantiatedWeapon;
     bool placingWeapon;
     TextMeshProUGUI weapontoPlace;
     private void Awake()
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
             if (score >= 1)
             {
                 LoadWeapon("turret (Tier 1)");
+                swRef.setT1Check(false);
             }
             else
             {
@@ -36,12 +36,13 @@ public class Player : MonoBehaviour
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
+                    swRef.setT1Check(false);
                 }
                 else
                 {
+                    swRef.getweaponsPanel().gameObject.SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
-                    Debug.Log("T1 no funds " + lackoffundsdisplayTimer);
                 }
             }
         }
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
             if (score >= 2)
             {
                 LoadWeapon("turret (Tier 2)");
+                swRef.setT2Check(false);
             }
             else
             {
@@ -57,12 +59,13 @@ public class Player : MonoBehaviour
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
+                    swRef.setT2Check(false);
                 }
                 else
                 {
+                    swRef.getweaponsPanel().gameObject.SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
-                    Debug.Log("T2 no funds " + lackoffundsdisplayTimer);
                 }
             }
         }
@@ -71,6 +74,7 @@ public class Player : MonoBehaviour
             if (score >= 3)
             {
                 LoadWeapon("turret (Tier 3)");
+                swRef.setT3Check(false);
             }
             else
             {
@@ -78,12 +82,13 @@ public class Player : MonoBehaviour
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
+                    swRef.setT3Check(false);
                 }
                 else
                 {
+                    swRef.getweaponsPanel().gameObject.SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
-                    Debug.Log("T3 no funds " + lackoffundsdisplayTimer);
                 }
             }
         }
@@ -111,14 +116,47 @@ public class Player : MonoBehaviour
         placingWeapon = true;
         weapontoPlace.text = weapon;
         swRef.ToggleWeaponAdjusting(true);
-        instantiatedWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
+        instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
+        Debug.Log(mainWeapon);
         swRef.getweaponsPanel().gameObject.SetActive(false);
-        score -= 1;
-        swRef.setT1Check(false);
+        switch (mainWeapon.transform.tag)
+        {
+            case "WT1":
+                {
+                    score -= 1;
+                    // optional todo: why isnt this working
+                    //score -= mainWeapon.GetComponent<TurretT1>().GetPrice();
+                    break;
+                }
+            case "WT2":
+                {
+                    score -= 2;
+                    // which means this one
+                    //score -= instantiatedmainWeapon.GetComponent<TurretT2>().GetPrice();
+                    break;
+                }
+            case "WT3":
+                {
+                    score -= 3;
+                    // and this one are't working
+                    //score -= instantiatedmainWeapon.GetComponent<TurretT3>().GetPrice();
+                    break;
+                }
+            default:
+                break;
+        }
+        
+        
+        
     }
-
-    public GameObject GetMainWeapon()
+    public GameObject instantiatedmainWeapon { get;  set; }
+    public GameObject mainWeapon { get; set; }
+    public bool IsPlacingWeapon()
     {
-        return instantiatedWeapon;
+        return placingWeapon;
+    }
+    public void SetIsPlacing(bool isPlacing)
+    {
+        placingWeapon = isPlacing;
     }
 }

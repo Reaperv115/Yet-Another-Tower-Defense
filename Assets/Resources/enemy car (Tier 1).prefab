@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1518110702942764694}
   m_Layer: 0
   m_Name: enemy car (Tier 1)
-  m_TagString: eT1
+  m_TagString: ET1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

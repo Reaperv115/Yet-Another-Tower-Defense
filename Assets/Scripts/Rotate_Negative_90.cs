@@ -30,6 +30,6 @@ public class Rotate_Negative_90 : MonoBehaviour
     public void rotate_negative_90()
     {
         Vector3 rotation = new Vector3(0, 0, -90);
-        player.GetMainWeapon().transform.Rotate(rotation);
+        player.mainWeapon.transform.Rotate(rotation);
     }
 }

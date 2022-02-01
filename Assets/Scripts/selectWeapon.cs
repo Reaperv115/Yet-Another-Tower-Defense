@@ -49,7 +49,7 @@ public class selectWeapon : MonoBehaviour
     {
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
-            if (placingWeapon)
+            if (player.IsPlacingWeapon())
             {
                 ToggleWeaponAdjusting(true);
                 newworldPoint = touch.position;
@@ -64,10 +64,10 @@ public class selectWeapon : MonoBehaviour
                         //Debug.Log(timetoplaceWeapon);
                         if (timetoplaceWeapon <= 0f)
                         {
-                            player.GetMainWeapon().transform.position = mouseWorldPosition;
+                            player.mainWeapon.transform.position = mouseWorldPosition;
                             ToggleWeaponAdjusting(false);
                             startButton.SetActive(true);
-                            placingWeapon = false;
+                            player.SetIsPlacing(false);
                             weapontoPlace.text = "";
                             timetoplaceWeapon = .05f;
                         }
@@ -85,8 +85,8 @@ public class selectWeapon : MonoBehaviour
                             newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
                             mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
                             mouseWorldPosition.z = 0f;
-                            Destroy(instantiatedWeapon);
-                            instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+                            Destroy(player.instantiatedmainWeapon);
+                            player.instantiatedmainWeapon = Instantiate(player.mainWeapon, mouseWorldPosition, player.mainWeapon.transform.rotation);
                         }
                     }
                 }
@@ -101,14 +101,14 @@ public class selectWeapon : MonoBehaviour
             mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
             mouseWorldPosition.z = 0f;
 
-            if (placingWeapon)
+            if (player.IsPlacingWeapon())
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    mainWeapon.transform.position = mouseWorldPosition;
+                    player.mainWeapon.transform.position = mouseWorldPosition;
                     ToggleWeaponAdjusting(false);
                     startButton.SetActive(true);
-                    placingWeapon = false;
+                    player.SetIsPlacing(false);
                     weapontoPlace.text = "";
                 }
                 else
@@ -122,8 +122,8 @@ public class selectWeapon : MonoBehaviour
                         newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
                         mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
                         mouseWorldPosition.z = 0f;
-                        Destroy(instantiatedWeapon);
-                        instantiatedWeapon = Instantiate(mainWeapon, mouseWorldPosition, mainWeapon.transform.rotation);
+                        Destroy(player.instantiatedmainWeapon);
+                        player.instantiatedmainWeapon = Instantiate(player.mainWeapon, mouseWorldPosition, player.mainWeapon.transform.rotation);
                     }
                 }
             }

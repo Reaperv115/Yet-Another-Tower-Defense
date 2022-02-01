@@ -9,10 +9,13 @@ TagManager:
   - tower
   - corner
   - weapon
-  - eT1
-  - eT2
-  - eT3
   - scoreboard
+  - WT1
+  - WT2
+  - WT3
+  - ET1
+  - ET2
+  - ET3
   layers:
   - Default
   - TransparentFX
