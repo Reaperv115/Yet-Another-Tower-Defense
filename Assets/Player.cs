@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
         swRef = GetComponent<selectWeapon>();
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
-        //Debug.Log(score);
     }
     private void Update()
     {
@@ -117,7 +116,6 @@ public class Player : MonoBehaviour
         weapontoPlace.text = weapon;
         swRef.ToggleWeaponAdjusting(true);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
-        Debug.Log(mainWeapon);
         swRef.getweaponsPanel().gameObject.SetActive(false);
         switch (mainWeapon.transform.tag)
         {

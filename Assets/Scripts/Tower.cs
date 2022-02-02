@@ -42,7 +42,7 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("enemy"))
+        if (collision.transform.tag.Contains("E"))
         {
             Destroy(collision.gameObject);
             

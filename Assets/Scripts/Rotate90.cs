@@ -21,7 +21,6 @@ public class Rotate90 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(cam);
         if (cam)
         {
             player = cam.GetComponent<Player>();
@@ -30,7 +29,6 @@ public class Rotate90 : MonoBehaviour
 
     public void rotate90()
     {
-        //Debug.Log(mainweapon);
         Vector3 rotation = new Vector3(0, 0, 90);
         player.mainWeapon.transform.Rotate(rotation);
     }

@@ -42,33 +42,6 @@ public class Enemy : MonoBehaviour
         else
         {
             Go(speed);
-            //if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
-            //{
-            //    if (pathindexPoint.Equals(3))
-            //    {
-            //        if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
-            //        {
-            //            attackTower = true;
-
-            //        }
-            //        else
-            //        {
-            //            ++pathIndex;
-            //            pathindexPoint = 2;
-            //            transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ++pathindexPoint;
-            //        transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
-            //    }
-
-            //}
-            //else
-            //{
-            //    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, speed);
-            //}
 
 
         }

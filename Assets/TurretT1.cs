@@ -6,13 +6,10 @@ using UnityEngine;
 public class TurretT1 : WeaponBase
 {
     TextMeshProUGUI scoreBoard;
-    int score;
 
     Vector3 offSet;
     Collider2D collider;
     RaycastHit2D hit;
-    
-    Vector3 dir;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +17,7 @@ public class TurretT1 : WeaponBase
         damage = 5;
         firerateinSeconds = 0f;
         mask = LayerMask.GetMask("enemy");
+        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -27,22 +25,21 @@ public class TurretT1 : WeaponBase
     {
         if (collider)
         {
-            Debug.Log("turret 1 firerate: " + firerateinSeconds);
-            dir = transform.position - collider.transform.position;
-            hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+            
             if (firerateinSeconds <= 0)
             {
+                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
                 if (hit)
                 {
-                    //Debug.Log("shooting enemy");
-                    Fire();
                     firerateinSeconds = 0f;
+                    Fire();
                 }
             }
             else
             {
                 firerateinSeconds -= Time.deltaTime;
             }
+
         }
     }
 
@@ -50,7 +47,6 @@ public class TurretT1 : WeaponBase
     {
         if (collision.transform.tag.Contains("E"))
         {
-            Debug.Log(collision.name);
             collider = collision;
             offSet = collision.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, offSet);
@@ -61,13 +57,12 @@ public class TurretT1 : WeaponBase
 
     void Fire()
     {
-        Debug.Log(transform.GetChild(0).name);
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
-            Destroy(collider.gameObject);
             UpdateScore(collider);
+            Destroy(collider.gameObject);
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;
@@ -76,15 +71,15 @@ public class TurretT1 : WeaponBase
     void UpdateScore(Collider2D collider2D)
     {
         int tmp = player.GetScore();
-        if (collider.transform.tag.Equals("ET1"))
+        if (collider2D.transform.tag.Equals("ET1"))
         {
             player.SetScore(tmp += 1);
         }
-        if (collider.transform.Equals("ET2"))
+        if (collider2D.transform.Equals("ET2"))
         {
             player.SetScore(tmp += 2);
         }
-        if (collider.transform.Equals("ET3"))
+        if (collider2D.transform.Equals("ET3"))
         {
             player.SetScore(tmp += 3);
         }

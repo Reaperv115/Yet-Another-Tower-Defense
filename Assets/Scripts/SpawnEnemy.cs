@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    GameObject[] enemies;
     GameObject enemy;
     GameObject tower;
     [SerializeField]
     GameObject playButton;
+    int enemyIndex;
 
     float  spawnTimer = 5.0f;
     bool spawn;
@@ -15,9 +17,15 @@ public class SpawnEnemy : MonoBehaviour
     void Start()
     {
         spawn = false;
-
+        enemies = new GameObject[6];
         enemy = Resources.Load<GameObject>("enemy car (Tier 1)");
         tower = GameObject.Find("tower");
+        enemyIndex = 0;
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i] = enemy;
+        }
     }
 
     // Update is called once per frame
@@ -36,16 +44,23 @@ public class SpawnEnemy : MonoBehaviour
             }
             else
             {
-                if (spawnTimer <= 0.0f)
+                if (enemyIndex < enemies.Length)
                 {
-                    Instantiate(enemy, transform.position, enemy.transform.rotation);
-                    spawnTimer = 1.0f;
+                    if (spawnTimer <= 0.0f)
+                    {
+                        Debug.Log("spawning enemy: " + enemyIndex);
+                        Instantiate(enemies[enemyIndex], transform.position, enemies[enemyIndex].transform.rotation);
+                        spawnTimer = 1.0f;
+                        ++enemyIndex;
+                    }
+                    else
+                    {
+                        spawnTimer -= .05f;
+                    }
                 }
                 else
-                {
-                    spawnTimer -= .05f;
-                    //Debug.Log(spawnTimer);
-                }
+                    Debug.Log("YOU WIN!");
+                
             }
         }
 

@@ -6,7 +6,6 @@ using UnityEngine;
 public class TurretT2 : WeaponBase
 {
     TextMeshProUGUI scoreBoard;
-    int score;
     Collider2D collider;
     RaycastHit2D hit;
     Vector3 offSet;
@@ -18,7 +17,7 @@ public class TurretT2 : WeaponBase
         damage = 10;
         firerateinSeconds = 0f;
         mask = LayerMask.GetMask("enemy");
-        Debug.Log(player);
+        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -27,11 +26,11 @@ public class TurretT2 : WeaponBase
         
         if (collider)
         {
-            Debug.Log("turret 2 firerate: " + firerateinSeconds);
             dir = transform.position - collider.transform.position;
-            hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+            
             if (firerateinSeconds <= 0)
             {
+                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
                 if (hit)
                 {
                     firerateinSeconds = 0f;
@@ -65,12 +64,29 @@ public class TurretT2 : WeaponBase
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
             Destroy(collider.gameObject);
-            int tmp = player.GetScore();
-            player.SetScore(tmp += 1);
-            scoreBoard.text = "Score: " + player.GetScore().ToString();
+            UpdateScore(collider);
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;
+    }
+    void UpdateScore(Collider2D collider2D)
+    {
+        int tmp = player.GetScore();
+        if (collider2D.transform.tag.Equals("ET1"))
+        {
+            player.SetScore(tmp += 1);
+        }
+        if (collider2D.transform.Equals("ET2"))
+        {
+            player.SetScore(tmp += 2);
+        }
+        if (collider2D.transform.Equals("ET3"))
+        {
+            player.SetScore(tmp += 3);
+        }
+
+
+        scoreBoard.text = "Score: " + player.GetScore().ToString();
     }
 
     public int GetPrice()

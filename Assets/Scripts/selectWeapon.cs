@@ -61,7 +61,6 @@ public class selectWeapon : MonoBehaviour
                     touch = Input.GetTouch(0);
                     if (touch.phase.Equals(TouchPhase.Stationary))
                     {
-                        //Debug.Log(timetoplaceWeapon);
                         if (timetoplaceWeapon <= 0f)
                         {
                             player.mainWeapon.transform.position = mouseWorldPosition;

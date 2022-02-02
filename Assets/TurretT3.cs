@@ -18,6 +18,7 @@ public class TurretT3 : WeaponBase
         damage = 40;
         firerateinSeconds = 0f;
         mask = LayerMask.GetMask("enemy");
+        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -26,11 +27,11 @@ public class TurretT3 : WeaponBase
         
         if (collider)
         {
-            Debug.Log("turret 3 firerate: " + firerateinSeconds);
             dir = transform.position - collider.transform.position;
-            hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+            
             if (firerateinSeconds <= 0)
             {
+                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
                 if (hit)
                 {
                     firerateinSeconds = 0f;
@@ -59,17 +60,35 @@ public class TurretT3 : WeaponBase
 
     void Fire()
     {
+        //Debug.Log("turret 3 shooting enemy");
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
         if (collider.GetComponent<Enemy>().Health <= 0)
         {
             Destroy(collider.gameObject);
-            int tmp = player.GetScore();
-            player.SetScore(tmp += 1);
-            scoreBoard.text = "Score: " + player.GetScore().ToString();
+            UpdateScore(collider);
         }
         else
             collider.GetComponent<Enemy>().Health -= damage;
+    }
+    void UpdateScore(Collider2D collider2D)
+    {
+        int tmp = player.GetScore();
+        if (collider2D.transform.tag.Equals("ET1"))
+        {
+            player.SetScore(tmp += 1);
+        }
+        if (collider2D.transform.Equals("ET2"))
+        {
+            player.SetScore(tmp += 2);
+        }
+        if (collider2D.transform.Equals("ET3"))
+        {
+            player.SetScore(tmp += 3);
+        }
+
+
+        scoreBoard.text = "Score: " + player.GetScore().ToString();
     }
 
     public int GetPrice()
