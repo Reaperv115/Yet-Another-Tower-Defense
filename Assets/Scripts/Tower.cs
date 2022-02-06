@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI victoryDisplay;
     private float fHealth;
 
     GameObject[] enemy;
@@ -57,22 +59,21 @@ public class Tower : MonoBehaviour
                 enemy = GameObject.FindGameObjectsWithTag("ET1");
                 Debug.Log(enemy.Length);
                 if (enemy.Length.Equals(1))
-                    Debug.Log("YOU WIN");
-            }
-            else
-            {
-                fHealth -= .1f;
-                bar.localScale = new Vector3(fHealth, 1f);
-                if (fHealth <= 0.0f)
                 {
-                    gameOver.text = "Game Over";
-                    enemy = GameObject.FindGameObjectsWithTag("ET1");
-                    for (int i = 0; i < enemy.Length; ++i)
-                    {
-                        Destroy(enemy[i]);
-                    }
-                    isgameOver = true;
+                    victoryDisplay.text = "YOU WIN!";
                 }
+            }
+            fHealth -= .1f;
+            bar.localScale = new Vector3(fHealth, 1f);
+            if (fHealth <= 0.0f)
+            {
+                gameOver.text = "Game Over";
+                enemy = GameObject.FindGameObjectsWithTag("ET1");
+                for (int i = 0; i < enemy.Length; ++i)
+                {
+                    Destroy(enemy[i]);
+                }
+                isgameOver = true;
             }
 
         }
