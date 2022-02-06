@@ -3366,7 +3366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14683acdeca1b44aaa0c185d216e370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lackoffundsDisplay: {fileID: 1275164289}
 --- !u!114 &1434125496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3865,6 +3864,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e407287f588124f9beb9857b0f4bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playButton: {fileID: 53261127}
 --- !u!1 &1699980569
 GameObject:
@@ -4804,6 +4810,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1699980570}
     m_Modifications:
+    - target: {fileID: 5251430888902682920, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
+      propertyPath: seRef
+      value: 
+      objectReference: {fileID: 1692841502}
     - target: {fileID: 5251430888902682922, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
       propertyPath: m_Name
       value: tower

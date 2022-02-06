@@ -9,10 +9,14 @@ public class Tower : MonoBehaviour
     private float fHealth;
 
     GameObject[] enemy;
+    List<GameObject> enemyList;
     RectTransform bar;
+    [SerializeField]
+    GameObject seRef;
 
     TextMeshProUGUI gameOver;
     bool isgameOver;
+    bool allenemsGone;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +25,14 @@ public class Tower : MonoBehaviour
         bar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
         isgameOver = false;
+        allenemsGone = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+
     }
 
     public float getHealth()
@@ -44,20 +50,29 @@ public class Tower : MonoBehaviour
     {
         if (collision.transform.tag.Contains("E"))
         {
+
             Destroy(collision.gameObject);
-            
-            fHealth -= .1f;
-            bar.localScale = new Vector3(fHealth, 1f);
-            if (fHealth <= 0.0f)
-            {
-                gameOver.text = "Game Over";
-                enemy = GameObject.FindGameObjectsWithTag("enemy");
-                foreach (GameObject enem in enemy)
-                {
-                    Destroy(enem);
-                }
-                isgameOver = true;
-            }
+            Debug.Log("enemy length: " + enemy.Length);
+            Debug.Log("enemy Index: " + seRef.GetComponent<SpawnEnemy>().GetEnemyIndex());
+            //if (seRef.GetComponent<SpawnEnemy>().GetEnemies().Count.Equals(0))
+            //{
+            //    Debug.Log("YOU WIN");
+            //}
+            //else
+            //{
+            //    fHealth -= .1f;
+            //    bar.localScale = new Vector3(fHealth, 1f);
+            //    if (fHealth <= 0.0f)
+            //    {
+            //        gameOver.text = "Game Over";
+            //        enemy = GameObject.FindGameObjectsWithTag("ET1");
+            //        for (int i = 0; i < enemy.Length; ++i)
+            //        {
+            //            Destroy(enemy[i]);
+            //        }
+            //        isgameOver = true;
+            //    }
+            //}
 
         }
     }
