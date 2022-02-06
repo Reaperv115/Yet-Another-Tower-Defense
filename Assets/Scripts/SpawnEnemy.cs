@@ -26,7 +26,6 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(spawn);
         if (playButton.GetComponent<PlayGame>().hasStarted())
         {
             spawn = true;
@@ -40,9 +39,18 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (timebetweenSpawn <= 0.0f)
             {
-                Instantiate(enemy, transform.position, enemy.transform.rotation);
-                spawn = false;
-                timebetweenSpawn = 1.0f;
+                if (numenemiestoAdd > 0)
+                {
+                    Instantiate(enemy, transform.position, enemy.transform.rotation);
+                    
+                    timebetweenSpawn = 1.0f;
+                    --numenemiestoAdd;
+                }
+                else
+                {
+                    spawn = false;
+                    playButton.GetComponent<PlayGame>().SetHasBegun(false);
+                }
             }
             else
             {
@@ -61,8 +69,8 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 
-    public int GetEnemyIndex()
+    public int GetNumEnemies()
     {
-        return enemyIndex;
+        return numenemiestoAdd;
     }
 }

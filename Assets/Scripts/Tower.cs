@@ -52,27 +52,28 @@ public class Tower : MonoBehaviour
         {
 
             Destroy(collision.gameObject);
-            Debug.Log("enemy length: " + enemy.Length);
-            Debug.Log("enemy Index: " + seRef.GetComponent<SpawnEnemy>().GetEnemyIndex());
-            //if (seRef.GetComponent<SpawnEnemy>().GetEnemies().Count.Equals(0))
-            //{
-            //    Debug.Log("YOU WIN");
-            //}
-            //else
-            //{
-            //    fHealth -= .1f;
-            //    bar.localScale = new Vector3(fHealth, 1f);
-            //    if (fHealth <= 0.0f)
-            //    {
-            //        gameOver.text = "Game Over";
-            //        enemy = GameObject.FindGameObjectsWithTag("ET1");
-            //        for (int i = 0; i < enemy.Length; ++i)
-            //        {
-            //            Destroy(enemy[i]);
-            //        }
-            //        isgameOver = true;
-            //    }
-            //}
+            if (seRef.GetComponent<SpawnEnemy>().GetNumEnemies() <= 0)
+            {
+                enemy = GameObject.FindGameObjectsWithTag("ET1");
+                Debug.Log(enemy.Length);
+                if (enemy.Length.Equals(1))
+                    Debug.Log("YOU WIN");
+            }
+            else
+            {
+                fHealth -= .1f;
+                bar.localScale = new Vector3(fHealth, 1f);
+                if (fHealth <= 0.0f)
+                {
+                    gameOver.text = "Game Over";
+                    enemy = GameObject.FindGameObjectsWithTag("ET1");
+                    for (int i = 0; i < enemy.Length; ++i)
+                    {
+                        Destroy(enemy[i]);
+                    }
+                    isgameOver = true;
+                }
+            }
 
         }
     }

@@ -26,4 +26,9 @@ public class PlayGame : MonoBehaviour
     {
         return hasBegun;
     }
+
+    public void SetHasBegun(bool Begun)
+    {
+        hasBegun = Begun;
+    }
 }
