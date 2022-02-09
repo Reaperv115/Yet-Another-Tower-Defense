@@ -63,13 +63,13 @@ public class TurretT3 : WeaponBase
         //Debug.Log("turret 3 shooting enemy");
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
-        if (collider.GetComponent<Enemy>().Health <= 0)
+        if (collider.GetComponent<EnemyBase>().Health <= 0)
         {
             Destroy(collider.gameObject);
             UpdateScore(collider);
         }
         else
-            collider.GetComponent<Enemy>().Health -= damage;
+            collider.GetComponent<EnemyBase>().Health -= damage;
     }
     void UpdateScore(Collider2D collider2D)
     {

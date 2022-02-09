@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2025355762649887245}
   - component: {fileID: -213579417341188451}
   - component: {fileID: -1518110702942764694}
+  - component: {fileID: 616348840819249941}
   m_Layer: 6
   m_Name: enemy car (Tier 3)
   m_TagString: ET3
@@ -128,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4ef7f6917721c458916e0040fc1507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 399772560151025187, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
 --- !u!50 &-1518110702942764694
 Rigidbody2D:
   serializedVersion: 4
@@ -150,6 +150,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 2
+--- !u!114 &616348840819249941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446665429221902790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 516d25dc5988144438522c807641b4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8446665429348843205
 GameObject:
   m_ObjectHideFlags: 0

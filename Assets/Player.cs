@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                //lackoffundsdisplayTimer = 2f;
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
@@ -54,7 +53,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                //lackoffundsdisplayTimer = 2f;
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
@@ -77,7 +75,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                //lackoffundsdisplayTimer = 2f;
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
