@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : EnemyBase
+public class Enemy1 : EnemyBase
 {
     [SerializeField]
     GameObject cam;
@@ -22,7 +22,6 @@ public class Enemy2 : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(speed);
         if (attackTower)
         {
             tower = GameObject.FindGameObjectWithTag("tower");

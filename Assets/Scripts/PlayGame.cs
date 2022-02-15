@@ -20,6 +20,7 @@ public class PlayGame : MonoBehaviour
     public void startGame()
     {
         hasBegun = true;
+        gameObject.SetActive(false);
     }
 
     public bool hasStarted()

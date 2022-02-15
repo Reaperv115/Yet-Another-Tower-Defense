@@ -1884,7 +1884,7 @@ RectTransform:
   m_GameObject: {fileID: 908961717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.24125, y: 3.8625, z: 1}
+  m_LocalScale: {x: 4.24125, y: 7.1460114, z: 1}
   m_Children: []
   m_Father: {fileID: 1875886569}
   m_RootOrder: 4
@@ -3412,7 +3412,7 @@ RectTransform:
   m_GameObject: {fileID: 1443795910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.2747, y: 4.1624, z: 1}
+  m_LocalScale: {x: 4.4350014, y: 6.55578, z: 1}
   m_Children: []
   m_Father: {fileID: 1875886569}
   m_RootOrder: 3
@@ -3551,7 +3551,7 @@ RectTransform:
   m_GameObject: {fileID: 1513168595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.4875, y: 3.275, z: 1}
+  m_LocalScale: {x: 4.4875, y: 5.813125, z: 1}
   m_Children: []
   m_Father: {fileID: 1875886569}
   m_RootOrder: 5
@@ -3865,6 +3865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0599b28cc73104aa21c7b70b1d92a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryDisplay: {fileID: 1828334491}
   playButton: {fileID: 53261127}
 --- !u!1 &1699980569
 GameObject:
@@ -5013,6 +5014,14 @@ PrefabInstance:
     - target: {fileID: 5251430888902682926, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
       propertyPath: m_Color.r
       value: 0.084905684
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251430888902682926, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251430888902682926, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -36178811
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI victoryDisplay;
+
     GameObject round1;
     List<GameObject> round2;
     List<GameObject> round3;
@@ -16,8 +19,10 @@ public class SpawnEnemy : MonoBehaviour
     int currentRound;
     int numenemiestoAdd = 6;
 
+    float intermission = 5.0f;
     float timebetweenSpawn = 1.0f;
     bool spawn;
+    bool nextRound;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,11 +42,34 @@ public class SpawnEnemy : MonoBehaviour
         round3.Add(enemy);
         round3.Add(enemy2);
         round3.Add(enemy3);
+
+        nextRound = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(numenemiestoAdd);
+        if (nextRound)
+        {
+            if (intermission <= 0.0f)
+            {
+                numenemiestoAdd = 9;
+                playButton.SetActive(true);
+                intermission = 5.0f;
+                nextRound = false;
+            }
+            else
+            {
+                Debug.Log(intermission);
+                if (intermission < 3f)
+                {
+                    victoryDisplay.text = "";
+                }
+                intermission -= .05f;
+            }
+        }
+
         if (playButton.GetComponent<PlayGame>().hasStarted())
         {
             spawn = true;
@@ -55,9 +83,21 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (timebetweenSpawn <= 0.0f)
             {
-                Debug.Log(numenemiestoAdd);
                 
-                if (numenemiestoAdd > 0)
+                if (numenemiestoAdd <= 0)
+                {
+                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("ET1");
+                    if (enemies.Length.Equals(0))
+                    {
+                        victoryDisplay.text = "YOU WIN!";
+                        spawn = false;
+                        playButton.GetComponent<PlayGame>().SetHasBegun(false);
+                        ++currentRound;
+                        nextRound = true;
+                    }
+                    
+                }
+                else
                 {
                     switch (currentRound)
                     {
@@ -87,12 +127,6 @@ public class SpawnEnemy : MonoBehaviour
                         default:
                             break;
                     }
-                }
-                else
-                {
-                    spawn = false;
-                    playButton.GetComponent<PlayGame>().SetHasBegun(false);
-                    ++currentRound;
                 }
             }
             else

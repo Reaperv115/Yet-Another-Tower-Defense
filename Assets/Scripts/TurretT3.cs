@@ -60,7 +60,6 @@ public class TurretT3 : WeaponBase
 
     void Fire()
     {
-        //Debug.Log("turret 3 shooting enemy");
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
         if (collider.GetComponent<EnemyBase>().Health <= 0)

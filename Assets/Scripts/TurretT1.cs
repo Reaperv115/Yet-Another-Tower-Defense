@@ -63,13 +63,6 @@ public class TurretT1 : WeaponBase
         {
             UpdateScore(collider);
             Destroy(collider.gameObject);
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("ET1");
-            GameObject[] enemies2 = GameObject.FindGameObjectsWithTag("ET2");
-            GameObject[] enemies3 = GameObject.FindGameObjectsWithTag("ET3");
-            if (enemies.Length.Equals(1) && enemies2.Length.Equals(1) && enemies3.Length.Equals(1))
-            {
-                Debug.Log("YOU WIN");
-            }
         }
         else
             collider.GetComponent<EnemyBase>().Health -= damage;

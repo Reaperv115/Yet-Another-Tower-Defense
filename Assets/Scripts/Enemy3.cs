@@ -22,7 +22,6 @@ public class Enemy3 : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(speed);
         if (attackTower)
         {
             tower = GameObject.FindGameObjectWithTag("tower");

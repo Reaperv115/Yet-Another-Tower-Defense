@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField]
-    TextMeshProUGUI victoryDisplay;
+    
     private float fHealth;
 
     GameObject[] enemy;
@@ -52,17 +51,8 @@ public class Tower : MonoBehaviour
     {
         if (collision.transform.tag.Contains("E"))
         {
-
+            
             Destroy(collision.gameObject);
-            if (seRef.GetComponent<SpawnEnemy>().GetNumEnemies() <= 0)
-            {
-                enemy = GameObject.FindGameObjectsWithTag("ET1");
-                Debug.Log(enemy.Length);
-                if (enemy.Length.Equals(1))
-                {
-                    victoryDisplay.text = "YOU WIN!";
-                }
-            }
             fHealth -= .1f;
             bar.localScale = new Vector3(fHealth, 1f);
             if (fHealth <= 0.0f)
