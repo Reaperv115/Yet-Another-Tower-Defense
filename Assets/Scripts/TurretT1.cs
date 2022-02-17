@@ -15,7 +15,7 @@ public class TurretT1 : WeaponBase
     {
         price = 1;
         damage = 5;
-        firerateinSeconds = 0f;
+        firerateinSeconds = .5f;
         mask = LayerMask.GetMask("enemy");
         scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
@@ -23,24 +23,27 @@ public class TurretT1 : WeaponBase
     // Update is called once per frame
     void Update()
     {
-        if (collider)
-        {
             
             if (firerateinSeconds <= 0)
             {
-                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
-                if (hit)
+                if (collider)
                 {
-                    firerateinSeconds = 0f;
-                    Fire();
+                    hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+                    if (hit)
+                    {
+                        Debug.Log("turret firing");
+                        firerateinSeconds = .5f;
+                        Fire();
+                    }
                 }
             }
             else
             {
                 firerateinSeconds -= Time.deltaTime;
+                Debug.Log(firerateinSeconds);
             }
 
-        }
+        
     }
 
     public void OnTriggerStay2D(Collider2D collision)

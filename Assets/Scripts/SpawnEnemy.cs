@@ -49,7 +49,6 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(numenemiestoAdd);
         if (nextRound)
         {
             if (intermission <= 0.0f)
@@ -61,7 +60,6 @@ public class SpawnEnemy : MonoBehaviour
             }
             else
             {
-                Debug.Log(intermission);
                 if (intermission < 3f)
                 {
                     victoryDisplay.text = "";
@@ -87,13 +85,22 @@ public class SpawnEnemy : MonoBehaviour
                 if (numenemiestoAdd <= 0)
                 {
                     GameObject[] enemies = GameObject.FindGameObjectsWithTag("ET1");
-                    if (enemies.Length.Equals(0))
+                    GameObject[] enemies2 = GameObject.FindGameObjectsWithTag("ET2");
+                    GameObject[] enemies3 = GameObject.FindGameObjectsWithTag("ET3");
+                    if (enemies.Length.Equals(0) && enemies2.Length.Equals(0) && enemies3.Length.Equals(0))
                     {
-                        victoryDisplay.text = "YOU WIN!";
-                        spawn = false;
-                        playButton.GetComponent<PlayGame>().SetHasBegun(false);
-                        ++currentRound;
-                        nextRound = true;
+                        if (currentRound.Equals(5))
+                        {
+                            victoryDisplay.text = "YOU BEAT THE GAME";
+                        }
+                        else
+                        {
+                            victoryDisplay.text = "YOU WIN!";
+                            spawn = false;
+                            playButton.GetComponent<PlayGame>().SetHasBegun(false);
+                            ++currentRound;
+                            nextRound = true;
+                        }
                     }
                     
                 }
@@ -124,6 +131,22 @@ public class SpawnEnemy : MonoBehaviour
                                 --numenemiestoAdd;
                                 break;
                             }
+                        case 4:
+                            {
+                                int randomEnem = Random.Range(0, round3.Count);
+                                Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                                timebetweenSpawn = 1.0f;
+                                --numenemiestoAdd;
+                                break;
+                            }
+                        case 5:
+                            {
+                                int randomEnem = Random.Range(0, round3.Count);
+                                Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                                timebetweenSpawn = 1.0f;
+                                --numenemiestoAdd;
+                                break;
+                            }
                         default:
                             break;
                     }
@@ -140,5 +163,10 @@ public class SpawnEnemy : MonoBehaviour
     public int GetNumEnemies()
     {
         return numenemiestoAdd;
+    }
+
+    public int GetCurrentRound()
+    {
+        return currentRound;
     }
 }

@@ -14,7 +14,7 @@ public class Enemy2 : EnemyBase
         mapInfo = GameObject.Find("battlefield").GetComponent<SetMap>();
         speed = 10f * Time.deltaTime;
         attackTower = false;
-        Health = 100;
+        Health = 125;
         pathIndex = 0;
         pathindexPoint = 2;
     }

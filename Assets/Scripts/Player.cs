@@ -5,23 +5,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int score = 10;
+    private int score = 3;
     TextMeshProUGUI scoreBoard;
+    TextMeshProUGUI roundDisplay;
     TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
     selectWeapon swRef;
+    SpawnEnemy seRef;
     bool placingWeapon;
     TextMeshProUGUI weapontoPlace;
     private void Awake()
     {
         scoreBoard = GameObject.FindGameObjectWithTag("scoreboard").GetComponent<TextMeshProUGUI>();
+        Debug.Log("scoreboard" + scoreBoard);
         swRef = GetComponent<selectWeapon>();
+        roundDisplay = GameObject.Find("Round").GetComponent<TextMeshProUGUI>();
+        seRef = GameObject.Find("enemy starting tile").transform.GetChild(0).GetComponent<SpawnEnemy>();
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }
     private void Update()
     {
         scoreBoard.text = "Score: " + score.ToString();
+        roundDisplay.text = "Round: " + seRef.GetCurrentRound().ToString();
         if (swRef.checkT1Funds())
         {
             if (score >= 1)

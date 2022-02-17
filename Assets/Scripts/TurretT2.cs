@@ -15,7 +15,7 @@ public class TurretT2 : WeaponBase
     {
         price = 2;
         damage = 10;
-        firerateinSeconds = 0f;
+        firerateinSeconds = 2f;
         mask = LayerMask.GetMask("enemy");
         scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
@@ -24,17 +24,17 @@ public class TurretT2 : WeaponBase
     void Update()
     {
         
-        if (collider)
-        {
-            dir = transform.position - collider.transform.position;
             
             if (firerateinSeconds <= 0)
             {
-                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
-                if (hit)
+                if (collider)
                 {
-                    firerateinSeconds = 0f;
-                    Fire();
+                    hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+                    if (hit)
+                    {
+                        firerateinSeconds = 1.5f;
+                        Fire();
+                    }
                 }
             }
             else
@@ -42,7 +42,7 @@ public class TurretT2 : WeaponBase
                 firerateinSeconds -= Time.deltaTime;
             }
 
-        }
+        
     }
 
     public void OnTriggerStay2D(Collider2D collision)
@@ -63,8 +63,8 @@ public class TurretT2 : WeaponBase
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
         if (collider.GetComponent<EnemyBase>().Health <= 0)
         {
-            Destroy(collider.gameObject);
             UpdateScore(collider);
+            Destroy(collider.gameObject);
         }
         else
             collider.GetComponent<EnemyBase>().Health -= damage;
