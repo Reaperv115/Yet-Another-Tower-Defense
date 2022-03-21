@@ -42,7 +42,6 @@ public class MainMenuBackground : MonoBehaviour
         }
         else
         {
-            Debug.Log(colorTimer);
             colorTimer -= Time.deltaTime;
         }
     }

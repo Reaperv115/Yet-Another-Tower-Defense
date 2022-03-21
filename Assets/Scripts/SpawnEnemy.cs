@@ -15,9 +15,9 @@ public class SpawnEnemy : MonoBehaviour
     GameObject enemy, enemy2, enemy3;
     GameObject tower;
     [SerializeField]
-    GameObject playButton;
+    GameObject playButton, weaponsButton;
     int currentRound;
-    int numenemiestoAdd = 6;
+    int numenemiestoAdd, maxnumnEnemies;
 
     float intermission = 5.0f;
     float timebetweenSpawn = 1.0f;
@@ -44,6 +44,9 @@ public class SpawnEnemy : MonoBehaviour
         round3.Add(enemy3);
 
         nextRound = false;
+
+        numenemiestoAdd = 9;
+        maxnumnEnemies = numenemiestoAdd;
     }
 
     // Update is called once per frame
@@ -53,7 +56,6 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (intermission <= 0.0f)
             {
-                numenemiestoAdd = 9;
                 playButton.SetActive(true);
                 intermission = 5.0f;
                 nextRound = false;
@@ -71,6 +73,7 @@ public class SpawnEnemy : MonoBehaviour
         if (playButton.GetComponent<PlayGame>().hasStarted())
         {
             spawn = true;
+            weaponsButton.SetActive(false);
         }
         if (tower.GetComponent<Tower>().getHealth() <= 0f)
         {
@@ -95,61 +98,21 @@ public class SpawnEnemy : MonoBehaviour
                         }
                         else
                         {
-                            victoryDisplay.text = "YOU WIN!";
+                            victoryDisplay.text = "YOU WIN! Get Ready For The Next Round";
                             spawn = false;
                             playButton.GetComponent<PlayGame>().SetHasBegun(false);
                             ++currentRound;
                             nextRound = true;
+                            maxnumnEnemies += 8;
+                            numenemiestoAdd = maxnumnEnemies;
+                            weaponsButton.SetActive(true);
                         }
                     }
                     
                 }
                 else
                 {
-                    switch (currentRound)
-                    {
-                        case 1:
-                            {
-                                Instantiate(enemy, transform.position, enemy.transform.rotation);
-                                timebetweenSpawn = 1.0f;
-                                --numenemiestoAdd;
-                                break;
-                            }
-                        case 2:
-                            {
-                                int randomEnem = Random.Range(0, round2.Count);
-                                Instantiate(round2[randomEnem], transform.position, round2[randomEnem].transform.rotation);
-                                timebetweenSpawn = 1.0f;
-                                --numenemiestoAdd;
-                                break;
-                            }
-                        case 3:
-                            {
-                                int randomEnem = Random.Range(0, round3.Count);
-                                Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
-                                timebetweenSpawn = 1.0f;
-                                --numenemiestoAdd;
-                                break;
-                            }
-                        case 4:
-                            {
-                                int randomEnem = Random.Range(0, round3.Count);
-                                Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
-                                timebetweenSpawn = 1.0f;
-                                --numenemiestoAdd;
-                                break;
-                            }
-                        case 5:
-                            {
-                                int randomEnem = Random.Range(0, round3.Count);
-                                Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
-                                timebetweenSpawn = 1.0f;
-                                --numenemiestoAdd;
-                                break;
-                            }
-                        default:
-                            break;
-                    }
+                    Spawn(currentRound);
                 }
             }
             else
@@ -157,6 +120,54 @@ public class SpawnEnemy : MonoBehaviour
                 timebetweenSpawn -= .05f;
             }
 
+        }
+    }
+
+    void Spawn(int currentround)
+    {
+        switch (currentround)
+        {
+            case 1:
+                {
+                    Instantiate(enemy, transform.position, enemy.transform.rotation);
+                    timebetweenSpawn = 1.0f;
+                    --numenemiestoAdd;
+                    break;
+                }
+            case 2:
+                {
+                    int randomEnem = Random.Range(0, round2.Count);
+                    Instantiate(round2[randomEnem], transform.position, round2[randomEnem].transform.rotation);
+                    timebetweenSpawn = 1.0f;
+                    --numenemiestoAdd;
+                    break;
+                }
+            case 3:
+                {
+                    int randomEnem = Random.Range(0, round3.Count);
+                    Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    timebetweenSpawn = 1.0f;
+                    --numenemiestoAdd;
+                    break;
+                }
+            case 4:
+                {
+                    int randomEnem = Random.Range(0, round3.Count);
+                    Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    timebetweenSpawn = 1.0f;
+                    --numenemiestoAdd;
+                    break;
+                }
+            case 5:
+                {
+                    int randomEnem = Random.Range(0, round3.Count);
+                    Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    timebetweenSpawn = 1.0f;
+                    --numenemiestoAdd;
+                    break;
+                }
+            default:
+                break;
         }
     }
 

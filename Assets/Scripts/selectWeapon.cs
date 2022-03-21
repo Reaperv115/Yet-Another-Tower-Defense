@@ -13,10 +13,10 @@ public class selectWeapon : MonoBehaviour
     GameObject weaponsPanel;
     GameObject mainWeapon, instantiatedWeapon;
     [SerializeField]
-    GameObject startButton, rotate90, rotateneg90;
+    GameObject startButton, rotate90, rotateneg90, weaponsButton;
     Player player;
     Ray ray;
-    RaycastHit hit;
+    RaycastHit2D hit;
     Touch touch;
 
     Vector3 newworldPoint, oldworldPoint;
@@ -162,6 +162,7 @@ public class selectWeapon : MonoBehaviour
     {
         rotate90.SetActive(isAdjusting);
         rotateneg90.SetActive(isAdjusting);
+        weaponsButton.SetActive(!isAdjusting);
     }
 
     public Vector3 GetWeaponPosition()
