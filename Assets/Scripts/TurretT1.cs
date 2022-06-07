@@ -40,7 +40,7 @@ public class TurretT1 : WeaponBase
             else
             {
                 firerateinSeconds -= Time.deltaTime;
-                Debug.Log(firerateinSeconds);
+                //Debug.Log(firerateinSeconds);
             }
 
         

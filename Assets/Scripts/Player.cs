@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         Debug.Log("scoreboard" + scoreBoard);
         swRef = GetComponent<selectWeapon>();
         roundDisplay = GameObject.Find("Round").GetComponent<TextMeshProUGUI>();
-        seRef = GameObject.Find("enemy starting tile").transform.GetChild(0).GetComponent<SpawnEnemy>();
+        seRef = GameObject.Find("enemy starting tile").GetComponent<SpawnEnemy>();
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }

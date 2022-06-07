@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -36178811
-  m_SortingLayer: 1
+  m_SortingLayerID: -135378535
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.09459889, g: 0.4245283, b: 0.010012458, a: 1}
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 399772560151025187, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+  track: {fileID: 5882419591888858177, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
 --- !u!1 &8446665429348843205
 GameObject:
   m_ObjectHideFlags: 0

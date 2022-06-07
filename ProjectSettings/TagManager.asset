@@ -24,7 +24,7 @@ TagManager:
   - Water
   - UI
   - enemy
-  - 
+  - track
   - 
   - 
   - 
@@ -55,4 +55,10 @@ TagManager:
     locked: 0
   - name: above ground
     uniqueID: 4258788485
+    locked: 0
+  - name: track
+    uniqueID: 1015661165
+    locked: 0
+  - name: enemy
+    uniqueID: 4159588761
     locked: 0

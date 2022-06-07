@@ -8,6 +8,10 @@ public class Enemy1 : EnemyBase
     GameObject cam;
     SetMap mapInfo;
     GameObject tower;
+
+    [SerializeField]
+    GameObject track;
+    List<Transform> pathwayMarkers;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +20,15 @@ public class Enemy1 : EnemyBase
         attackTower = false;
         Health = 100;
         pathIndex = 0;
-        pathindexPoint = 2;
+        pathindexPoint = 0;
+        pathwayMarkers = new List<Transform>();
+        GetPathMarkers();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(transform.position);
         if (attackTower)
         {
             tower = GameObject.FindGameObjectWithTag("tower");
@@ -37,32 +44,33 @@ public class Enemy1 : EnemyBase
 
     void Go(float _speed)
     {
-        if (transform.position.Equals(mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position))
+        
+        if (transform.position.Equals(pathwayMarkers[pathIndex].transform.position))
         {
-            if (pathindexPoint.Equals(3))
+            Debug.Log("path index: " + pathIndex);
+            if (pathIndex.Equals(pathwayMarkers.Count - 1))
             {
-                if (pathIndex.Equals(mapInfo.pathwayMarkers.Length - 1))
-                {
-                    attackTower = true;
-
-                }
-                else
-                {
-                    ++pathIndex;
-                    pathindexPoint = 2;
-                    transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, _speed);
-                }
+                attackTower = true;
             }
             else
             {
-                ++pathindexPoint;
-                transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, _speed);
+                ++pathIndex;
+                transform.position = Vector3.MoveTowards(transform.position, pathwayMarkers[pathIndex].transform.position, _speed);
             }
 
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, mapInfo.pathwayMarkers[pathIndex].transform.GetChild(pathindexPoint).position, _speed);
+            transform.position = Vector3.MoveTowards(transform.position, pathwayMarkers[pathIndex].transform.position, _speed);
+        }
+    }
+
+    void GetPathMarkers()
+    {
+
+        for (int i = 1; i < track.transform.childCount; ++i)
+        {
+            pathwayMarkers.Add(track.transform.GetChild(i));
         }
     }
 }
