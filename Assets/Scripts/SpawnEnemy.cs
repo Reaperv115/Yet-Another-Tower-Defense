@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    GameManager gm;
+
     [SerializeField]
     TextMeshProUGUI victoryDisplay;
 
@@ -16,7 +18,7 @@ public class SpawnEnemy : MonoBehaviour
     GameObject tower;
     [SerializeField]
     GameObject playButton, weaponsButton;
-    int currentRound;
+    //int currentRound;
     int numenemiestoAdd, maxnumnEnemies;
 
     float intermission = 5.0f;
@@ -26,7 +28,8 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentRound = 1;
+        // currentRound = 1;
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         spawn = false;
         enemy = Resources.Load<GameObject>("enemy car (Tier 1)");
         enemy2 = Resources.Load<GameObject>("enemy car (Tier 2)");
@@ -92,7 +95,7 @@ public class SpawnEnemy : MonoBehaviour
                     GameObject[] enemies3 = GameObject.FindGameObjectsWithTag("ET3");
                     if (enemies.Length.Equals(0) && enemies2.Length.Equals(0) && enemies3.Length.Equals(0))
                     {
-                        if (currentRound.Equals(5))
+                        if (gm.GetCurrentRound().Equals(5))
                         {
                             victoryDisplay.text = "YOU BEAT THE GAME";
                         }
@@ -101,7 +104,7 @@ public class SpawnEnemy : MonoBehaviour
                             victoryDisplay.text = "YOU WIN! Get Ready For The Next Round";
                             spawn = false;
                             playButton.GetComponent<PlayGame>().SetHasBegun(false);
-                            ++currentRound;
+                            gm.SetCurrentRound(gm.GetCurrentRound() + 1);
                             nextRound = true;
                             maxnumnEnemies += 8;
                             numenemiestoAdd = maxnumnEnemies;
@@ -112,7 +115,7 @@ public class SpawnEnemy : MonoBehaviour
                 }
                 else
                 {
-                    Spawn(currentRound);
+                    Spawn(gm.GetCurrentRound());
                 }
             }
             else
@@ -176,8 +179,8 @@ public class SpawnEnemy : MonoBehaviour
         return numenemiestoAdd;
     }
 
-    public int GetCurrentRound()
-    {
-        return currentRound;
-    }
+    //public int GetCurrentRound()
+    //{
+    //    return currentRound;
+    //}
 }

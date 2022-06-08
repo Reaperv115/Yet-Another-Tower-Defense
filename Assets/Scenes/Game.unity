@@ -3242,6 +3242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67464ab062e0ffc4bb85b9b1af4dcb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreBoard: {fileID: 951974749}
+  round: {fileID: 26624386}
 --- !u!114 &1434125496
 MonoBehaviour:
   m_ObjectHideFlags: 0

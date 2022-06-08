@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurretT1 : WeaponBase
 {
-    TextMeshProUGUI scoreBoard;
+    GameManager gm;
 
     Vector3 offSet;
     Collider2D collider;
@@ -17,7 +17,7 @@ public class TurretT1 : WeaponBase
         damage = 5;
         firerateinSeconds = .5f;
         mask = LayerMask.GetMask("enemy");
-        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -40,7 +40,6 @@ public class TurretT1 : WeaponBase
             else
             {
                 firerateinSeconds -= Time.deltaTime;
-                //Debug.Log(firerateinSeconds);
             }
 
         
@@ -73,22 +72,22 @@ public class TurretT1 : WeaponBase
 
     void UpdateScore(Collider2D collider2D)
     {
-        int tmp = player.GetScore();
+        int tmp = gm.GetScore();
         if (collider2D.transform.tag.Equals("ET1"))
         {
-            player.SetScore(tmp += 1);
+            gm.SetScore(tmp += 1);
         }
         if (collider2D.transform.Equals("ET2"))
         {
-            player.SetScore(tmp += 2);
+            gm.SetScore(tmp += 2);
         }
         if (collider2D.transform.Equals("ET3"))
         {
-            player.SetScore(tmp += 3);
+            gm.SetScore(tmp += 3);
         }
-        
-        
-        scoreBoard.text = "Score: " + player.GetScore().ToString();
+
+        gm.GetScoreBoard().text = "score: " + gm.GetScore().ToString();
+        //scoreBoard.text = "Score: " + player.GetScore().ToString();
     }
 
     public int GetPrice()

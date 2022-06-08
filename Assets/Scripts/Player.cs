@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int score = 3;
-    TextMeshProUGUI scoreBoard;
-    TextMeshProUGUI roundDisplay;
+    GameManager gm;
+    
     TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
     selectWeapon swRef;
@@ -16,27 +15,30 @@ public class Player : MonoBehaviour
     TextMeshProUGUI weapontoPlace;
     private void Awake()
     {
-        scoreBoard = GameObject.FindGameObjectWithTag("scoreboard").GetComponent<TextMeshProUGUI>();
-        Debug.Log("scoreboard" + scoreBoard);
+        gm = GetComponent<GameManager>();
         swRef = GetComponent<selectWeapon>();
-        roundDisplay = GameObject.Find("Round").GetComponent<TextMeshProUGUI>();
         seRef = GameObject.Find("enemy starting tile").GetComponent<SpawnEnemy>();
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }
     private void Update()
     {
-        scoreBoard.text = "Score: " + score.ToString();
-        roundDisplay.text = "Round: " + seRef.GetCurrentRound().ToString();
+        gm.GetRound().text = "Round: " + gm.GetCurrentRound().ToString();
+
+        // checking to see if the player
+        //has enough money to buy tier 1 weapon
         if (swRef.checkT1Funds())
         {
-            if (score >= 1)
+
+            // if you have enough then make the purchase
+            if (gm.GetScore() >= 1)
             {
                 LoadWeapon("turret (Tier 1)");
                 swRef.setT1Check(false);
             }
             else
             {
+                // if not then tell them
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
@@ -50,15 +52,22 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        // checking to see if the player
+        //has enough money to buy tier 2 weapon
         if (swRef.checkT2Funds())
         {
-            if (score >= 2)
+
+            // if you have enough then make the purchase
+            if (gm.GetScore() >= 2)
             {
                 LoadWeapon("turret (Tier 2)");
                 swRef.setT2Check(false);
             }
             else
             {
+
+                // if not then tell them
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
@@ -72,15 +81,20 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        // checking to see if the player
+        //has enough money to buy tier 3 weapon
         if (swRef.checkT3Funds())
         {
-            if (score >= 3)
+            // if you have enough then make the purchase
+            if (gm.GetScore() >= 3)
             {
                 LoadWeapon("turret (Tier 3)");
                 swRef.setT3Check(false);
             }
             else
             {
+                // if not then tell them
                 if (lackoffundsdisplayTimer <= 0f)
                 {
                     lackoffundsDisplay.text = "";
@@ -94,14 +108,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-    }
-    public int GetScore()
-    {
-        return score;
-    }
-    public void SetScore(int nScore)
-    {
-        score = nScore;
     }
 
     public float GetDisplayTimer()
@@ -124,21 +130,21 @@ public class Player : MonoBehaviour
         {
             case "WT1":
                 {
-                    score -= 1;
+                    gm.SetScore(gm.GetScore() - 1);
                     // optional todo: why isnt this working
                     //score -= mainWeapon.GetComponent<TurretT1>().GetPrice();
                     break;
                 }
             case "WT2":
                 {
-                    score -= 2;
+                    gm.SetScore(gm.GetScore() - 2);
                     // which means this one
                     //score -= instantiatedmainWeapon.GetComponent<TurretT2>().GetPrice();
                     break;
                 }
             case "WT3":
                 {
-                    score -= 3;
+                    gm.SetScore(gm.GetScore() - 3);
                     // and this one are't working
                     //score -= instantiatedmainWeapon.GetComponent<TurretT3>().GetPrice();
                     break;

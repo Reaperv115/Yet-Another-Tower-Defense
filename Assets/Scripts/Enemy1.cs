@@ -47,7 +47,6 @@ public class Enemy1 : EnemyBase
         
         if (transform.position.Equals(pathwayMarkers[pathIndex].transform.position))
         {
-            Debug.Log("path index: " + pathIndex);
             if (pathIndex.Equals(pathwayMarkers.Count - 1))
             {
                 attackTower = true;

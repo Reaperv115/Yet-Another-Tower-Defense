@@ -11,12 +11,6 @@ public class PlayGame : MonoBehaviour
         hasBegun = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void startGame()
     {
         hasBegun = true;

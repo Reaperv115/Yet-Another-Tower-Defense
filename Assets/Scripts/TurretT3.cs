@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TurretT3 : WeaponBase
 {
+    GameManager gm;
     TextMeshProUGUI scoreBoard;
     int score;
     Collider2D collider;
@@ -14,6 +15,7 @@ public class TurretT3 : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         price = 3;
         damage = 40;
         firerateinSeconds = 3f;
@@ -72,22 +74,22 @@ public class TurretT3 : WeaponBase
     }
     void UpdateScore(Collider2D collider2D)
     {
-        int tmp = player.GetScore();
+        int tmp = gm.GetScore();
         if (collider2D.transform.tag.Equals("ET1"))
         {
-            player.SetScore(tmp += 1);
+            gm.SetScore(tmp += 1);
         }
         if (collider2D.transform.Equals("ET2"))
         {
-            player.SetScore(tmp += 2);
+            gm.SetScore(tmp += 2);
         }
         if (collider2D.transform.Equals("ET3"))
         {
-            player.SetScore(tmp += 3);
+            gm.SetScore(tmp += 3);
         }
 
 
-        scoreBoard.text = "Score: " + player.GetScore().ToString();
+        scoreBoard.text = "Score: " + gm.GetScore().ToString();
     }
 
     public int GetPrice()
