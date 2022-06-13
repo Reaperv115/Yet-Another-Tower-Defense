@@ -23,24 +23,23 @@ public class TurretT1 : WeaponBase
     // Update is called once per frame
     void Update()
     {
-            
-            if (firerateinSeconds <= 0)
-            {
-                if (collider)
-                {
-                    hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
-                    if (hit)
-                    {
-                        Debug.Log("turret firing");
-                        firerateinSeconds = .5f;
-                        Fire();
-                    }
-                }
-            }
-            else
-            {
-                firerateinSeconds -= Time.deltaTime;
-            }
+        
+       if (firerateinSeconds <= 0)
+       {
+           if (collider)
+           {
+               hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+               if (hit)
+               {
+                   firerateinSeconds = 1.0f;
+                   Fire();
+               }
+           }
+       }
+       else
+       {
+           firerateinSeconds -= Time.deltaTime;
+       }
 
         
     }
@@ -76,6 +75,7 @@ public class TurretT1 : WeaponBase
         if (collider2D.transform.tag.Equals("ET1"))
         {
             gm.SetScore(tmp += 1);
+            Debug.Log(gm.GetScore());
         }
         if (collider2D.transform.Equals("ET2"))
         {
@@ -87,7 +87,6 @@ public class TurretT1 : WeaponBase
         }
 
         gm.GetScoreBoard().text = "score: " + gm.GetScore().ToString();
-        //scoreBoard.text = "Score: " + player.GetScore().ToString();
     }
 
     public int GetPrice()

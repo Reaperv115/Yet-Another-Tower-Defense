@@ -2228,7 +2228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8893517641461635783, guid: f4299ef3fe3c5f84ca19666bbc507ed9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8893517641461635783, guid: f4299ef3fe3c5f84ca19666bbc507ed9, type: 3}
       propertyPath: m_LocalScale.x
@@ -2502,7 +2502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882419591888858178, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5882419591888858178, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3242,8 +3242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67464ab062e0ffc4bb85b9b1af4dcb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playButton: {fileID: 53261127}
+  weaponsButton: {fileID: 607709071}
   scoreBoard: {fileID: 951974749}
   round: {fileID: 26624386}
+  victoryDisplay: {fileID: 1828334489}
 --- !u!114 &1434125496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3580,7 +3583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5251430888902682925, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5251430888902682925, guid: a4d1cbb82b813b146bde419d6993db5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3695,7 +3698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 231}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828334491
@@ -3745,8 +3748,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

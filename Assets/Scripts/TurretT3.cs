@@ -6,8 +6,6 @@ using UnityEngine;
 public class TurretT3 : WeaponBase
 {
     GameManager gm;
-    TextMeshProUGUI scoreBoard;
-    int score;
     Collider2D collider;
     RaycastHit2D hit;
     Vector3 offSet;
@@ -20,30 +18,28 @@ public class TurretT3 : WeaponBase
         damage = 40;
         firerateinSeconds = 3f;
         mask = LayerMask.GetMask("enemy");
-        scoreBoard = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-            
-            if (firerateinSeconds <= 0)
+        // firing mechanics
+        if (firerateinSeconds <= 0)
+        {
+            if (collider)
             {
-                if (collider)
+                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+                if (hit)
                 {
-                    hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
-                    if (hit)
-                    {
-                        firerateinSeconds = 3f;
-                        Fire();
-                    }
+                    firerateinSeconds = 3f;
+                    Fire();
                 }
             }
-            else
-            {
-                firerateinSeconds -= Time.deltaTime;
-            }
+        }
+        else
+        {
+            firerateinSeconds -= Time.deltaTime;
+        }
 
         
     }
@@ -89,7 +85,7 @@ public class TurretT3 : WeaponBase
         }
 
 
-        scoreBoard.text = "Score: " + gm.GetScore().ToString();
+        gm.GetScoreBoard().text = "Score: " + gm.GetScore().ToString();
     }
 
     public int GetPrice()

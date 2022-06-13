@@ -41,10 +41,4 @@ public class ShootEnemy : MonoBehaviour
             Invoke("Fire", .25f);
         }
     }
-
-    void Fire()
-    {
-        //Destroy(collider.gameObject);
-        //collider.GetComponent<Enemy>().Health -= 25f;
-    }
 }
