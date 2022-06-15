@@ -11,7 +11,7 @@ public class TurretT1 : WeaponBase
     GameObject cam;
 
     Vector3 offSet;
-    Collider2D collider;
+    new Collider2D collider;
     RaycastHit2D hit;
     // Start is called before the first frame update
     void Start()
@@ -63,13 +63,50 @@ public class TurretT1 : WeaponBase
     {
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
-        if (collider.GetComponent<EnemyBase>().Health <= 0)
+        switch (collider.tag)
         {
-            UpdateScore(collider);
-            Destroy(collider.gameObject);
+            case "ET1":
+                {
+                    if (collider.GetComponent<Enemy1>().Health <= 0)
+                    {
+                        UpdateScore(collider);
+                        Destroy(collider.gameObject);
+                    }
+                    else
+                    {
+                        collider.GetComponent<Enemy1>().Health -= damage;
+                    }
+                    break;
+                }
+            case "ET2":
+                {
+                    if (collider.GetComponent<Enemy2>().Health <= 0)
+                    {
+                        UpdateScore(collider);
+                        Destroy(collider.gameObject);
+                    }
+                    else
+                    {
+                        collider.GetComponent<Enemy2>().Health -= damage;
+                    }
+                    break;
+                }
+            case "ET3":
+                {
+                    if (collider.GetComponent<Enemy3>().Health <= 0)
+                    {
+                        UpdateScore(collider);
+                        Destroy(collider.gameObject);
+                    }
+                    else
+                    {
+                        collider.GetComponent<Enemy3>().Health -= damage;
+                    }
+                    break;
+                }
+            default:
+                break;
         }
-        else
-            collider.GetComponent<EnemyBase>().Health -= damage;
     }
 
     void UpdateScore(Collider2D collider2D)

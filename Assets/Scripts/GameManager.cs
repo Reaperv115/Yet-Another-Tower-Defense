@@ -81,13 +81,14 @@ public class GameManager : MonoBehaviour
         if (changeColor <= 0)
         {
             colorIndex = Random.Range(0, victorydisplayColors.Count);
+            Debug.Log("color index: " + colorIndex);
             colorIndex2 = Random.Range(0, victorydisplayColors.Count);
-            if (colorIndex.Equals(colorIndex2))
-                colorIndex2 += 1;
+            Debug.Log("color index2: " + colorIndex2);
             changeColor = 3;
         }
         changeColor -= Time.deltaTime;
-        victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(0, 1));
+        victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 1));
+        //Debug.Log(victoryDisplay.GetComponent<TextMeshProUGUI>().color);
     }
 
     public void MoveOn()

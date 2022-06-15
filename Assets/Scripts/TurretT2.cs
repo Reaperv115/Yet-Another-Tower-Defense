@@ -6,7 +6,7 @@ using UnityEngine;
 public class TurretT2 : WeaponBase
 {
     GameManager gm;
-    Collider2D collider;
+    new Collider2D collider;
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;

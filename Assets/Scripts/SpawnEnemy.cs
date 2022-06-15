@@ -55,7 +55,7 @@ public class SpawnEnemy : MonoBehaviour
                 {
                     gm.MoveOn();
                 }
-                intermission -= .0000005f;
+                intermission -= .0005f;
                 gm.YouWON();
             }
         }

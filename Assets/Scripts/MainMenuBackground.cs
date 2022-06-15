@@ -14,15 +14,11 @@ public class MainMenuBackground : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("background length: " + backgroundColors.Length);
         tmp = Random.Range(0, backgroundColors.Length);
-        Debug.Log("tmp: " + tmp);
         newtmp = tmp + 3;
-        Debug.Log("newtmp: " + newtmp);
         if (newtmp > backgroundColors.Length - 1)
         {
             newtmp = newtmp - backgroundColors.Length;
-            Debug.Log("newtmp: " + newtmp);
         }
         GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
         Title.color = backgroundColors[newtmp];
@@ -35,13 +31,11 @@ public class MainMenuBackground : MonoBehaviour
         if (colorTimer <= 0f)
         {
             tmp = Random.Range(0, backgroundColors.Length);
-            Debug.Log("tmp: " + tmp);
             newtmp = tmp + 3;
             Debug.Log("newtmp: " + newtmp);
             if (newtmp > backgroundColors.Length - 1)
             {
                 newtmp = newtmp - backgroundColors.Length;
-                Debug.Log("newtmp: "  + newtmp);
             }
             GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
             Title.color = backgroundColors[newtmp];
