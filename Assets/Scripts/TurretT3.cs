@@ -15,7 +15,7 @@ public class TurretT3 : WeaponBase
     {
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         price = 3;
-        damage = 40;
+        damage = 100;
         firerateinSeconds = 3f;
         mask = LayerMask.GetMask("enemy");
     }

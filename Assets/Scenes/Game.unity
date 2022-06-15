@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6033c4be0c6dcc408c2e8d1182a6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1434125492}
+  cam: {fileID: 1337817072}
 --- !u!1 &53261127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434125496}
+      - m_Target: {fileID: 1337817073}
         m_TargetAssemblyTypeName: selectWeapon, Assembly-CSharp
         m_MethodName: GetTurret
         m_Mode: 1
@@ -1335,6 +1335,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281909181}
   m_CullTransparentMesh: 1
+--- !u!1 &406930452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 396151111834468804, guid: 5b81bb1eb00871e418a4424ebbc22ba7, type: 3}
+  m_PrefabInstance: {fileID: 1321411212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540323878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17953fb0a50430f41a6439cbfab0f5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1434125492}
+  cam: {fileID: 1337817072}
 --- !u!1 &607709071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1570,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434125496}
+      - m_Target: {fileID: 1337817073}
         m_TargetAssemblyTypeName: selectWeapon, Assembly-CSharp
         m_MethodName: onClick
         m_Mode: 1
@@ -3009,6 +3014,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b81bb1eb00871e418a4424ebbc22ba7, type: 3}
+--- !u!1 &1337817072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1815969958295037358, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+  m_PrefabInstance: {fileID: 399772559638638175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1337817073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1815969958295037346, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+  m_PrefabInstance: {fileID: 399772559638638175}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337817072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b0239f8e11f134bb346b909fd7079f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1375455012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,7 +3188,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434125496}
+      - m_Target: {fileID: 1337817073}
         m_TargetAssemblyTypeName: selectWeapon, Assembly-CSharp
         m_MethodName: GetTurretT2
         m_Mode: 1
@@ -3217,56 +3238,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427216635}
   m_CullTransparentMesh: 1
---- !u!1 &1434125492 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 399772560151025187, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
-  m_PrefabInstance: {fileID: 399772559638638175}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1434125493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1434125492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c14683acdeca1b44aaa0c185d216e370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1434125494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1434125492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67464ab062e0ffc4bb85b9b1af4dcb62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playButton: {fileID: 53261127}
-  weaponsButton: {fileID: 607709071}
-  startButton: {fileID: 53261127}
-  rotate90: {fileID: 540323878}
-  rotateneg90: {fileID: 36154523}
-  scoreBoard: {fileID: 951974749}
-  round: {fileID: 26624386}
-  victoryDisplay: {fileID: 1828334489}
-  weaponsPanel: {fileID: 1875886568}
---- !u!114 &1434125496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1434125492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18b0239f8e11f134bb346b909fd7079f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1443795910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,7 +3947,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434125496}
+      - m_Target: {fileID: 1337817073}
         m_TargetAssemblyTypeName: selectWeapon, Assembly-CSharp
         m_MethodName: GetTurretT3
         m_Mode: 1
@@ -4349,5 +4320,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: round
+      value: 
+      objectReference: {fileID: 26624386}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: rotate90
+      value: 
+      objectReference: {fileID: 540323878}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: playButton
+      value: 
+      objectReference: {fileID: 53261127}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: scoreBoard
+      value: 
+      objectReference: {fileID: 951974749}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: rotateneg90
+      value: 
+      objectReference: {fileID: 36154523}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: startButton
+      value: 
+      objectReference: {fileID: 53261127}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: weaponsPanel
+      value: 
+      objectReference: {fileID: 1875886568}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: weaponsButton
+      value: 
+      objectReference: {fileID: 607709071}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: victoryDisplay
+      value: 
+      objectReference: {fileID: 1828334489}
+    - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: enemystartingPos
+      value: 
+      objectReference: {fileID: 406930452}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}

@@ -33,7 +33,7 @@ public class SpawnEnemy : MonoBehaviour
         round3.Add(gm.GetTier2Enemy());
         round3.Add(gm.GetTier3Enemy());
 
-        numenemiestoAdd = 6;
+        numenemiestoAdd = 10;
         maxnumnEnemies = numenemiestoAdd;
     }
 
@@ -154,10 +154,5 @@ public class SpawnEnemy : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public int GetNumEnemies()
-    {
-        return numenemiestoAdd;
     }
 }

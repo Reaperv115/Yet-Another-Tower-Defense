@@ -16,11 +16,13 @@ public class TurretT1 : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
+        visionDistance = 15;
         price = 1;
-        damage = 5;
+        damage = 65;
         firerateinSeconds = .5f;
         mask = LayerMask.GetMask("enemy");
-        gm = cam.GetComponent<GameManager>();
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
+        Debug.Log(gm);
     }
 
     // Update is called once per frame
@@ -31,10 +33,10 @@ public class TurretT1 : WeaponBase
        {
            if (collider)
            {
-               hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+               hit = Physics2D.Raycast(transform.position, transform.up, visionDistance, mask);
                if (hit)
                {
-                   firerateinSeconds = 1.0f;
+                   firerateinSeconds = .2f;
                    Fire();
                }
            }
@@ -67,8 +69,10 @@ public class TurretT1 : WeaponBase
         {
             case "ET1":
                 {
+                    Debug.Log(collider.GetComponent<Enemy1>().Health);
                     if (collider.GetComponent<Enemy1>().Health <= 0)
                     {
+                        Debug.Log(collider);
                         UpdateScore(collider);
                         Destroy(collider.gameObject);
                     }
@@ -111,7 +115,28 @@ public class TurretT1 : WeaponBase
 
     void UpdateScore(Collider2D collider2D)
     {
+        Debug.Log(gm);
         int tmp = gm.GetScore();
+        switch (collider2D.tag)
+        {
+            case "ET1":
+                {
+                    gm.SetScore(tmp + 1);
+                    break;
+                }
+            case "ET2":
+                {
+                    gm.SetScore(tmp + 2);
+                    break;
+                }
+            case "ET3":
+                {
+                    gm.SetScore(tmp + 3);
+                    break;
+                }
+            default:
+                break;
+        }
         if (collider2D.transform.tag.Equals("ET1"))
         {
             gm.SetScore(tmp += 1);

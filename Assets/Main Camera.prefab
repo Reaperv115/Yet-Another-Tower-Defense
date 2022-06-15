@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &399772560151025187
+--- !u!1 &1815969958295037358
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 399772560151025375}
-  - component: {fileID: 399772560151025184}
-  - component: {fileID: 399772560151025186}
+  - component: {fileID: 1815969958295037344}
+  - component: {fileID: 1815969958295037347}
+  - component: {fileID: 1815969958295037357}
+  - component: {fileID: 1815969958295037359}
+  - component: {fileID: 1815969958295037356}
+  - component: {fileID: 1815969958295037346}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -18,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &399772560151025375
+--- !u!4 &1815969958295037344
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399772560151025187}
+  m_GameObject: {fileID: 1815969958295037358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +35,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &399772560151025184
+--- !u!20 &1815969958295037347
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399772560151025187}
+  m_GameObject: {fileID: 1815969958295037358}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
@@ -75,11 +78,57 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &399772560151025186
+--- !u!81 &1815969958295037357
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399772560151025187}
+  m_GameObject: {fileID: 1815969958295037358}
   m_Enabled: 1
+--- !u!114 &1815969958295037359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815969958295037358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14683acdeca1b44aaa0c185d216e370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1815969958295037356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815969958295037358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67464ab062e0ffc4bb85b9b1af4dcb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 0}
+  weaponsButton: {fileID: 0}
+  startButton: {fileID: 0}
+  rotate90: {fileID: 0}
+  rotateneg90: {fileID: 0}
+  scoreBoard: {fileID: 0}
+  round: {fileID: 0}
+  victoryDisplay: {fileID: 0}
+  weaponsPanel: {fileID: 0}
+  enemystartingPos: {fileID: 0}
+--- !u!114 &1815969958295037346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815969958295037358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b0239f8e11f134bb346b909fd7079f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

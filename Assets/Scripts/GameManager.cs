@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
 
     List<Color>victorydisplayColors;
 
+    [SerializeField]
+    GameObject enemystartingPos;
+    SpawnEnemy spawnEnemy;
+
     bool nextRound;
 
     private int score = 3;
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
         weaponsPanel.SetActive(false);
         startButton.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
+        spawnEnemy = enemystartingPos.GetComponent<SpawnEnemy>();
     }
 
     // Update is called once per frame
@@ -74,6 +79,7 @@ public class GameManager : MonoBehaviour
     public GameObject GetRotate90() { return rotate90; }
     public GameObject GetRotateNeg90() { return rotateneg90; }
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
+    public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
 
     public void YouWON()
     {
