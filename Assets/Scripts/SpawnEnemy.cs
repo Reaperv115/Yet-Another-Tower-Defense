@@ -86,8 +86,6 @@ public class SpawnEnemy : MonoBehaviour
                             gm.GetVictoryDisplay().text = "YOU BEAT THE GAME";
                         else
                         {
-                            //gm.GetVictoryDisplay().text = "YOU WIN! Get Ready For The Next Round";
-                            //gm.YouWON();
                             spawn = false;
                             gm.GetPlayButton().GetComponent<PlayGame>().SetHasBegun(false);
                             gm.SetCurrentRound(gm.GetCurrentRound() + 1);

@@ -7,13 +7,9 @@ using UnityEngine.EventSystems;
 
 public class selectWeapon : MonoBehaviour
 {
+    GameManager gm;
+
     TextMeshProUGUI weapontoPlace;
-    [SerializeField]
-    TextMeshProUGUI t1Price, t2Price, t3Price;
-    GameObject weaponsPanel;
-    GameObject mainWeapon, instantiatedWeapon;
-    [SerializeField]
-    GameObject startButton, rotate90, rotateneg90, weaponsButton;
     Player player;
     Ray ray;
     RaycastHit2D hit;
@@ -27,20 +23,19 @@ public class selectWeapon : MonoBehaviour
     float rotationSpeed;
     float timetoplaceWeapon;
 
-    bool checkfundsT1, checkfundsT2, checkfundsT3;
+    bool checkfundsT1, checkfundsT2, checkfundsT3, activateweaponsPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        weaponsPanel = GameObject.Find("Weapons Panel");
-        weaponsPanel.gameObject.SetActive(false);
+        gm = GetComponent<GameManager>();
         weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
-        player = GameObject.Find("Main Camera").GetComponent<Player>();
+        player = GetComponent<Player>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
-        checkfundsT1 = checkfundsT2 = checkfundsT3 = false;
-        startButton.SetActive(false);
+        checkfundsT1 = checkfundsT2 = checkfundsT3 = activateweaponsPanel = false;
+        gm.GetStartButton().SetActive(false);
         ToggleWeaponAdjusting(false);
     }
 
@@ -65,7 +60,7 @@ public class selectWeapon : MonoBehaviour
                         {
                             player.mainWeapon.transform.position = mouseWorldPosition;
                             ToggleWeaponAdjusting(false);
-                            startButton.SetActive(true);
+                            gm.GetStartButton().SetActive(true);
                             player.SetIsPlacing(false);
                             weapontoPlace.text = "";
                             timetoplaceWeapon = .05f;
@@ -106,7 +101,7 @@ public class selectWeapon : MonoBehaviour
                 {
                     player.mainWeapon.transform.position = mouseWorldPosition;
                     ToggleWeaponAdjusting(false);
-                    startButton.SetActive(true);
+                    gm.GetStartButton().SetActive(true);
                     player.SetIsPlacing(false);
                     weapontoPlace.text = "";
                 }
@@ -132,7 +127,8 @@ public class selectWeapon : MonoBehaviour
     public void onClick()
     {
         timetoplaceWeapon = 1.0f;
-        weaponsPanel.gameObject.SetActive(true);
+        activateweaponsPanel = !activateweaponsPanel;
+        gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
     }
 
     public void GetTurret()
@@ -160,9 +156,9 @@ public class selectWeapon : MonoBehaviour
 
     public void ToggleWeaponAdjusting(bool isAdjusting)
     {
-        rotate90.SetActive(isAdjusting);
-        rotateneg90.SetActive(isAdjusting);
-        weaponsButton.SetActive(!isAdjusting);
+        gm.GetRotate90().SetActive(isAdjusting);
+        gm.GetRotateNeg90().SetActive(isAdjusting);
+        gm.GetWeaponsButton().SetActive(!isAdjusting);
     }
 
     public Vector3 GetWeaponPosition()
@@ -202,9 +198,5 @@ public class selectWeapon : MonoBehaviour
     public Vector3 getMWP()
     {
         return mouseWorldPosition;
-    }
-    public GameObject getweaponsPanel()
-    {
-        return weaponsPanel;
     }
 }

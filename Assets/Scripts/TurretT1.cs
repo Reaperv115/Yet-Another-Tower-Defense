@@ -7,6 +7,9 @@ public class TurretT1 : WeaponBase
 {
     GameManager gm;
 
+    [SerializeField]
+    GameObject cam;
+
     Vector3 offSet;
     Collider2D collider;
     RaycastHit2D hit;
@@ -17,7 +20,7 @@ public class TurretT1 : WeaponBase
         damage = 5;
         firerateinSeconds = .5f;
         mask = LayerMask.GetMask("enemy");
-        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
+        gm = cam.GetComponent<GameManager>();
     }
 
     // Update is called once per frame

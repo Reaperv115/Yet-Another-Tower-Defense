@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    swRef.getweaponsPanel().gameObject.SetActive(false);
+                    gm.GetWeaponsPanel().SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
                 }
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    swRef.getweaponsPanel().gameObject.SetActive(false);
+                    gm.GetWeaponsPanel().SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
                 }
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    swRef.getweaponsPanel().gameObject.SetActive(false);
+                    gm.GetWeaponsPanel().SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
                 }
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         weapontoPlace.text = weapon;
         swRef.ToggleWeaponAdjusting(true);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
-        swRef.getweaponsPanel().gameObject.SetActive(false);
+        gm.GetWeaponsPanel().SetActive(false);
         switch (mainWeapon.transform.tag)
         {
             case "WT1":

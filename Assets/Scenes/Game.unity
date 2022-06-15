@@ -2496,6 +2496,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5882419591135051368, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 5882419591888858177, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
       propertyPath: m_Name
       value: Path
@@ -3244,9 +3248,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 53261127}
   weaponsButton: {fileID: 607709071}
+  startButton: {fileID: 53261127}
+  rotate90: {fileID: 540323878}
+  rotateneg90: {fileID: 36154523}
   scoreBoard: {fileID: 951974749}
   round: {fileID: 26624386}
   victoryDisplay: {fileID: 1828334489}
+  weaponsPanel: {fileID: 1875886568}
 --- !u!114 &1434125496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3259,13 +3267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0239f8e11f134bb346b909fd7079f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t1Price: {fileID: 1443795912}
-  t2Price: {fileID: 908961719}
-  t3Price: {fileID: 1513168597}
-  startButton: {fileID: 53261127}
-  rotate90: {fileID: 540323878}
-  rotateneg90: {fileID: 36154523}
-  weaponsButton: {fileID: 607709071}
 --- !u!1 &1443795910
 GameObject:
   m_ObjectHideFlags: 0
