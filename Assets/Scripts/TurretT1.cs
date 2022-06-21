@@ -31,9 +31,9 @@ public class TurretT1 : WeaponBase
            if (collider)
            {
                hit = Physics2D.Raycast(transform.position, transform.up, visionDistance, mask);
-                Debug.Log("hit: " + hit);
                if (hit)
                {
+                    Debug.Log("enemy hit");
                    firerateinSeconds = .2f;
                    Fire();
                }
