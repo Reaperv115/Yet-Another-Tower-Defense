@@ -14,8 +14,8 @@ public class TurretT2 : WeaponBase
     void Start()
     {
         price = 2;
-        damage = 75;
-        firerateinSeconds = 2f;
+        damage = 55;
+        firerateinSeconds = .2f;
         mask = LayerMask.GetMask("enemy");
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
     }
@@ -31,7 +31,7 @@ public class TurretT2 : WeaponBase
                 hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
                 if (hit)
                 {
-                    firerateinSeconds = 1.5f;
+                    firerateinSeconds = .2f;
                     Fire();
                 }
             }
