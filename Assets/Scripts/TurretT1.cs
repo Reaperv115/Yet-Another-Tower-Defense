@@ -7,9 +7,6 @@ public class TurretT1 : WeaponBase
 {
     GameManager gm;
 
-    [SerializeField]
-    GameObject cam;
-
     Vector3 offSet;
     new Collider2D collider;
     RaycastHit2D hit;
@@ -19,14 +16,14 @@ public class TurretT1 : WeaponBase
         visionDistance = 15;
         price = 1;
         damage = 65;
-        firerateinSeconds = .5f;
+        firerateinSeconds = .2f;
         mask = LayerMask.GetMask("enemy");
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
-        Debug.Log(gm);
+        Debug.Log("fire rate in seconds");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
        if (firerateinSeconds <= 0)
@@ -34,6 +31,7 @@ public class TurretT1 : WeaponBase
            if (collider)
            {
                hit = Physics2D.Raycast(transform.position, transform.up, visionDistance, mask);
+                Debug.Log("hit: " + hit);
                if (hit)
                {
                    firerateinSeconds = .2f;
@@ -69,7 +67,7 @@ public class TurretT1 : WeaponBase
         {
             case "ET1":
                 {
-                    Debug.Log(collider.GetComponent<Enemy1>().Health);
+                    Debug.Log("enemy health: " + collider.GetComponent<Enemy1>().Health);
                     if (collider.GetComponent<Enemy1>().Health <= 0)
                     {
                         Debug.Log(collider);
@@ -140,7 +138,6 @@ public class TurretT1 : WeaponBase
         if (collider2D.transform.tag.Equals("ET1"))
         {
             gm.SetScore(tmp += 1);
-            Debug.Log(gm.GetScore());
         }
         if (collider2D.transform.Equals("ET2"))
         {
@@ -152,11 +149,6 @@ public class TurretT1 : WeaponBase
         }
 
         gm.GetScoreBoard().text = "score: " + gm.GetScore().ToString();
-    }
-
-    public int GetPrice()
-    {
-        return price;
     }
 
 }

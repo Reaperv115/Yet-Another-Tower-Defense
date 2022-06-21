@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour
         }
         changeColor -= Time.deltaTime;
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 1));
-        //Debug.Log(victoryDisplay.GetComponent<TextMeshProUGUI>().color);
     }
 
     public void MoveOn()

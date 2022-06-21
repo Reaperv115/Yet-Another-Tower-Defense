@@ -42,6 +42,7 @@ public class selectWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // weapon placement mechanics for android
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
             if (player.IsPlacingWeapon())
@@ -63,7 +64,7 @@ public class selectWeapon : MonoBehaviour
                             gm.GetStartButton().SetActive(true);
                             player.SetIsPlacing(false);
                             weapontoPlace.text = "";
-                            timetoplaceWeapon = .05f;
+                            timetoplaceWeapon = 1f;
                         }
                         else
                             timetoplaceWeapon -= Time.deltaTime;
@@ -88,6 +89,7 @@ public class selectWeapon : MonoBehaviour
 
             }
         }
+        // weapon placement mechanics for pc
         else
         {
             newworldPoint = Input.mousePosition;
@@ -126,8 +128,8 @@ public class selectWeapon : MonoBehaviour
 
     public void onClick()
     {
-        timetoplaceWeapon = 1.0f;
         activateweaponsPanel = !activateweaponsPanel;
+        Debug.Log(activateweaponsPanel);
         gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
     }
 
@@ -135,16 +137,19 @@ public class selectWeapon : MonoBehaviour
     {
         checkfundsT1 = true;
         player.SetDisplayTimer(2f);
+        activateweaponsPanel = !activateweaponsPanel;
     }
     public void GetTurretT2()
     {
         checkfundsT2 = true;
         player.SetDisplayTimer(2f);
+        activateweaponsPanel = !activateweaponsPanel;
     }
     public void GetTurretT3()
     {
         checkfundsT3 = true;
         player.SetDisplayTimer(2f);
+        activateweaponsPanel = !activateweaponsPanel;
     }
 
     

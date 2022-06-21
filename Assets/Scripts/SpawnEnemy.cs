@@ -48,14 +48,17 @@ public class SpawnEnemy : MonoBehaviour
                 gm.GetPlayButton().SetActive(true);
                 intermission = 5.0f;
                 gm.SetNextRound(false);
+                gm.MoveOn();
             }
             else
             {
                 if (intermission < 3f)
                 {
+                    Debug.Log("move on");
                     gm.MoveOn();
                 }
-                intermission -= .0005f;
+                Debug.Log("intermission: " + intermission);
+                intermission -= .05f;
                 gm.YouWON();
             }
         }

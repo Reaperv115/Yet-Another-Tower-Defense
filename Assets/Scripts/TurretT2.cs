@@ -21,7 +21,7 @@ public class TurretT2 : WeaponBase
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // firing mechanics
         if (firerateinSeconds <= 0)
@@ -86,10 +86,5 @@ public class TurretT2 : WeaponBase
 
 
         gm.GetScoreBoard().text = "Score: " + gm.GetScore().ToString();
-    }
-
-    public int GetPrice()
-    {
-        return price;
     }
 }
