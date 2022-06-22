@@ -83,8 +83,5 @@ public class TurretT2 : WeaponBase
         {
             gm.SetScore(tmp += 3);
         }
-
-
-        gm.GetScoreBoard().text = "Score: " + gm.GetScore().ToString();
     }
 }

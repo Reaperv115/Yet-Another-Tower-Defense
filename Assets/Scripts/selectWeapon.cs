@@ -65,6 +65,7 @@ public class selectWeapon : MonoBehaviour
                             player.SetIsPlacing(false);
                             weapontoPlace.text = "";
                             timetoplaceWeapon = 1f;
+                            gm.GetRestartButton().SetActive(true);
                         }
                         else
                             timetoplaceWeapon -= Time.deltaTime;
@@ -138,18 +139,21 @@ public class selectWeapon : MonoBehaviour
         checkfundsT1 = true;
         player.SetDisplayTimer(2f);
         activateweaponsPanel = !activateweaponsPanel;
+        gm.GetRestartButton().SetActive(false);
     }
     public void GetTurretT2()
     {
         checkfundsT2 = true;
         player.SetDisplayTimer(2f);
         activateweaponsPanel = !activateweaponsPanel;
+        gm.GetRestartButton().SetActive(false);
     }
     public void GetTurretT3()
     {
         checkfundsT3 = true;
         player.SetDisplayTimer(2f);
         activateweaponsPanel = !activateweaponsPanel;
+        gm.GetRestartButton().SetActive(false);
     }
 
     

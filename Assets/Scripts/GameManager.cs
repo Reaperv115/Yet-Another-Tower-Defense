@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject playButton, weaponsButton, startButton, rotate90, rotateneg90;
+    GameObject playButton, weaponsButton, startButton, rotate90, rotateneg90, restart;
     [SerializeField]
     GameObject scoreBoard, round, victoryDisplay;
 
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
     public GameObject GetRotateNeg90() { return rotateneg90; }
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
     public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
+    public GameObject GetRestartButton() { return restart; }
 
     public void YouWON()
     {
@@ -100,5 +102,10 @@ public class GameManager : MonoBehaviour
     {
         victoryDisplay.GetComponent<TextMeshProUGUI>().text = "";
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.green;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 }
