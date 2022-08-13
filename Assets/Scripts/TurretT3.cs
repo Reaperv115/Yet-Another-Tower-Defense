@@ -13,8 +13,9 @@ public class TurretT3 : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
+        visionDistance = 15;
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
-        price = 3;
+        price = 9;
         damage = 75;
         firerateinSeconds = .5f;
         mask = LayerMask.GetMask("enemy");
@@ -28,7 +29,7 @@ public class TurretT3 : WeaponBase
         {
             if (collider)
             {
-                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+                hit = Physics2D.Raycast(transform.position, transform.up, visionDistance, mask);
                 if (hit)
                 {
                     firerateinSeconds = 3f;

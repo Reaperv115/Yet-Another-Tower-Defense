@@ -6,18 +6,19 @@ using UnityEngine;
 public class TurretT2 : WeaponBase
 {
     GameManager gm;
-    new Collider2D collider;
+    Collider2D enemyCollider;
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
     // Start is called before the first frame update
     void Start()
     {
-        price = 2;
-        damage = 55;
-        firerateinSeconds = .2f;
-        mask = LayerMask.GetMask("enemy");
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
+        mask = LayerMask.GetMask("enemy");
+        firerateinSeconds = .2f;
+        visionDistance = 15;
+        damage = 55;
+        price = 6;
     }
 
     // Update is called once per frame
@@ -26,9 +27,9 @@ public class TurretT2 : WeaponBase
         // firing mechanics
         if (firerateinSeconds <= 0)
         {
-            if (collider)
+            if (enemyCollider)
             {
-                hit = Physics2D.Raycast(transform.position, transform.up, 40, mask);
+                hit = Physics2D.Raycast(transform.position, transform.up, visionDistance, mask);
                 if (hit)
                 {
                     firerateinSeconds = .2f;
@@ -48,7 +49,7 @@ public class TurretT2 : WeaponBase
     {
         if (collision.transform.tag.Contains("E"))
         {
-            collider = collision;
+            enemyCollider = collision;
             offSet = collision.transform.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, offSet);
             transform.rotation = rotation * Quaternion.Euler(0, 0, 90);
@@ -60,13 +61,13 @@ public class TurretT2 : WeaponBase
     {
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
-        if (collider.GetComponent<EnemyBase>().Health <= 0)
+        if (enemyCollider.GetComponent<EnemyBase>().Health <= 0)
         {
-            UpdateScore(collider);
-            Destroy(collider.gameObject);
+            UpdateScore(enemyCollider);
+            Destroy(enemyCollider.gameObject);
         }
         else
-            collider.GetComponent<EnemyBase>().Health -= damage;
+            enemyCollider.GetComponent<EnemyBase>().Health -= damage;
     }
     void UpdateScore(Collider2D collider2D)
     {

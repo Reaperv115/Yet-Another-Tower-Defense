@@ -54,10 +54,8 @@ public class SpawnEnemy : MonoBehaviour
             {
                 if (intermission < 3f)
                 {
-                    Debug.Log("move on");
                     gm.MoveOn();
                 }
-                Debug.Log("intermission: " + intermission);
                 intermission -= .05f;
                 gm.YouWON();
             }
@@ -77,13 +75,11 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (timebetweenSpawn <= 0.0f)
             {
-                
+
                 if (numenemiestoAdd <= 0)
                 {
-                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("ET1");
-                    GameObject[] enemies2 = GameObject.FindGameObjectsWithTag("ET2");
-                    GameObject[] enemies3 = GameObject.FindGameObjectsWithTag("ET3");
-                    if (enemies.Length.Equals(0) && enemies2.Length.Equals(0) && enemies3.Length.Equals(0))
+                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+                    if (enemies.Length.Equals(0))
                     {
                         if (gm.GetCurrentRound().Equals(5))
                             gm.GetVictoryDisplay().text = "YOU BEAT THE GAME";
@@ -98,7 +94,7 @@ public class SpawnEnemy : MonoBehaviour
                             gm.GetWeaponsButton().SetActive(true);
                         }
                     }
-                    
+
                 }
                 else
                     Spawn(gm.GetCurrentRound());

@@ -47,41 +47,37 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // displaying score and current round
         scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
         round.GetComponent<TextMeshProUGUI>().text = "Round: " + currentRound.ToString();
     }
 
+    // getters
     public TextMeshProUGUI GetScoreBoard() { return scoreBoard.GetComponent<TextMeshProUGUI>(); }
-
-    public int GetScore() { return score; }
-    public void SetScore(int newScore) { score = newScore; }
-
     public TextMeshProUGUI GetRound() { return round.GetComponent<TextMeshProUGUI>(); }
-
-    public int GetCurrentRound() { return currentRound; }
-    public void SetCurrentRound(int newRound) { currentRound = newRound; }
-
     public TextMeshProUGUI GetVictoryDisplay() { return victoryDisplay.GetComponent<TextMeshProUGUI>(); }
-
     public GameObject GetTier1Enemy() { return enemy; }
-
     public GameObject GetTier2Enemy() { return enemy2; }
-
     public GameObject GetTier3Enemy() { return enemy3; }
-
-    public bool GetNextRound() { return nextRound; }
-
-    public void SetNextRound(bool nextround) { nextRound = nextround; }
-
     public GameObject GetPlayButton() { return playButton; }
-
     public GameObject GetWeaponsButton() { return weaponsButton; }
     public GameObject GetStartButton() { return startButton; }
     public GameObject GetRotate90() { return rotate90; }
     public GameObject GetRotateNeg90() { return rotateneg90; }
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
-    public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
     public GameObject GetRestartButton() { return restart; }
+    public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
+    public bool GetNextRound() { return nextRound; }
+    public int GetCurrentRound() { return currentRound; }
+
+
+    // setters
+    public void SetScore(int newScore) { score = newScore; }
+    public int GetScore() { return score; }
+    public void SetCurrentRound(int newRound) { currentRound = newRound; }
+    public void SetNextRound(bool nextround) { nextRound = nextround; }
+
+    public void RestartGame() { SceneManager.LoadScene("Game"); }
 
     public void YouWON()
     {
@@ -89,9 +85,7 @@ public class GameManager : MonoBehaviour
         if (changeColor <= 0)
         {
             colorIndex = Random.Range(0, victorydisplayColors.Count);
-            Debug.Log("color index: " + colorIndex);
             colorIndex2 = Random.Range(0, victorydisplayColors.Count);
-            Debug.Log("color index2: " + colorIndex2);
             changeColor = 3;
         }
         changeColor -= Time.deltaTime;
@@ -104,8 +98,18 @@ public class GameManager : MonoBehaviour
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.green;
     }
 
-    public void RestartGame()
+    public int GetT1Price()
     {
-        SceneManager.LoadScene("Game");
+        return 3;
     }
+
+    public int GetT2Price()
+    {
+        return 6;
+    }
+    public int GetT3Price()
+    {
+        return 9;
+    }
+
 }

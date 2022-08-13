@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         {
 
             // if you have enough then make the purchase
-            if (gm.GetScore() >= 1)
+            if (gm.GetScore() >= gm.GetT1Price())
             {
                 LoadWeapon("turret (Tier 1)");
                 swRef.setT1Check(false);
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         {
 
             // if you have enough then make the purchase
-            if (gm.GetScore() >= 2)
+            if (gm.GetScore() >= gm.GetT2Price())
             {
                 LoadWeapon("turret (Tier 2)");
                 swRef.setT2Check(false);
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
         if (swRef.checkT3Funds())
         {
             // if you have enough then make the purchase
-            if (gm.GetScore() >= 3)
+            if (gm.GetScore() >= gm.GetT3Price())
             {
                 LoadWeapon("turret (Tier 3)");
                 swRef.setT3Check(false);
@@ -130,21 +130,21 @@ public class Player : MonoBehaviour
         {
             case "WT1":
                 {
-                    gm.SetScore(gm.GetScore() - 1);
+                    gm.SetScore(gm.GetScore() - gm.GetT1Price());
                     // optional todo: why isnt this working
                     //score -= mainWeapon.GetComponent<TurretT1>().GetPrice();
                     break;
                 }
             case "WT2":
                 {
-                    gm.SetScore(gm.GetScore() - 2);
+                    gm.SetScore(gm.GetScore() - gm.GetT2Price());
                     // which means this one
                     //score -= instantiatedmainWeapon.GetComponent<TurretT2>().GetPrice();
                     break;
                 }
             case "WT3":
                 {
-                    gm.SetScore(gm.GetScore() - 3);
+                    gm.SetScore(gm.GetScore() - gm.GetT3Price());
                     // and this one are't working
                     //score -= instantiatedmainWeapon.GetComponent<TurretT3>().GetPrice();
                     break;

@@ -13,6 +13,7 @@ TagManager:
   - WT1
   - WT2
   - WT3
+  - enemy
   - ET1
   - ET2
   - ET3
@@ -25,9 +26,9 @@ TagManager:
   - UI
   - enemy
   - track
-  - 
-  - 
-  - 
+  - ET1
+  - ET2
+  - ET3
   - 
   - 
   - 

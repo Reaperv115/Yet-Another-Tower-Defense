@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7782952059426513407}
   m_Layer: 6
   m_Name: enemy car (Tier 1)
-  m_TagString: ET1
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,8 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ebe5bdcb5bdb54d929cf338224f86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 399772560151025187, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
-  track: {fileID: 5882419591888858177, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
+  track: {fileID: 1747432200528252541, guid: 3e60fdda8ac8059439a8853cf31e35a0, type: 3}
 --- !u!1 &8446665429348843205
 GameObject:
   m_ObjectHideFlags: 0
