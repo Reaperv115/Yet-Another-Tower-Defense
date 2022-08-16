@@ -37,6 +37,7 @@ public class selectWeapon : MonoBehaviour
         checkfundsT1 = checkfundsT2 = checkfundsT3 = activateweaponsPanel = false;
         gm.GetStartButton().SetActive(false);
         ToggleWeaponAdjusting(false);
+        Debug.Log(activateweaponsPanel);
     }
 
     // Update is called once per frame
@@ -127,6 +128,8 @@ public class selectWeapon : MonoBehaviour
         }
     }
 
+    // used to hide and show weapons selection
+    // panel when you hit the weapons button
     public void onClick()
     {
         activateweaponsPanel = !activateweaponsPanel;
@@ -134,6 +137,7 @@ public class selectWeapon : MonoBehaviour
         gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
     }
 
+    // selects the tier 1 turret
     public void GetTurret()
     {
         checkfundsT1 = true;
@@ -141,6 +145,8 @@ public class selectWeapon : MonoBehaviour
         activateweaponsPanel = !activateweaponsPanel;
         gm.GetRestartButton().SetActive(false);
     }
+
+    // selects the tier 2 turret
     public void GetTurretT2()
     {
         checkfundsT2 = true;
@@ -148,6 +154,8 @@ public class selectWeapon : MonoBehaviour
         activateweaponsPanel = !activateweaponsPanel;
         gm.GetRestartButton().SetActive(false);
     }
+
+    // selects the tier 3 turret
     public void GetTurretT3()
     {
         checkfundsT3 = true;

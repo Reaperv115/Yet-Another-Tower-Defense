@@ -637,7 +637,6 @@ MonoBehaviour:
   victoryDisplay: {fileID: 1828334489}
   weaponsPanel: {fileID: 1875886568}
   enemystartingPos: {fileID: 406930452}
-  weaponprice1: {fileID: 0}
 --- !u!114 &1337817075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,6 +1412,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1337817073}
+    - target: {fileID: 5188365908995552347, guid: ff1bb543b9856ee4fbecb71200d02fd1, type: 3}
+      propertyPath: m_text
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188365909240648323, guid: ff1bb543b9856ee4fbecb71200d02fd1, type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5188365909830737307, guid: ff1bb543b9856ee4fbecb71200d02fd1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1509,6 +1516,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1337817073}
+    - target: {fileID: 5188365910606105420, guid: ff1bb543b9856ee4fbecb71200d02fd1, type: 3}
+      propertyPath: m_text
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff1bb543b9856ee4fbecb71200d02fd1, type: 3}
 --- !u!1001 &5324008064223160951

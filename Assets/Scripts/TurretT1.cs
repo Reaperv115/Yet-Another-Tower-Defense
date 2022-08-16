@@ -5,7 +5,6 @@ public class TurretT1 : WeaponBase
     GameManager gm;
 
     Vector3 offSet;
-    Collider2D enemyCollider;
     RaycastHit2D hit;
 
     float range = 15f;
@@ -23,27 +22,19 @@ public class TurretT1 : WeaponBase
 
     // Update is called once per frame
     void Update()
-    {
-        if (target == null)
-        {
-            return;
-        }
-
+    {   // do nothing if no target is close enough
+        if (target == null) return;
 
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
-        if (hit)
-        {
-            Fire();
-        }
-
+        if (hit) Fire();
     }
 
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-        float shortestDistance = Mathf.Infinity;
+        float shortestDistance = 15;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
         {
@@ -54,14 +45,8 @@ public class TurretT1 : WeaponBase
                 nearestEnemy = enemy;
             }
         }
-        if (nearestEnemy != null && shortestDistance <= range)
-        {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            nearestEnemy = null;
-        }
+        if (nearestEnemy != null && shortestDistance <= range) target = nearestEnemy.transform;
+        else nearestEnemy = null;
     }
 
     // checking to see what needs to happen if an enemy is shot
@@ -70,7 +55,6 @@ public class TurretT1 : WeaponBase
     {
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
-        Debug.Log(target.name);
         switch (target.name)
         {
             case "enemy car (Tier 1)(Clone)":
@@ -80,10 +64,7 @@ public class TurretT1 : WeaponBase
                         UpdateScore(target);
                         Destroy(target.gameObject);
                     }
-                    else
-                    {
-                        target.GetComponent<Enemy1>().Health -= damage;
-                    }
+                    else target.GetComponent<Enemy1>().Health -= damage; 
                     break;
                 }
             case "enemy car (Tier 2)(Clone)":
@@ -93,10 +74,7 @@ public class TurretT1 : WeaponBase
                         UpdateScore(target);
                         Destroy(target.gameObject);
                     }
-                    else
-                    {
-                        target.GetComponent<Enemy2>().Health -= damage;
-                    }
+                    else target.GetComponent<Enemy2>().Health -= damage;
                     break;
                 }
             case "enemy car (Tier 3)(Clone)":
@@ -106,10 +84,7 @@ public class TurretT1 : WeaponBase
                         UpdateScore(target);
                         Destroy(target.gameObject);
                     }
-                    else
-                    {
-                        target.GetComponent<Enemy3>().Health -= damage;
-                    }
+                    else target.GetComponent<Enemy3>().Health -= damage;
                     break;
                 }
             default:

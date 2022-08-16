@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     bool nextRound;
 
-    private int score = 3;
+    private int score = 6;
     int currentRound;
     float changeColor = 3;
     int colorIndex = 0, colorIndex2 = 1;
@@ -79,6 +79,17 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame() { SceneManager.LoadScene("Game"); }
 
+
+    public void MoveOn() { victoryDisplay.GetComponent<TextMeshProUGUI>().text = ""; }
+
+    // returns the price of the tier 1 weapon
+    public int GetT1Price() { return 2;  }
+
+    // returns the price of the tier 2 weapon
+    public int GetT2Price() { return 4; }
+
+    // returns the rpice of the tier 3 weapon
+    public int GetT3Price() { return 6; }
     public void YouWON()
     {
         victoryDisplay.GetComponent<TextMeshProUGUI>().text = "YOU WIN! Get Ready For The Next Round!";
@@ -90,26 +101,6 @@ public class GameManager : MonoBehaviour
         }
         changeColor -= Time.deltaTime;
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 1));
-    }
-
-    public void MoveOn()
-    {
-        victoryDisplay.GetComponent<TextMeshProUGUI>().text = "";
-        victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.green;
-    }
-
-    public int GetT1Price()
-    {
-        return 3;
-    }
-
-    public int GetT2Price()
-    {
-        return 6;
-    }
-    public int GetT3Price()
-    {
-        return 9;
     }
 
 }

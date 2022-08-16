@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         gm.GetRound().text = "Round: " + gm.GetCurrentRound().ToString();
 
         // checking to see if the player
-        //has enough money to buy tier 1 weapon
+        // has enough money to buy tier 1 weapon
         if (swRef.checkT1Funds())
         {
 
@@ -131,22 +131,16 @@ public class Player : MonoBehaviour
             case "WT1":
                 {
                     gm.SetScore(gm.GetScore() - gm.GetT1Price());
-                    // optional todo: why isnt this working
-                    //score -= mainWeapon.GetComponent<TurretT1>().GetPrice();
                     break;
                 }
             case "WT2":
                 {
                     gm.SetScore(gm.GetScore() - gm.GetT2Price());
-                    // which means this one
-                    //score -= instantiatedmainWeapon.GetComponent<TurretT2>().GetPrice();
                     break;
                 }
             case "WT3":
                 {
                     gm.SetScore(gm.GetScore() - gm.GetT3Price());
-                    // and this one are't working
-                    //score -= instantiatedmainWeapon.GetComponent<TurretT3>().GetPrice();
                     break;
                 }
             default:
