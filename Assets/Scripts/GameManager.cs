@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     bool nextRound;
 
-    private int score = 6;
+    private float score = 6f;
     int currentRound;
     float changeColor = 3;
     int colorIndex = 0, colorIndex2 = 1;
@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour
 
 
     // setters
-    public void SetScore(int newScore) { score = newScore; }
-    public int GetScore() { return score; }
+    public void SetScore(float newScore) { score = newScore; }
+    public float GetScore() { return score; }
     public void SetCurrentRound(int newRound) { currentRound = newRound; }
     public void SetNextRound(bool nextround) { nextRound = nextround; }
 
@@ -84,12 +84,15 @@ public class GameManager : MonoBehaviour
 
     // returns the price of the tier 1 weapon
     public int GetT1Price() { return 2;  }
+    public float GetT1PriceF() { return 2.0f; }
 
     // returns the price of the tier 2 weapon
     public int GetT2Price() { return 4; }
+    public float GetT2PriceF() { return 4.0f; }
 
     // returns the rpice of the tier 3 weapon
     public int GetT3Price() { return 6; }
+    public float GetT3PriceF() { return 6.0f; }
     public void YouWON()
     {
         victoryDisplay.GetComponent<TextMeshProUGUI>().text = "YOU WIN! Get Ready For The Next Round!";

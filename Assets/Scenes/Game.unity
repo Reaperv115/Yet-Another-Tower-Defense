@@ -862,6 +862,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1815969958295037346, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
+      propertyPath: weaponSpots.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1815969958295037356, guid: c5e3314e0b5e69c44846bc8b7d90d045, type: 3}
       propertyPath: round
       value: 

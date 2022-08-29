@@ -1,91 +1,108 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class TurretT3 : WeaponBase
 {
     GameManager gm;
-    new Collider2D collider;
-    RaycastHit2D hit;
+
     Vector3 offSet;
-    Vector3 dir;
+    RaycastHit2D hit;
+
+    float range = 15f;
+    Transform target;
     // Start is called before the first frame update
     void Start()
     {
-        visionDistance = 15;
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
-        price = 9;
-        damage = 75;
-        firerateinSeconds = .5f;
         mask = LayerMask.GetMask("enemy");
+        visionDistance = 15;
+        damage = 50;
+        price = 9;
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
+    {   // do nothing if no target is close enough
+        if (target == null) return;
+
+        // making the turret track the enemy when its close enough
+        offSet = target.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
+        hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
+        if (hit) Invoke("Fire", 4f);
+    }
+
+    void UpdateTarget()
     {
-        // firing mechanics
-        if (firerateinSeconds <= 0)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        float shortestDistance = 15;
+        GameObject nearestEnemy = null;
+        foreach (GameObject enemy in enemies)
         {
-            if (collider)
+            float distancetoEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distancetoEnemy <= shortestDistance)
             {
-                hit = Physics2D.Raycast(transform.position, transform.up, visionDistance, mask);
-                if (hit)
-                {
-                    firerateinSeconds = 3f;
-                    Fire();
-                }
+                shortestDistance = distancetoEnemy;
+                nearestEnemy = enemy;
             }
         }
-        else
-        {
-            firerateinSeconds -= Time.deltaTime;
-        }
-
-        
+        if (nearestEnemy != null && shortestDistance <= range) target = nearestEnemy.transform;
+        else nearestEnemy = null;
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.transform.tag.Contains("E"))
-        {
-            collider = collision;
-            offSet = collision.transform.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, offSet);
-            transform.rotation = rotation * Quaternion.Euler(0, 0, 90);
-        }
-
-    }
-
+    // checking to see what needs to happen if an enemy is shot
+    // depeneding on which type of enemy it is.
     void Fire()
     {
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
-        if (collider.GetComponent<EnemyBase>().Health <= 0)
+        if (target)
         {
-            UpdateScore(collider);
-            Destroy(collider.gameObject);
+            switch (target.name)
+            {
+                case "enemy car (Tier 1)(Clone)":
+                    {
+                        if (target.GetComponent<Enemy1>().Health <= 0)
+                        {
+                            UpdateScore(target);
+                            Destroy(target.gameObject);
+                        }
+                        else target.GetComponent<Enemy1>().Health -= damage;
+                        break;
+                    }
+                case "enemy car (Tier 2)(Clone)":
+                    {
+                        if (target.GetComponent<Enemy2>().Health <= 0)
+                        {
+                            UpdateScore(target);
+                            Destroy(target.gameObject);
+                        }
+                        else target.GetComponent<Enemy2>().Health -= damage;
+                        break;
+                    }
+                case "enemy car (Tier 3)(Clone)":
+                    {
+                        if (target.GetComponent<Enemy3>().Health <= 0)
+                        {
+                            UpdateScore(target);
+                            Destroy(target.gameObject);
+                        }
+                        else target.GetComponent<Enemy3>().Health -= damage;
+                        break;
+                    }
+                default:
+                    break;
+            }
         }
-        else
-            collider.GetComponent<EnemyBase>().Health -= damage;
     }
-    void UpdateScore(Collider2D collider2D)
+
+    // updating the score if an enemy is killed
+    // depending on which type of enemy is killed
+    void UpdateScore(Transform enem)
     {
-        int tmp = gm.GetScore();
-        if (collider2D.transform.tag.Equals("ET1"))
-        {
-            gm.SetScore(tmp += 1);
-        }
-        if (collider2D.transform.Equals("ET2"))
-        {
-            gm.SetScore(tmp += 2);
-        }
-        if (collider2D.transform.Equals("ET3"))
-        {
-            gm.SetScore(tmp += 3);
-        }
-
-
-        gm.GetScoreBoard().text = "Score: " + gm.GetScore().ToString();
+        if (enem.name.Equals("enemy car (Tier 1)(Clone)")) gm.SetScore(gm.GetScore() + 1);
+        if (enem.name.Equals("enemy car (Tier 2)(Clone)")) gm.SetScore(gm.GetScore() + 2);
+        if (enem.name.Equals("enemy car (Tier 3)(Clone)")) gm.SetScore(gm.GetScore() + 3);
     }
+
 }

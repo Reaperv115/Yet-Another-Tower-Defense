@@ -110,14 +110,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    public float GetDisplayTimer()
-    {
-        return lackoffundsdisplayTimer;
-    }
-    public void SetDisplayTimer(float time)
-    {
-        lackoffundsdisplayTimer = time;
-    }
+    public float GetDisplayTimer() { return lackoffundsdisplayTimer; }
+    public void SetDisplayTimer(float time) { lackoffundsdisplayTimer = time; }
     void LoadWeapon(string weapon)
     {
         mainWeapon = Resources.Load<GameObject>(weapon);

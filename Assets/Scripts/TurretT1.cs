@@ -15,7 +15,7 @@ public class TurretT1 : WeaponBase
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         mask = LayerMask.GetMask("enemy");
         visionDistance = 15;
-        damage = 5;
+        damage = 2;
         price = 3;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
@@ -25,10 +25,11 @@ public class TurretT1 : WeaponBase
     {   // do nothing if no target is close enough
         if (target == null) return;
 
+        // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
-        if (hit) Fire();
+        if (hit) Invoke("Fire", .5f);
     }
 
     void UpdateTarget()
@@ -55,40 +56,46 @@ public class TurretT1 : WeaponBase
     {
         int tmpCol = Random.Range(0, colors.Length);
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
-        switch (target.name)
+        // literally no idea why this if-check is required all of a sudden
+        // game still functions properly without it,
+        // it just throws a bunch of errors in Unity though
+        if (target)
         {
-            case "enemy car (Tier 1)(Clone)":
-                {
-                    if (target.GetComponent<Enemy1>().Health <= 0)
+            switch (target.name)
+            {
+                case "enemy car (Tier 1)(Clone)":
                     {
-                        UpdateScore(target);
-                        Destroy(target.gameObject);
+                        if (target.GetComponent<Enemy1>().Health <= 0)
+                        {
+                            UpdateScore(target);
+                            Destroy(target.gameObject);
+                        }
+                        else target.GetComponent<Enemy1>().Health -= damage;
+                        break;
                     }
-                    else target.GetComponent<Enemy1>().Health -= damage; 
-                    break;
-                }
-            case "enemy car (Tier 2)(Clone)":
-                {
-                    if (target.GetComponent<Enemy2>().Health <= 0)
+                case "enemy car (Tier 2)(Clone)":
                     {
-                        UpdateScore(target);
-                        Destroy(target.gameObject);
+                        if (target.GetComponent<Enemy2>().Health <= 0)
+                        {
+                            UpdateScore(target);
+                            Destroy(target.gameObject);
+                        }
+                        else target.GetComponent<Enemy2>().Health -= damage;
+                        break;
                     }
-                    else target.GetComponent<Enemy2>().Health -= damage;
-                    break;
-                }
-            case "enemy car (Tier 3)(Clone)":
-                {
-                    if (target.GetComponent<Enemy3>().Health <= 0)
+                case "enemy car (Tier 3)(Clone)":
                     {
-                        UpdateScore(target);
-                        Destroy(target.gameObject);
+                        if (target.GetComponent<Enemy3>().Health <= 0)
+                        {
+                            UpdateScore(target);
+                            Destroy(target.gameObject);
+                        }
+                        else target.GetComponent<Enemy3>().Health -= damage;
+                        break;
                     }
-                    else target.GetComponent<Enemy3>().Health -= damage;
+                default:
                     break;
-                }
-            default:
-                break;
+            }
         }
     }
 
@@ -96,27 +103,9 @@ public class TurretT1 : WeaponBase
     // depending on which type of enemy is killed
     void UpdateScore(Transform enem)
     {
-        int tmp = gm.GetScore();
-        switch (enem.name)
-        {
-            case "enemy car (Tier 1)(Clone)":
-                {
-                    gm.SetScore(tmp + 1);
-                    break;
-                }
-            case "enemy car (Tier 2)(Clone)":
-                {
-                    gm.SetScore(tmp + 2);
-                    break;
-                }
-            case "enemy car (Tier 3)(Clone)":
-                {
-                    gm.SetScore(tmp + 3);
-                    break;
-                }
-            default:
-                break;
-        }
+        if (enem.name.Equals("enemy car (Tier 1)(Clone)")) gm.SetScore(gm.GetScore() + (gm.GetT1PriceF() / 2));
+        if (enem.name.Equals("enemy car (Tier 2)(Clone)")) gm.SetScore(gm.GetScore() + (gm.GetT2PriceF() / 2));
+        if (enem.name.Equals("enemy car (Tier 3)(Clone)")) gm.SetScore(gm.GetScore() + (gm.GetT3PriceF() / 2));
     }
 
 }

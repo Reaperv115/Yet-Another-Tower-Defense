@@ -37,12 +37,16 @@ public class selectWeapon : MonoBehaviour
         checkfundsT1 = checkfundsT2 = checkfundsT3 = activateweaponsPanel = false;
         gm.GetStartButton().SetActive(false);
         ToggleWeaponAdjusting(false);
-        Debug.Log(activateweaponsPanel);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gm.GetStartButton().GetComponent<PlayGame>().hasStarted() && activateweaponsPanel)
+        {
+            activateweaponsPanel = false;
+            gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
+        }
         // weapon placement mechanics for android
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
@@ -133,7 +137,6 @@ public class selectWeapon : MonoBehaviour
     public void onClick()
     {
         activateweaponsPanel = !activateweaponsPanel;
-        Debug.Log(activateweaponsPanel);
         gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
     }
 
