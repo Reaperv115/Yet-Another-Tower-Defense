@@ -8,8 +8,6 @@ using UnityEngine.EventSystems;
 public class selectWeapon : MonoBehaviour
 {
     GameManager gm;
-
-    TextMeshProUGUI weapontoPlace;
     Player player;
     Ray ray;
     RaycastHit2D hit;
@@ -29,13 +27,14 @@ public class selectWeapon : MonoBehaviour
     void Start()
     {
         gm = GetComponent<GameManager>();
-        weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
+        Debug.Log(gm);
         player = GetComponent<Player>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
         checkfundsT1 = checkfundsT2 = checkfundsT3 = activateweaponsPanel = false;
         gm.GetStartButton().SetActive(false);
+        gm.GetRestartButton().SetActive(false);
         ToggleWeaponAdjusting(false);
     }
 
@@ -68,7 +67,6 @@ public class selectWeapon : MonoBehaviour
                             ToggleWeaponAdjusting(false);
                             gm.GetStartButton().SetActive(true);
                             player.SetIsPlacing(false);
-                            weapontoPlace.text = "";
                             timetoplaceWeapon = 1f;
                             gm.GetRestartButton().SetActive(true);
                         }
@@ -96,7 +94,7 @@ public class selectWeapon : MonoBehaviour
             }
         }
         // weapon placement mechanics for pc
-        else
+        if (Application.platform.Equals(RuntimePlatform.WindowsPlayer))
         {
             newworldPoint = Input.mousePosition;
             newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
@@ -111,7 +109,6 @@ public class selectWeapon : MonoBehaviour
                     ToggleWeaponAdjusting(false);
                     gm.GetStartButton().SetActive(true);
                     player.SetIsPlacing(false);
-                    weapontoPlace.text = "";
                 }
                 else
                 {

@@ -17,6 +17,7 @@ public class TurretT3 : WeaponBase
         visionDistance = 15;
         damage = 50;
         price = 9;
+        firerateinSeconds = 4f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -25,11 +26,11 @@ public class TurretT3 : WeaponBase
     {   // do nothing if no target is close enough
         if (target == null) return;
 
-        // making the turret track the enemy when its close enough
+        // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
-        if (hit) Invoke("Fire", 4f);
+        if (hit) Invoke("Fire", firerateinSeconds);
     }
 
     void UpdateTarget()

@@ -17,6 +17,7 @@ public class TurretT1 : WeaponBase
         visionDistance = 15;
         damage = 2;
         price = 3;
+        firerateinSeconds = .5f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -29,7 +30,7 @@ public class TurretT1 : WeaponBase
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
-        if (hit) Invoke("Fire", .5f);
+        if (hit) Invoke("Fire", firerateinSeconds);
     }
 
     void UpdateTarget()

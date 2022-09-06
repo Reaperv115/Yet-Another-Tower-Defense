@@ -12,6 +12,7 @@ public class TurretT2 : WeaponBase
     Vector3 offSet;
     Vector3 dir;
 
+
     float range = 15f;
     Transform target;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class TurretT2 : WeaponBase
         visionDistance = 15;
         damage = 25;
         price = 6;
+        firerateinSeconds = 2.5f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
@@ -29,13 +31,13 @@ public class TurretT2 : WeaponBase
     void Update()
     {
         // do nothing if no target is close enough
-        if (target == null) return;
+        if(target == null) return;
 
-        // making the turret track the enemy when its close enough
+        // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
-        if (hit) Invoke("Fire", 2.5f);
+        if (hit) Invoke("Fire", firerateinSeconds);
     }
 
     // check for any targets within range

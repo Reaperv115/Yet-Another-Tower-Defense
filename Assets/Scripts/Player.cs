@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
         gm = GetComponent<GameManager>();
         swRef = GetComponent<selectWeapon>();
         seRef = GameObject.Find("enemy starting tile").GetComponent<SpawnEnemy>();
-        weapontoPlace = GameObject.Find("Weapon to Place").GetComponent<TextMeshProUGUI>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }
     private void Update()
@@ -116,7 +115,6 @@ public class Player : MonoBehaviour
     {
         mainWeapon = Resources.Load<GameObject>(weapon);
         placingWeapon = true;
-        weapontoPlace.text = weapon;
         swRef.ToggleWeaponAdjusting(true);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
         gm.GetWeaponsPanel().SetActive(false);
