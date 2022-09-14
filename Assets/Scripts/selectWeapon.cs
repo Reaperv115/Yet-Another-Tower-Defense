@@ -13,6 +13,8 @@ public class selectWeapon : MonoBehaviour
     RaycastHit2D hit;
     Touch touch;
 
+    LayerMask weaponSpot;
+
     Vector3 newworldPoint, oldworldPoint;
     Vector3 mouseWorldPosition;
     bool placingWeapon;
@@ -27,45 +29,44 @@ public class selectWeapon : MonoBehaviour
     void Start()
     {
         gm = GetComponent<GameManager>();
-        Debug.Log(gm);
         player = GetComponent<Player>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
         checkfundsT1 = checkfundsT2 = checkfundsT3 = activateweaponsPanel = false;
-        gm.GetStartButton().SetActive(false);
-        gm.GetRestartButton().SetActive(false);
-        ToggleWeaponAdjusting(false);
+        weaponSpot = LayerMask.GetMask("WeaponSpot");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gm.GetStartButton().GetComponent<PlayGame>().hasStarted() && activateweaponsPanel)
-        {
-            activateweaponsPanel = false;
-            gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
-        }
+        // if (gm.GetStartButton().GetComponent<PlayGame>().hasStarted() && activateweaponsPanel)
+        // {
+        //     activateweaponsPanel = false;
+        //     gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
+        // }
         // weapon placement mechanics for android
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
             if (player.IsPlacingWeapon())
             {
-                ToggleWeaponAdjusting(true);
-                newworldPoint = touch.position;
-                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                mouseWorldPosition.z = 0f;
+                gm.GetWeaponsButton().SetActive(false);
+                
                 if (Input.touchCount > 0)
                 {
                     touch = Input.GetTouch(0);
+                    newworldPoint = touch.position;
+                    newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+                    mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+                    mouseWorldPosition.z = 0f;
                     if (touch.phase.Equals(TouchPhase.Stationary))
                     {
                         if (timetoplaceWeapon <= 0f)
                         {
                             player.mainWeapon.transform.position = mouseWorldPosition;
-                            ToggleWeaponAdjusting(false);
-                            gm.GetStartButton().SetActive(true);
+                            gm.GetWeaponsButton().SetActive(true);
+                            gm.GetBeginRoundButton().SetActive(true);
+                            gm.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
                             player.SetIsPlacing(false);
                             timetoplaceWeapon = 1f;
                             gm.GetRestartButton().SetActive(true);
@@ -173,9 +174,14 @@ public class selectWeapon : MonoBehaviour
 
     public void ToggleWeaponAdjusting(bool isAdjusting)
     {
-        gm.GetRotate90().SetActive(isAdjusting);
-        gm.GetRotateNeg90().SetActive(isAdjusting);
-        gm.GetWeaponsButton().SetActive(!isAdjusting);
+        gm.GetWeaponsButton().SetActive(isAdjusting);
+    }
+
+    void ResetUI()
+    {
+        gm.GetStartButton().SetActive(false);
+        gm.GetRestartButton().SetActive(false);
+        gm.GetWeaponsButton().SetActive(true);
     }
 
     public Vector3 GetWeaponPosition()

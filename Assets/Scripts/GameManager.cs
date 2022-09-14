@@ -7,9 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject playButton, weaponsButton, startButton, rotate90, rotateneg90, restart;
+    GameObject beginroundButton, weaponsButton, startButton, restart, nextLevel;
     [SerializeField]
     GameObject scoreBoard, round, victoryDisplay;
+
+    [SerializeField]
+    TextMeshProUGUI weapontoPlace;
 
     // enemies to load and spawn-in
     GameObject enemy, enemy2, enemy3;
@@ -23,6 +26,10 @@ public class GameManager : MonoBehaviour
     GameObject enemystartingPos;
     SpawnEnemy spawnEnemy;
 
+    Scene activeScene;
+    Player player;
+    bool hasBegun;
+
     bool nextRound;
 
     private float score = 6f;
@@ -33,15 +40,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(beginroundButton);
+        hasBegun = false;
         currentRound = 1;
         nextRound = false;
         enemy = Resources.Load<GameObject>("enemy car (Tier 1)");
         enemy2 = Resources.Load<GameObject>("enemy car (Tier 2)");
         enemy3 = Resources.Load<GameObject>("enemy car (Tier 3)");
-        weaponsPanel.SetActive(false);
-        startButton.SetActive(false);
+        weaponsPanel.gameObject.SetActive(false);
+        beginroundButton.gameObject.SetActive(false);
+        restart.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
         spawnEnemy = enemystartingPos.GetComponent<SpawnEnemy>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -50,20 +61,25 @@ public class GameManager : MonoBehaviour
         // displaying score and current round
         scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
         round.GetComponent<TextMeshProUGUI>().text = "Round: " + currentRound.ToString();
+        activeScene = SceneManager.GetActiveScene();
+        // if (!SceneManager.GetActiveScene().Equals(activeScene))
+        // {
+        //     ResetUI();
+        //     player.SetIsPlacing(false);
+        // }
     }
 
     // getters
     public TextMeshProUGUI GetScoreBoard() { return scoreBoard.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI GetRound() { return round.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI GetVictoryDisplay() { return victoryDisplay.GetComponent<TextMeshProUGUI>(); }
+    public TextMeshProUGUI GetWeaponToPlaceDisplay() { return weapontoPlace; }
     public GameObject GetTier1Enemy() { return enemy; }
     public GameObject GetTier2Enemy() { return enemy2; }
     public GameObject GetTier3Enemy() { return enemy3; }
-    public GameObject GetPlayButton() { return playButton; }
+    public GameObject GetBeginRoundButton() { return beginroundButton; }
     public GameObject GetWeaponsButton() { return weaponsButton; }
     public GameObject GetStartButton() { return startButton; }
-    public GameObject GetRotate90() { return rotate90; }
-    public GameObject GetRotateNeg90() { return rotateneg90; }
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
     public GameObject GetRestartButton() { return restart; }
     public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
@@ -106,4 +122,21 @@ public class GameManager : MonoBehaviour
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 1));
     }
 
+    public void ResetUI()
+    {
+        beginroundButton.SetActive(false);
+        restart.gameObject.SetActive(false);
+        //weaponsButton.gameObject.SetActive(false);
+    }
+
+    public void BeginRound()
+    {
+        hasBegun = true;
+        beginroundButton.gameObject.SetActive(false);
+    }
+
+    public bool CanBeginRound()
+    {
+        return hasBegun;
+    }
 }

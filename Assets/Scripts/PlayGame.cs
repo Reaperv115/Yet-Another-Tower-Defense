@@ -13,7 +13,8 @@ public class PlayGame : MonoBehaviour
 
     public void startGame()
     {
-        hasBegun = true;
+        Debug.Log("game has started");
+        SetHasBegun(true);
         gameObject.SetActive(false);
     }
 

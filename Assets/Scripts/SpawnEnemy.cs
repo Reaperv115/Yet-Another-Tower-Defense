@@ -45,7 +45,7 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (intermission <= 0.0f)
             {
-                gm.GetPlayButton().SetActive(true);
+                gm.GetBeginRoundButton().SetActive(true);
                 intermission = 5.0f;
                 gm.SetNextRound(false);
                 gm.MoveOn();
@@ -60,9 +60,9 @@ public class SpawnEnemy : MonoBehaviour
                 gm.YouWON();
             }
         }
-
+        Debug.Log(gm.CanBeginRound());
         // giving the go-ahead to start spawning the appropriate enemies
-        if (gm.GetPlayButton().GetComponent<PlayGame>().hasStarted())
+        if (gm.CanBeginRound())
         {
             spawn = true;
             gm.GetWeaponsButton().SetActive(false);
@@ -86,7 +86,7 @@ public class SpawnEnemy : MonoBehaviour
                         else
                         {
                             spawn = false;
-                            gm.GetPlayButton().GetComponent<PlayGame>().SetHasBegun(false);
+                            gm.GetBeginRoundButton().GetComponent<PlayGame>().SetHasBegun(false);
                             gm.SetCurrentRound(gm.GetCurrentRound() + 1);
                             gm.SetNextRound(true);
                             maxnumnEnemies += 5;

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     selectWeapon swRef;
     SpawnEnemy seRef;
     bool placingWeapon;
-    TextMeshProUGUI weapontoPlace;
+    
     private void Awake()
     {
         gm = GetComponent<GameManager>();
@@ -114,8 +114,9 @@ public class Player : MonoBehaviour
     void LoadWeapon(string weapon)
     {
         mainWeapon = Resources.Load<GameObject>(weapon);
+        gm.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = mainWeapon.name;
         placingWeapon = true;
-        swRef.ToggleWeaponAdjusting(true);
+        gm.GetWeaponsButton().SetActive(false);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
         gm.GetWeaponsPanel().SetActive(false);
         switch (mainWeapon.transform.tag)
