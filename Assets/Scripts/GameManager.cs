@@ -3,34 +3,40 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     GameObject beginroundButton, weaponsButton, startButton, restart, nextLevel;
+    //GameObject beginroundbuttonInst, weaponsbtnInst, startbuttonInst, restartInst, nextlevelInst;
     [SerializeField]
     GameObject scoreBoard, round, victoryDisplay;
-
+    //GameObject scoreboardInst, roundInst, victorydisplayInst;
     [SerializeField]
     TextMeshProUGUI weapontoPlace;
+    //TextMeshProUGUI weapontoplaceInst;
 
     // enemies to load and spawn-in
     GameObject enemy, enemy2, enemy3;
 
     [SerializeField]
     GameObject weaponsPanel;
+    //GameObject weaponspanelInst;
+    GameObject canvas;
 
     List<Color>victorydisplayColors;
 
-    [SerializeField]
     GameObject enemystartingPos;
     SpawnEnemy spawnEnemy;
 
     Scene activeScene;
     Player player;
+
     bool hasBegun;
 
     bool nextRound;
+    bool activateweaponsPanel = false;
 
     private float score = 6f;
     int currentRound;
@@ -40,7 +46,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(beginroundButton);
+        canvas = GameObject.Find("Canvas");
+        Debug.Log(canvas);
+        //LoadUI();
         hasBegun = false;
         currentRound = 1;
         nextRound = false;
@@ -51,8 +59,10 @@ public class GameManager : MonoBehaviour
         beginroundButton.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
+        enemystartingPos = GameObject.Find("enemy starting tile");
         spawnEnemy = enemystartingPos.GetComponent<SpawnEnemy>();
         player = GetComponent<Player>();
+        nextLevel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,12 +71,6 @@ public class GameManager : MonoBehaviour
         // displaying score and current round
         scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
         round.GetComponent<TextMeshProUGUI>().text = "Round: " + currentRound.ToString();
-        activeScene = SceneManager.GetActiveScene();
-        // if (!SceneManager.GetActiveScene().Equals(activeScene))
-        // {
-        //     ResetUI();
-        //     player.SetIsPlacing(false);
-        // }
     }
 
     // getters
@@ -94,6 +98,8 @@ public class GameManager : MonoBehaviour
     public void SetNextRound(bool nextround) { nextRound = nextround; }
 
     public void RestartGame() { SceneManager.LoadScene("Game"); }
+
+    
 
 
     public void MoveOn() { victoryDisplay.GetComponent<TextMeshProUGUI>().text = ""; }
@@ -139,4 +145,53 @@ public class GameManager : MonoBehaviour
     {
         return hasBegun;
     }
+
+    public void SetHasBegun(bool hasbegun)
+    {
+        hasbegun = false;
+    }
+
+    // private void LoadUI()
+    // {
+    //     restart = Resources.Load<GameObject>("UI/Restart");
+    //     restartInst = Instantiate(restart, restart.GetComponent<RectTransform>().anchoredPosition, restart.transform.rotation);
+    //     restartInst.transform.SetParent(canvas.transform, false);
+
+    //     beginroundButton = Resources.Load<GameObject>("UI/BeginRound");
+    //     beginroundbuttonInst = Instantiate(beginroundButton, beginroundButton.GetComponent<RectTransform>().anchoredPosition, beginroundButton.transform.rotation);
+    //     beginroundbuttonInst.transform.SetParent(canvas.transform, false);
+
+    //     startButton = Resources.Load<GameObject>("UI/PlayGame");
+    //     startbuttonInst = Instantiate(startButton, startButton.GetComponent<RectTransform>().anchoredPosition, startButton.transform.rotation);
+    //     startbuttonInst.transform.SetParent(canvas.transform, false);
+        
+    //     nextLevel = Resources.Load<GameObject>("UI/Next Level");
+    //     nextlevelInst = Instantiate(nextLevel, nextLevel.GetComponent<RectTransform>().anchoredPosition, nextLevel.transform.rotation);
+    //     nextlevelInst.transform.SetParent(canvas.transform, false);
+        
+        
+    //     weaponsButton = Resources.Load<GameObject>("UI/weaponsBtn");
+    //     weaponsbtnInst = Instantiate(weaponsButton, weaponsButton.GetComponent<RectTransform>().anchoredPosition, weaponsButton.transform.rotation);
+    //     weaponsbtnInst.transform.SetParent(canvas.transform, false);
+        
+    //     victoryDisplay = Resources.Load<GameObject>("UI/Victory");
+    //     victorydisplayInst = Instantiate(victoryDisplay, victoryDisplay.GetComponent<RectTransform>().anchoredPosition, victoryDisplay.transform.rotation);
+    //     victorydisplayInst.transform.SetParent(canvas.transform, false);
+        
+    //     round = Resources.Load<GameObject>("UI/Round");
+    //     roundInst = Instantiate(round, round.GetComponent<RectTransform>().anchoredPosition, round.transform.rotation);
+    //     roundInst.transform.SetParent(canvas.transform, false);
+        
+    //     scoreBoard = Resources.Load<GameObject>("UI/Score");
+    //     scoreboardInst = Instantiate(scoreBoard, scoreBoard.GetComponent<RectTransform>().anchoredPosition, scoreBoard.transform.rotation);   
+    //     scoreboardInst.transform.SetParent(canvas.transform, false);
+
+    //     weapontoPlace = Resources.Load<TextMeshProUGUI>("UI/Weapon to Place");
+    //     weapontoplaceInst = Instantiate(weapontoPlace, weapontoPlace.GetComponent<RectTransform>().anchoredPosition, weapontoPlace.transform.rotation);
+    //     weapontoplaceInst.transform.SetParent(canvas.transform, false);
+        
+    //     weaponsPanel = Resources.Load<GameObject>("UI/Weapons Panel");
+    //     weaponspanelInst = Instantiate(weaponsPanel, weaponsPanel.GetComponent<RectTransform>().anchoredPosition, weaponsPanel.transform.rotation);
+    //     weaponspanelInst.transform.SetParent(canvas.transform, false);
+    // }
 }

@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        gm.GetRound().text = "Round: " + gm.GetCurrentRound().ToString();
 
         // checking to see if the player
         // has enough money to buy tier 1 weapon

@@ -60,7 +60,6 @@ public class SpawnEnemy : MonoBehaviour
                 gm.YouWON();
             }
         }
-        Debug.Log(gm.CanBeginRound());
         // giving the go-ahead to start spawning the appropriate enemies
         if (gm.CanBeginRound())
         {
@@ -86,7 +85,7 @@ public class SpawnEnemy : MonoBehaviour
                         else
                         {
                             spawn = false;
-                            gm.GetBeginRoundButton().GetComponent<PlayGame>().SetHasBegun(false);
+                            gm.SetHasBegun(false);
                             gm.SetCurrentRound(gm.GetCurrentRound() + 1);
                             gm.SetNextRound(true);
                             maxnumnEnemies += 5;
