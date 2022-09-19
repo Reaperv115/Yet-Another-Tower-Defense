@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     public void SetHasBegun(bool hasbegun)
     {
-        hasbegun = false;
+        hasBegun = hasbegun;
     }
 
     // private void LoadUI()

@@ -58,7 +58,7 @@ public class Tower : MonoBehaviour
             if (fHealth <= 0.0f)
             {
                 gameOver.text = "Game Over";
-                enemy = GameObject.FindGameObjectsWithTag("ET1");
+                enemy = GameObject.FindGameObjectsWithTag("enemy");
                 for (int i = 0; i < enemy.Length; ++i)
                 {
                     Destroy(enemy[i]);
