@@ -7,6 +7,10 @@ public class NextLevel : MonoBehaviour
 {
     public void ProceedNextLevel()
     {
-        SceneManager.LoadScene("Level 2");
+        GameManager gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
+        Destroy(GameObject.FindGameObjectWithTag("path"));
+        gm.SetCurrentRound(gm.GetCurrentRound() + 1);
+        GameObject track = Resources.Load<GameObject>("Levels/" + gm.GetCurrentRound() + "/track");
+        Instantiate(track, track.transform.position, track.transform.rotation);
     }
 }

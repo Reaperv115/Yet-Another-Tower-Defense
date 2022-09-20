@@ -81,7 +81,12 @@ public class SpawnEnemy : MonoBehaviour
                     if (enemies.Length.Equals(0))
                     {
                         if (gm.GetCurrentRound().Equals(5))
-                            gm.GetVictoryDisplay().text = "YOU BEAT THE GAME";
+                        {
+                            gm.GetVictoryDisplay().text = "You Win! Get ready for the next round!";
+                            Destroy(GameObject.FindGameObjectWithTag("path"));
+                            gm.SetTrackIndex(gm.GetTrackIndex() + 1);
+                            gm.LoadTrackInst();
+                        }
                         else
                         {
                             spawn = false;

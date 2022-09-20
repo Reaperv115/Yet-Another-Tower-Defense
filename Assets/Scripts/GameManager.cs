@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     List<Color>victorydisplayColors;
 
     GameObject enemystartingPos;
+    GameObject track, trackInst;
     SpawnEnemy spawnEnemy;
 
     Scene activeScene;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     int currentRound;
     float changeColor = 3;
     int colorIndex = 0, colorIndex2 = 1;
+    int trackIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -60,9 +62,11 @@ public class GameManager : MonoBehaviour
         restart.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
         enemystartingPos = GameObject.Find("enemy starting tile");
-        spawnEnemy = enemystartingPos.GetComponent<SpawnEnemy>();
+        //spawnEnemy = enemystartingPos.GetComponent<SpawnEnemy>();
         player = GetComponent<Player>();
-        nextLevel.gameObject.SetActive(false);
+        trackIndex = 1;
+        LoadTrackInst();
+        //nextLevel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -86,9 +90,10 @@ public class GameManager : MonoBehaviour
     public GameObject GetStartButton() { return startButton; }
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
     public GameObject GetRestartButton() { return restart; }
-    public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
+    //public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
     public bool GetNextRound() { return nextRound; }
     public int GetCurrentRound() { return currentRound; }
+    public int GetTrackIndex() { return trackIndex; }
 
 
     // setters
@@ -96,6 +101,7 @@ public class GameManager : MonoBehaviour
     public float GetScore() { return score; }
     public void SetCurrentRound(int newRound) { currentRound = newRound; }
     public void SetNextRound(bool nextround) { nextRound = nextround; }
+    public void SetTrackIndex(int newIndex) { trackIndex = newIndex; }
 
     public void RestartGame() { SceneManager.LoadScene("Game"); }
 
@@ -135,6 +141,13 @@ public class GameManager : MonoBehaviour
         //weaponsButton.gameObject.SetActive(false);
     }
 
+    public void LoadTrackInst()
+    {
+        track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track");
+        Debug.Log(track);
+        trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
+    }
+
     public void BeginRound()
     {
         hasBegun = true;
@@ -149,6 +162,11 @@ public class GameManager : MonoBehaviour
     public void SetHasBegun(bool hasbegun)
     {
         hasBegun = hasbegun;
+    }
+
+    public GameObject GetTrack()
+    {
+        return track;
     }
 
     // private void LoadUI()

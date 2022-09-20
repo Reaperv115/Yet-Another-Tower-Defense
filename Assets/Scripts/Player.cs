@@ -10,14 +10,12 @@ public class Player : MonoBehaviour
     TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
     selectWeapon swRef;
-    SpawnEnemy seRef;
     bool placingWeapon;
     
     private void Awake()
     {
         gm = GetComponent<GameManager>();
         swRef = GetComponent<selectWeapon>();
-        seRef = GameObject.Find("enemy starting tile").GetComponent<SpawnEnemy>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }
     private void Update()

@@ -59,7 +59,7 @@ public class Enemy2 : EnemyBase
     // getting track info
     void GetPathMarkers()
     {
-        for (int i = 0; i < track.transform.childCount - 1; ++i)
+        for (int i = 0; i < track.transform.childCount - 3; ++i)
         {
             Debug.Log(track.transform.GetChild(i).name);
             pathwayMarkers.Add(track.transform.GetChild(i));

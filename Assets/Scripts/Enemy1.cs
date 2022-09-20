@@ -6,7 +6,6 @@ public class Enemy1 : EnemyBase
 {
     GameObject tower;
 
-    [SerializeField]
     GameObject track;
     List<Transform> pathwayMarkers;
     // Start is called before the first frame update
@@ -27,7 +26,7 @@ public class Enemy1 : EnemyBase
         // at the end of the track
         if (attackTower)
         {
-            tower = GameObject.FindGameObjectWithTag("tower");
+            tower = track.transform.GetChild(8).gameObject;
             transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, speed);
         }
         // else make the enemy go
@@ -60,7 +59,7 @@ public class Enemy1 : EnemyBase
     // getting track info
     void GetPathMarkers()
     {
-        for (int i = 0; i < track.transform.childCount - 1; ++i)
+        for (int i = 0; i < track.transform.childCount - 3; ++i)
         {
             pathwayMarkers.Add(track.transform.GetChild(i));
         }
