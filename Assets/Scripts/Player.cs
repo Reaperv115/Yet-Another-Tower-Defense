@@ -116,26 +116,38 @@ public class Player : MonoBehaviour
         gm.GetWeaponsButton().SetActive(false);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
         gm.GetWeaponsPanel().SetActive(false);
-        switch (mainWeapon.transform.tag)
+        if (mainWeapon.transform.name.Contains("1"))
         {
-            case "WT1":
-                {
-                    gm.SetScore(gm.GetScore() - gm.GetT1Price());
-                    break;
-                }
-            case "WT2":
-                {
-                    gm.SetScore(gm.GetScore() - gm.GetT2Price());
-                    break;
-                }
-            case "WT3":
-                {
-                    gm.SetScore(gm.GetScore() - gm.GetT3Price());
-                    break;
-                }
-            default:
-                break;
+            gm.SetScore(gm.GetScore() - gm.GetT1Price());
         }
+        if (mainWeapon.transform.name.Contains("2"))
+        {
+            gm.SetScore(gm.GetScore() - gm.GetT2Price());
+        }
+        if (mainWeapon.transform.name.Contains("3"))
+        {
+            gm.SetScore(gm.GetScore() - gm.GetT3Price());
+        }
+        // switch (mainWeapon.transform.tag)
+        // {
+        //     case "WT1":
+        //         {
+        //             gm.SetScore(gm.GetScore() - gm.GetT1Price());
+        //             break;
+        //         }
+        //     case "WT2":
+        //         {
+        //             gm.SetScore(gm.GetScore() - gm.GetT2Price());
+        //             break;
+        //         }
+        //     case "WT3":
+        //         {
+        //             gm.SetScore(gm.GetScore() - gm.GetT3Price());
+        //             break;
+        //         }
+        //     default:
+        //         break;
+        // }
         
         
         

@@ -5,17 +5,18 @@ using UnityEngine;
 public class Enemy3 : EnemyBase
 {
     GameObject tower;
-
-    [SerializeField]
+    GameManager gm;
     GameObject track;
     List<Transform> pathwayMarkers;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         Health = 175;
         speed = 20f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
+        track = gm.GetTrack();
         pathwayMarkers = new List<Transform>();
         GetPathMarkers();
     }
@@ -27,7 +28,7 @@ public class Enemy3 : EnemyBase
         // at the end of the track
         if (attackTower)
         {
-            tower = GameObject.FindGameObjectWithTag("tower");
+            tower = gm.FindTower(gm.GetTrack());
             transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, speed);
         }
         // else make the enemy go
@@ -59,9 +60,9 @@ public class Enemy3 : EnemyBase
     // getting track info
     void GetPathMarkers()
     {
-        for (int i = 0; i < track.transform.childCount - 3; ++i)
-        {
-            pathwayMarkers.Add(track.transform.GetChild(i));
+         for (int i = 0; i < track.transform.GetChild(0).transform.childCount; ++i)
+        {   
+            pathwayMarkers.Add(track.transform.GetChild(0).transform.GetChild(i));
         }
     }
 }

@@ -21,7 +21,7 @@ public class SpawnEnemy : MonoBehaviour
         // getting the Game Manager component
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         spawn = false;
-        tower = GameObject.Find("tower");
+        tower = gm.FindTower(gm.GetTrack());
         round1 = gm.GetTier1Enemy();
 
         round2 = new List<GameObject>();
@@ -40,6 +40,8 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log("can begin round: " + gm.CanBeginRound());
+        // Debug.Log("spawn: " + spawn);
         // giving the player a slight intermission between rounds
         if (gm.GetNextRound())
         {
@@ -82,10 +84,8 @@ public class SpawnEnemy : MonoBehaviour
                     {
                         if (gm.GetCurrentRound().Equals(5))
                         {
-                            gm.GetVictoryDisplay().text = "You Win! Get ready for the next round!";
-                            Destroy(GameObject.FindGameObjectWithTag("path"));
-                            gm.SetTrackIndex(gm.GetTrackIndex() + 1);
-                            gm.LoadTrackInst();
+                            gm.GetVictoryDisplay().text = "You Win! Continue to the next round when you're ready!";
+                            gm.GetNextLevelButton().gameObject.SetActive(true);
                         }
                         else
                         {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy1 : EnemyBase
 {
+    GameManager gm;
     GameObject tower;
 
     GameObject track;
@@ -11,11 +12,13 @@ public class Enemy1 : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         Health = 100;
         speed = 20f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
         pathwayMarkers = new List<Transform>();
+        track = gm.GetTrack();
         GetPathMarkers();
     }
 
@@ -26,7 +29,7 @@ public class Enemy1 : EnemyBase
         // at the end of the track
         if (attackTower)
         {
-            tower = track.transform.GetChild(8).gameObject;
+            tower = gm.FindTower(gm.GetTrack());
             transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, speed);
         }
         // else make the enemy go
@@ -59,9 +62,9 @@ public class Enemy1 : EnemyBase
     // getting track info
     void GetPathMarkers()
     {
-        for (int i = 0; i < track.transform.childCount - 3; ++i)
-        {
-            pathwayMarkers.Add(track.transform.GetChild(i));
+        for (int i = 0; i < track.transform.GetChild(0).transform.childCount; ++i)
+        {   
+            pathwayMarkers.Add(track.transform.GetChild(0).transform.GetChild(i));
         }
     }
 }

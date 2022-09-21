@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         canvas = GameObject.Find("Canvas");
-        Debug.Log(canvas);
         //LoadUI();
         hasBegun = false;
         currentRound = 1;
@@ -66,7 +65,7 @@ public class GameManager : MonoBehaviour
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
-        //nextLevel.gameObject.SetActive(false);
+        nextLevel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -94,6 +93,8 @@ public class GameManager : MonoBehaviour
     public bool GetNextRound() { return nextRound; }
     public int GetCurrentRound() { return currentRound; }
     public int GetTrackIndex() { return trackIndex; }
+    public GameObject GetTrackInst() { return trackInst; }
+    public GameObject GetNextLevelButton() { return nextLevel; }
 
 
     // setters
@@ -144,7 +145,6 @@ public class GameManager : MonoBehaviour
     public void LoadTrackInst()
     {
         track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track");
-        Debug.Log(track);
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
     }
 
@@ -167,6 +167,20 @@ public class GameManager : MonoBehaviour
     public GameObject GetTrack()
     {
         return track;
+    }
+
+    public GameObject FindTower(GameObject track)
+    {
+        int i = 0;
+        for (;i < track.transform.childCount;)
+        {
+            if (track.transform.GetChild(i).name.Equals("tower"))
+                break;
+            else
+                ++i;
+        }
+        track.transform.GetChild(i).GetComponent<Tower>().setHealth(1f);
+        return track.transform.GetChild(i).gameObject;
     }
 
     // private void LoadUI()

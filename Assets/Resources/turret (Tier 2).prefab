@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3868317669214505280}
   m_Layer: 0
   m_Name: turret (Tier 2)
-  m_TagString: WT2
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3838964312852711894}
-  - component: {fileID: 2737764347238456747}
   m_Layer: 0
   m_Name: bullet spawn
   m_TagString: Untagged
@@ -128,18 +127,6 @@ Transform:
   m_Father: {fileID: 6678927040587286792}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2737764347238456747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464852743097141791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f5fdc8f0df8c14a9742001ac2f93d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1579873788733546722
 GameObject:
   m_ObjectHideFlags: 0

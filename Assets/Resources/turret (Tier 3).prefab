@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2856689912389695731}
   m_Layer: 0
   m_Name: turret (Tier 3)
-  m_TagString: WT3
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +223,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2150478182010898889}
-  - component: {fileID: 5017898480297764011}
   m_Layer: 0
   m_Name: bullet spawn
   m_TagString: Untagged
@@ -245,18 +244,6 @@ Transform:
   m_Father: {fileID: 8274401572944744961}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5017898480297764011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5366325476212332994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f5fdc8f0df8c14a9742001ac2f93d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7017175812318544302
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +419,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3293243995476496673}
-  - component: {fileID: 4962184010025242670}
   m_Layer: 0
   m_Name: bullet spawn
   m_TagString: Untagged
@@ -454,18 +440,6 @@ Transform:
   m_Father: {fileID: 3341341085520122399}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4962184010025242670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8007629502512447434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f5fdc8f0df8c14a9742001ac2f93d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8758163044963380754
 GameObject:
   m_ObjectHideFlags: 0
