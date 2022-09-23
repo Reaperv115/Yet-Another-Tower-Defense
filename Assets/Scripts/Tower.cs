@@ -9,11 +9,10 @@ public class Tower : MonoBehaviour
     
     private float fHealth;
 
+    GameManager gm;
+
     GameObject[] enemy;
     List<GameObject> enemyList;
-    RectTransform bar;
-    [SerializeField]
-    GameObject seRef;
 
     TextMeshProUGUI gameOver;
     bool isgameOver;
@@ -23,8 +22,8 @@ public class Tower : MonoBehaviour
     void Start()
     {
         fHealth = 1f;
-        bar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
+        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         isgameOver = false;
         allenemsGone = false;
     }
@@ -32,7 +31,6 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
     }
 
@@ -54,7 +52,7 @@ public class Tower : MonoBehaviour
             
             Destroy(collision.gameObject);
             fHealth -= .1f;
-            bar.localScale = new Vector3(fHealth, 1f);
+            gm.GetHealthBar().localScale = new Vector3(fHealth, 1f);
             if (fHealth <= 0.0f)
             {
                 gameOver.text = "Game Over";

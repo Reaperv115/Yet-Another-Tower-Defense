@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     //GameObject weaponspanelInst;
     GameObject canvas;
 
+    RectTransform healthBar;
+
     List<Color>victorydisplayColors;
 
     GameObject enemystartingPos;
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         canvas = GameObject.Find("Canvas");
-        //LoadUI();
         hasBegun = false;
         currentRound = 1;
         nextRound = false;
@@ -61,11 +62,11 @@ public class GameManager : MonoBehaviour
         restart.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
         enemystartingPos = GameObject.Find("enemy starting tile");
-        //spawnEnemy = enemystartingPos.GetComponent<SpawnEnemy>();
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
         nextLevel.gameObject.SetActive(false);
+        healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -89,12 +90,12 @@ public class GameManager : MonoBehaviour
     public GameObject GetStartButton() { return startButton; }
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
     public GameObject GetRestartButton() { return restart; }
-    //public SpawnEnemy GetSpawnEnemyRef() { return spawnEnemy; }
     public bool GetNextRound() { return nextRound; }
     public int GetCurrentRound() { return currentRound; }
     public int GetTrackIndex() { return trackIndex; }
     public GameObject GetTrackInst() { return trackInst; }
     public GameObject GetNextLevelButton() { return nextLevel; }
+    public RectTransform GetHealthBar() { return healthBar; }
 
 
     // setters
@@ -182,48 +183,4 @@ public class GameManager : MonoBehaviour
         track.transform.GetChild(i).GetComponent<Tower>().setHealth(1f);
         return track.transform.GetChild(i).gameObject;
     }
-
-    // private void LoadUI()
-    // {
-    //     restart = Resources.Load<GameObject>("UI/Restart");
-    //     restartInst = Instantiate(restart, restart.GetComponent<RectTransform>().anchoredPosition, restart.transform.rotation);
-    //     restartInst.transform.SetParent(canvas.transform, false);
-
-    //     beginroundButton = Resources.Load<GameObject>("UI/BeginRound");
-    //     beginroundbuttonInst = Instantiate(beginroundButton, beginroundButton.GetComponent<RectTransform>().anchoredPosition, beginroundButton.transform.rotation);
-    //     beginroundbuttonInst.transform.SetParent(canvas.transform, false);
-
-    //     startButton = Resources.Load<GameObject>("UI/PlayGame");
-    //     startbuttonInst = Instantiate(startButton, startButton.GetComponent<RectTransform>().anchoredPosition, startButton.transform.rotation);
-    //     startbuttonInst.transform.SetParent(canvas.transform, false);
-        
-    //     nextLevel = Resources.Load<GameObject>("UI/Next Level");
-    //     nextlevelInst = Instantiate(nextLevel, nextLevel.GetComponent<RectTransform>().anchoredPosition, nextLevel.transform.rotation);
-    //     nextlevelInst.transform.SetParent(canvas.transform, false);
-        
-        
-    //     weaponsButton = Resources.Load<GameObject>("UI/weaponsBtn");
-    //     weaponsbtnInst = Instantiate(weaponsButton, weaponsButton.GetComponent<RectTransform>().anchoredPosition, weaponsButton.transform.rotation);
-    //     weaponsbtnInst.transform.SetParent(canvas.transform, false);
-        
-    //     victoryDisplay = Resources.Load<GameObject>("UI/Victory");
-    //     victorydisplayInst = Instantiate(victoryDisplay, victoryDisplay.GetComponent<RectTransform>().anchoredPosition, victoryDisplay.transform.rotation);
-    //     victorydisplayInst.transform.SetParent(canvas.transform, false);
-        
-    //     round = Resources.Load<GameObject>("UI/Round");
-    //     roundInst = Instantiate(round, round.GetComponent<RectTransform>().anchoredPosition, round.transform.rotation);
-    //     roundInst.transform.SetParent(canvas.transform, false);
-        
-    //     scoreBoard = Resources.Load<GameObject>("UI/Score");
-    //     scoreboardInst = Instantiate(scoreBoard, scoreBoard.GetComponent<RectTransform>().anchoredPosition, scoreBoard.transform.rotation);   
-    //     scoreboardInst.transform.SetParent(canvas.transform, false);
-
-    //     weapontoPlace = Resources.Load<TextMeshProUGUI>("UI/Weapon to Place");
-    //     weapontoplaceInst = Instantiate(weapontoPlace, weapontoPlace.GetComponent<RectTransform>().anchoredPosition, weapontoPlace.transform.rotation);
-    //     weapontoplaceInst.transform.SetParent(canvas.transform, false);
-        
-    //     weaponsPanel = Resources.Load<GameObject>("UI/Weapons Panel");
-    //     weaponspanelInst = Instantiate(weaponsPanel, weaponsPanel.GetComponent<RectTransform>().anchoredPosition, weaponsPanel.transform.rotation);
-    //     weaponspanelInst.transform.SetParent(canvas.transform, false);
-    // }
 }

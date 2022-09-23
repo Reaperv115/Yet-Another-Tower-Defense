@@ -23,7 +23,8 @@ public class TurretT1 : WeaponBase
 
     // Update is called once per frame
     void Update()
-    {   // do nothing if no target is close enough
+    {
+        // do nothing if no target is close enough
         if (target == null) return;
 
         // making the turret track the enemy when it's close enough
@@ -41,6 +42,7 @@ public class TurretT1 : WeaponBase
         foreach (GameObject enemy in enemies)
         {
             float distancetoEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            Debug.Log(distancetoEnemy);
             if (distancetoEnemy <= shortestDistance)
             {
                 shortestDistance = distancetoEnemy;

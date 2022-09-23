@@ -128,29 +128,6 @@ public class Player : MonoBehaviour
         {
             gm.SetScore(gm.GetScore() - gm.GetT3Price());
         }
-        // switch (mainWeapon.transform.tag)
-        // {
-        //     case "WT1":
-        //         {
-        //             gm.SetScore(gm.GetScore() - gm.GetT1Price());
-        //             break;
-        //         }
-        //     case "WT2":
-        //         {
-        //             gm.SetScore(gm.GetScore() - gm.GetT2Price());
-        //             break;
-        //         }
-        //     case "WT3":
-        //         {
-        //             gm.SetScore(gm.GetScore() - gm.GetT3Price());
-        //             break;
-        //         }
-        //     default:
-        //         break;
-        // }
-        
-        
-        
     }
     public GameObject instantiatedmainWeapon { get;  set; }
     public GameObject mainWeapon { get; set; }
