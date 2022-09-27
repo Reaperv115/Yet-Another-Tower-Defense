@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
-        nextLevel.gameObject.SetActive(false);
+        //nextLevel.gameObject.SetActive(false);
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
     }
 
