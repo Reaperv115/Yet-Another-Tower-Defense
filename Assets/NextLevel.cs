@@ -21,10 +21,11 @@ public class NextLevel : MonoBehaviour
             Destroy(obj);
         Destroy(gm.GetTrackInst());
         gm.SetTrackIndex(gm.GetTrackIndex() + 1);
+        Debug.Log(gm.GetTrackIndex());
         gm.LoadTrackInst();
         gm.GetWeaponsButton().gameObject.SetActive(true);
         gm.SetHasBegun(false);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         gm.GetVictoryDisplay().GetComponent<TextMeshProUGUI>().text = "";
         tower = gm.FindTower(gm.GetTrack());
         tower.GetComponent<Tower>().setHealth(1f);

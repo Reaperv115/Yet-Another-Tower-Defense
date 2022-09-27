@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
             changeColor = 3;
         }
         changeColor -= Time.deltaTime;
-        victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 1));
+        victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 8));
     }
 
     public void ResetUI()
@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
     public void LoadTrackInst()
     {
         track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track");
+        Debug.Log(track);
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
     }
 
