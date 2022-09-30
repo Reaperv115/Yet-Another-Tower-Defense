@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     GameObject track, trackInst;
     SpawnEnemy spawnEnemy;
 
+    List<GameObject> enemies;
+
     Scene activeScene;
     Player player;
 
@@ -40,17 +42,21 @@ public class GameManager : MonoBehaviour
 
     bool nextRound;
     bool activateweaponsPanel = false;
+    bool begintrackingEnemies;
 
     private float score = 6f;
     int currentRound;
-    float changeColor = 3;
+    float changeColor = 1;
     int colorIndex = 0, colorIndex2 = 1;
     int trackIndex;
+    int t1Price = 2, t2Price = 6, t3Price = 10;
+    int enemyIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         canvas = GameObject.Find("Canvas");
+        enemies = new List<GameObject>();
         hasBegun = false;
         currentRound = 1;
         nextRound = false;
@@ -61,12 +67,16 @@ public class GameManager : MonoBehaviour
         beginroundButton.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
-        enemystartingPos = GameObject.Find("enemy starting tile");
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
-        //nextLevel.gameObject.SetActive(false);
+        nextLevel.gameObject.SetActive(false);
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
+        weaponsPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = t1Price.ToString();
+        weaponsPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = t2Price.ToString();
+        weaponsPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = t3Price.ToString();
+        begintrackingEnemies = false;
+        enemyIndex = 0;
     }
 
     // Update is called once per frame
@@ -113,16 +123,16 @@ public class GameManager : MonoBehaviour
     public void MoveOn() { victoryDisplay.GetComponent<TextMeshProUGUI>().text = ""; }
 
     // returns the price of the tier 1 weapon
-    public int GetT1Price() { return 2;  }
-    public float GetT1PriceF() { return 2.0f; }
+    public int GetT1Price() { return t1Price;  }
+    public float GetT1PriceF() { return 4.0f; }
 
     // returns the price of the tier 2 weapon
-    public int GetT2Price() { return 4; }
-    public float GetT2PriceF() { return 4.0f; }
+    public int GetT2Price() { return t2Price; }
+    public float GetT2PriceF() { return 6.0f; }
 
     // returns the rpice of the tier 3 weapon
-    public int GetT3Price() { return 6; }
-    public float GetT3PriceF() { return 6.0f; }
+    public int GetT3Price() { return t3Price; }
+    public float GetT3PriceF() { return 8.0f; }
     public void YouWON()
     {
         victoryDisplay.GetComponent<TextMeshProUGUI>().text = "YOU WIN! Get Ready For The Next Round!";
@@ -130,7 +140,7 @@ public class GameManager : MonoBehaviour
         {
             colorIndex = Random.Range(0, victorydisplayColors.Count);
             colorIndex2 = Random.Range(0, victorydisplayColors.Count);
-            changeColor = 3;
+            changeColor = 1;
         }
         changeColor -= Time.deltaTime;
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 8));
@@ -146,7 +156,7 @@ public class GameManager : MonoBehaviour
     public void LoadTrackInst()
     {
         track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track");
-        Debug.Log(track);
+        
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
     }
 
@@ -183,5 +193,47 @@ public class GameManager : MonoBehaviour
         }
         track.transform.GetChild(i).GetComponent<Tower>().setHealth(1f);
         return track.transform.GetChild(i).gameObject;
+    }
+
+    public GameObject FindEnemySpawn(GameObject track)
+    {
+        int i = 0;
+        for (;i < track.transform.childCount;)
+        {
+            if (track.transform.GetChild(i).name.Equals("enemy starting tile"))
+                break;
+            else
+                ++i;
+        }
+        return track.transform.GetChild(i).gameObject;
+    }
+
+    public void SetBeginTrackingEnemies(bool canTrack)
+    {
+        begintrackingEnemies = canTrack;
+    }
+
+    public bool BeginTrackingEnemies()
+    {
+        return begintrackingEnemies;
+    }
+
+    public List<GameObject> GetEnemies()
+    {
+        return enemies;
+    }
+
+    public void AddEnemy(GameObject enem)
+    {
+        enemies.Add(enem);
+    }
+
+    public int GetEnemyIndex()
+    {
+        return enemyIndex;
+    }
+    public void SetEnemyIndex(int enemIndex)
+    {
+        enemyIndex = enemIndex;
     }
 }

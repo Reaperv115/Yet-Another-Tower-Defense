@@ -14,7 +14,7 @@ public class TurretT3 : WeaponBase
     {
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         mask = LayerMask.GetMask("enemy");
-        visionDistance = 15;
+        visionDistance = 10;
         damage = 50;
         price = 9;
         firerateinSeconds = 4f;
@@ -29,14 +29,14 @@ public class TurretT3 : WeaponBase
         // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
-        hit = Physics2D.Raycast(transform.position, transform.up * 10, visionDistance, mask);
+        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
         if (hit) Invoke("Fire", firerateinSeconds);
     }
 
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-        float shortestDistance = 15;
+        float shortestDistance = visionDistance;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
         {

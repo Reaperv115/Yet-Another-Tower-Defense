@@ -9,12 +9,14 @@ public class SpawnEnemy : MonoBehaviour
     GameObject round1;
     List<GameObject> round2, round3;
     GameObject tower;
+    List<GameObject> enemies;
     
     int numenemiestoAdd, maxnumnEnemies;
 
     float intermission = 5.0f;
     float timebetweenSpawn = 1.0f;
     bool spawn;
+    bool begintrackingEnemies;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,14 +37,42 @@ public class SpawnEnemy : MonoBehaviour
 
         numenemiestoAdd = 10;
         maxnumnEnemies = numenemiestoAdd;
+        begintrackingEnemies = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log("can begin round: " + gm.CanBeginRound());
-        // Debug.Log("spawn: " + spawn);
+        if (gm.GetEnemies().Count > 0)
+            gm.SetBeginTrackingEnemies(true);
+        else
+            gm.SetBeginTrackingEnemies(false);
+
         // giving the player a slight intermission between rounds
+        if (gm.BeginTrackingEnemies())
+        {
+            gm.SetEnemyIndex(0);
+            foreach(GameObject enemy in gm.GetEnemies())
+            {
+                Debug.Log("enemy index: " + gm.GetEnemyIndex());
+                switch(enemy.transform.name)
+                {
+                    case "enemy car (Tier 1)(Clone)":
+                    {
+                        if (enemy.GetComponent<Enemy1>().GetHealth() <= 0f)
+                        {
+                            GameObject clone = enemy;
+                            gm.GetEnemies().RemoveAt(gm.GetEnemyIndex());
+                            Destroy(clone);
+                            gm.SetScore(gm.GetScore() + 1);
+                        }
+                        break;
+                    }
+                }
+                    gm.SetEnemyIndex(gm.GetEnemyIndex() + 1);
+            }
+            
+        }
         if (gm.GetNextRound())
         {
             if (intermission <= 0.0f)
@@ -76,7 +106,6 @@ public class SpawnEnemy : MonoBehaviour
         {
             if (timebetweenSpawn <= 0.0f)
             {
-
                 if (numenemiestoAdd <= 0)
                 {
                     GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
@@ -101,12 +130,24 @@ public class SpawnEnemy : MonoBehaviour
 
                 }
                 else
+                {
                     Spawn(gm.GetCurrentRound());
+                }
             }
             else
                 timebetweenSpawn -= .05f;
 
         }
+    }
+
+    public List<GameObject> GetAliveEnemies()
+    {
+        return enemies;
+    }
+
+    public bool CanBeginTracking()
+    {
+        return begintrackingEnemies;
     }
 
     // function to decide which group of enemies to choose
@@ -117,7 +158,10 @@ public class SpawnEnemy : MonoBehaviour
         {
             case 1:
                 {
-                    Instantiate(gm.GetTier1Enemy(), transform.position, gm.GetTier1Enemy().transform.rotation);
+                    //gm.AddEnemy(Instantiate(gm.GetTier1Enemy(), transform.position, transform.rotation));
+
+                    GameObject tmpEnem = Instantiate(gm.GetTier1Enemy(), transform.position, gm.GetTier1Enemy().transform.rotation);
+                    gm.AddEnemy(tmpEnem);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -157,5 +201,10 @@ public class SpawnEnemy : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public int GetNumEnemiesToAdd()
+    {
+        return numenemiestoAdd;
     }
 }

@@ -50,6 +50,7 @@ public class Tower : MonoBehaviour
         if (collision.transform.tag.Equals("enemy"))
         {
             
+            gm.GetEnemies().Remove(collision.gameObject);
             Destroy(collision.gameObject);
             fHealth -= .1f;
             gm.GetHealthBar().localScale = new Vector3(fHealth, 1f);
