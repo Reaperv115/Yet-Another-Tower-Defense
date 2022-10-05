@@ -4,10 +4,10 @@ using System.Collections.Generic;
 public class TurretT1 : WeaponBase
 {
     GameManager gm;
+    SpawnEnemy seRef;
 
     Vector3 offSet;
     RaycastHit2D hit;
-    GameObject seRef;
 
     float range = 15f;
     Transform target;
@@ -39,11 +39,10 @@ public class TurretT1 : WeaponBase
 
     void UpdateTarget()
     {
-        if (gm.BeginTrackingEnemies())
-        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
             float shortestDistance = visionDistance;
             GameObject nearestEnemy = null;
-            foreach (GameObject enemy in gm.GetEnemies())
+            foreach (GameObject enemy in enemies)
             {
                 float distancetoEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distancetoEnemy <= shortestDistance)
@@ -54,7 +53,7 @@ public class TurretT1 : WeaponBase
             }
             if (nearestEnemy != null && shortestDistance <= range) target = nearestEnemy.transform;
             else nearestEnemy = null;
-        }
+        
     }
 
     // checking to see what needs to happen if an enemy is shot
@@ -73,7 +72,7 @@ public class TurretT1 : WeaponBase
                 case "enemy car (Tier 1)(Clone)":
                     {
                         target.GetComponent<Enemy1>().Health -= damage;
-                        Debug.Log(target.GetComponent<Enemy1>().Health);
+                        //Debug.Log(target.GetComponent<Enemy1>().Health);
                         break;
                     }
                 case "enemy car (Tier 2)(Clone)":

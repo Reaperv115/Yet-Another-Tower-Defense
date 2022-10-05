@@ -33,7 +33,9 @@ public class GameManager : MonoBehaviour
     GameObject track, trackInst;
     SpawnEnemy spawnEnemy;
 
-    List<GameObject> enemies;
+    GameObject tower;
+    TextMeshProUGUI gameOver;
+
 
     Scene activeScene;
     Player player;
@@ -51,12 +53,13 @@ public class GameManager : MonoBehaviour
     int trackIndex;
     int t1Price = 2, t2Price = 6, t3Price = 10;
     int enemyIndex;
+     bool isgameOver;
 
     // Start is called before the first frame update
     void Start()
     {
         canvas = GameObject.Find("Canvas");
-        enemies = new List<GameObject>();
+        //enemies = new List<GameObject>();
         hasBegun = false;
         currentRound = 1;
         nextRound = false;
@@ -77,6 +80,9 @@ public class GameManager : MonoBehaviour
         weaponsPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = t3Price.ToString();
         begintrackingEnemies = false;
         enemyIndex = 0;
+        tower = FindTower(GetTrack());
+        tower.GetComponent<Tower>().setHealth(1f);
+        isgameOver = false;
     }
 
     // Update is called once per frame
@@ -155,9 +161,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadTrackInst()
     {
-        track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track");
-        
+        track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track " + GetTrackIndex());
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
+        tower = FindTower(track);
+        Debug.Log(tower);
+        enemystartingPos = FindEnemySpawn(track);
     }
 
     public void BeginRound()
@@ -191,7 +199,7 @@ public class GameManager : MonoBehaviour
             else
                 ++i;
         }
-        track.transform.GetChild(i).GetComponent<Tower>().setHealth(1f);
+        //track.transform.GetChild(i).GetComponent<Tower>().setHealth(1f);
         return track.transform.GetChild(i).gameObject;
     }
 
@@ -218,16 +226,6 @@ public class GameManager : MonoBehaviour
         return begintrackingEnemies;
     }
 
-    public List<GameObject> GetEnemies()
-    {
-        return enemies;
-    }
-
-    public void AddEnemy(GameObject enem)
-    {
-        enemies.Add(enem);
-    }
-
     public int GetEnemyIndex()
     {
         return enemyIndex;
@@ -235,5 +233,10 @@ public class GameManager : MonoBehaviour
     public void SetEnemyIndex(int enemIndex)
     {
         enemyIndex = enemIndex;
+    }
+
+    public GameObject GetTower()
+    {
+        return tower;
     }
 }

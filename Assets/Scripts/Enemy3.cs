@@ -65,4 +65,9 @@ public class Enemy3 : EnemyBase
             pathwayMarkers.Add(track.transform.GetChild(0).transform.GetChild(i));
         }
     }
+
+    public int GetHealth()
+    {
+        return Health;
+    }
 }

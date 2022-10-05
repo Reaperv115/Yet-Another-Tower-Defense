@@ -9,7 +9,8 @@ public class SpawnEnemy : MonoBehaviour
     GameObject round1;
     List<GameObject> round2, round3;
     GameObject tower;
-    List<GameObject> enemies;
+    GameObject[] enemies;
+    GameObject enemyInst;
     
     int numenemiestoAdd, maxnumnEnemies;
 
@@ -17,14 +18,15 @@ public class SpawnEnemy : MonoBehaviour
     float timebetweenSpawn = 1.0f;
     bool spawn;
     bool begintrackingEnemies;
+    int enemyIndex;
     // Start is called before the first frame update
     void Start()
     {
         // getting the Game Manager component
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         spawn = false;
-        tower = gm.FindTower(gm.GetTrack());
         round1 = gm.GetTier1Enemy();
+        tower = gm.GetTower();
 
         round2 = new List<GameObject>();
         round2.Add(gm.GetTier2Enemy());
@@ -34,45 +36,35 @@ public class SpawnEnemy : MonoBehaviour
         round3.Add(gm.GetTier1Enemy());
         round3.Add(gm.GetTier2Enemy());
         round3.Add(gm.GetTier3Enemy());
-
         numenemiestoAdd = 10;
         maxnumnEnemies = numenemiestoAdd;
+
+        enemies = new GameObject[numenemiestoAdd];
         begintrackingEnemies = false;
+        enemyIndex = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gm.GetEnemies().Count > 0)
-            gm.SetBeginTrackingEnemies(true);
-        else
-            gm.SetBeginTrackingEnemies(false);
+        GameObject[] enemyhealthCheck = GameObject.FindGameObjectsWithTag("enemy");
+        foreach(GameObject enemy in enemyhealthCheck)
+        {
+            switch(enemy.transform.name)
+            {
+                case "enemy car (Tier 1)(Clone)":
+                {
+                    if (enemy.GetComponent<Enemy1>().Health <= 0)
+                    {
+                        Destroy(enemy);
+                        gm.SetScore(gm.GetScore() + 1);
+                    }
+                    break;
+                }
+            }
+        }
 
         // giving the player a slight intermission between rounds
-        if (gm.BeginTrackingEnemies())
-        {
-            gm.SetEnemyIndex(0);
-            foreach(GameObject enemy in gm.GetEnemies())
-            {
-                Debug.Log("enemy index: " + gm.GetEnemyIndex());
-                switch(enemy.transform.name)
-                {
-                    case "enemy car (Tier 1)(Clone)":
-                    {
-                        if (enemy.GetComponent<Enemy1>().GetHealth() <= 0f)
-                        {
-                            GameObject clone = enemy;
-                            gm.GetEnemies().RemoveAt(gm.GetEnemyIndex());
-                            Destroy(clone);
-                            gm.SetScore(gm.GetScore() + 1);
-                        }
-                        break;
-                    }
-                }
-                    gm.SetEnemyIndex(gm.GetEnemyIndex() + 1);
-            }
-            
-        }
         if (gm.GetNextRound())
         {
             if (intermission <= 0.0f)
@@ -99,13 +91,14 @@ public class SpawnEnemy : MonoBehaviour
             gm.GetWeaponsButton().SetActive(false);
         }
 
-        if (tower.GetComponent<Tower>().getHealth() <= 0f) spawn = false;
+        //if (tower.GetComponent<Tower>().getHealth() <= 0f) spawn = false;
 
         // spawning in enemies
         if (spawn)
         {
             if (timebetweenSpawn <= 0.0f)
             {
+                
                 if (numenemiestoAdd <= 0)
                 {
                     GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
@@ -140,10 +133,10 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 
-    public List<GameObject> GetAliveEnemies()
-    {
-        return enemies;
-    }
+    // public List<GameObject> GetAliveEnemies()
+    // {
+    //     return enemies;
+    // }
 
     public bool CanBeginTracking()
     {
@@ -158,10 +151,7 @@ public class SpawnEnemy : MonoBehaviour
         {
             case 1:
                 {
-                    //gm.AddEnemy(Instantiate(gm.GetTier1Enemy(), transform.position, transform.rotation));
-
-                    GameObject tmpEnem = Instantiate(gm.GetTier1Enemy(), transform.position, gm.GetTier1Enemy().transform.rotation);
-                    gm.AddEnemy(tmpEnem);
+                    enemyInst = Instantiate(gm.GetTier1Enemy(), transform.position, transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -206,5 +196,15 @@ public class SpawnEnemy : MonoBehaviour
     public int GetNumEnemiesToAdd()
     {
         return numenemiestoAdd;
+    }
+
+    public GameObject[] GetEnemies()
+    {
+        return enemies;
+    }
+
+    public void SetSpawn(bool canSpawn)
+    {
+        spawn = canSpawn;
     }
 }
