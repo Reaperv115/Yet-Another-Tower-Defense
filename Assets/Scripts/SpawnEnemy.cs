@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,8 +16,6 @@ public class SpawnEnemy : MonoBehaviour
     float intermission = 5.0f;
     float timebetweenSpawn = 1.0f;
     bool spawn;
-    bool begintrackingEnemies;
-    int enemyIndex;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +24,7 @@ public class SpawnEnemy : MonoBehaviour
         spawn = false;
         round1 = gm.GetTier1Enemy();
         tower = gm.GetTower();
+        
 
         round2 = new List<GameObject>();
         round2.Add(gm.GetTier2Enemy());
@@ -38,10 +36,6 @@ public class SpawnEnemy : MonoBehaviour
         round3.Add(gm.GetTier3Enemy());
         numenemiestoAdd = 10;
         maxnumnEnemies = numenemiestoAdd;
-
-        enemies = new GameObject[numenemiestoAdd];
-        begintrackingEnemies = false;
-        enemyIndex = 0;
     }
 
     // Update is called once per frame
@@ -91,8 +85,6 @@ public class SpawnEnemy : MonoBehaviour
             gm.GetWeaponsButton().SetActive(false);
         }
 
-        //if (tower.GetComponent<Tower>().getHealth() <= 0f) spawn = false;
-
         // spawning in enemies
         if (spawn)
         {
@@ -133,15 +125,6 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 
-    // public List<GameObject> GetAliveEnemies()
-    // {
-    //     return enemies;
-    // }
-
-    public bool CanBeginTracking()
-    {
-        return begintrackingEnemies;
-    }
 
     // function to decide which group of enemies to choose
     // from when spawning enemies
@@ -159,7 +142,7 @@ public class SpawnEnemy : MonoBehaviour
             case 2:
                 {
                     int randomEnem = Random.Range(0, round2.Count);
-                    Instantiate(round2[randomEnem], transform.position, round2[randomEnem].transform.rotation);
+                    enemyInst = Instantiate(round2[randomEnem], transform.position, round2[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -167,7 +150,7 @@ public class SpawnEnemy : MonoBehaviour
             case 3:
                 {
                     int randomEnem = Random.Range(0, round3.Count);
-                    Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    enemyInst = Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -175,7 +158,7 @@ public class SpawnEnemy : MonoBehaviour
             case 4:
                 {
                     int randomEnem = Random.Range(0, round3.Count);
-                    Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    enemyInst = Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -183,7 +166,7 @@ public class SpawnEnemy : MonoBehaviour
             case 5:
                 {
                     int randomEnem = Random.Range(0, round3.Count);
-                    Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    enemyInst = Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -191,16 +174,6 @@ public class SpawnEnemy : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public int GetNumEnemiesToAdd()
-    {
-        return numenemiestoAdd;
-    }
-
-    public GameObject[] GetEnemies()
-    {
-        return enemies;
     }
 
     public void SetSpawn(bool canSpawn)

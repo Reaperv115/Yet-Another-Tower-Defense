@@ -1,28 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     GameObject beginroundButton, weaponsButton, startButton, restart, nextLevel;
-    //GameObject beginroundbuttonInst, weaponsbtnInst, startbuttonInst, restartInst, nextlevelInst;
     [SerializeField]
     GameObject scoreBoard, round, victoryDisplay;
-    //GameObject scoreboardInst, roundInst, victorydisplayInst;
     [SerializeField]
     TextMeshProUGUI weapontoPlace;
-    //TextMeshProUGUI weapontoplaceInst;
 
-    // enemies to load and spawn-in
-    GameObject enemy, enemy2, enemy3;
 
     [SerializeField]
     GameObject weaponsPanel;
-    //GameObject weaponspanelInst;
+    // enemies to load and spawn-in
+    GameObject enemy, enemy2, enemy3;
     GameObject canvas;
 
     RectTransform healthBar;
@@ -31,20 +25,14 @@ public class GameManager : MonoBehaviour
 
     GameObject enemystartingPos;
     GameObject track, trackInst;
-    SpawnEnemy spawnEnemy;
 
     GameObject tower;
     TextMeshProUGUI gameOver;
-
-
-    Scene activeScene;
     Player player;
 
     bool hasBegun;
 
     bool nextRound;
-    bool activateweaponsPanel = false;
-    bool begintrackingEnemies;
 
     private float score = 6f;
     int currentRound;
@@ -52,37 +40,30 @@ public class GameManager : MonoBehaviour
     int colorIndex = 0, colorIndex2 = 1;
     int trackIndex;
     int t1Price = 2, t2Price = 6, t3Price = 10;
-    int enemyIndex;
-     bool isgameOver;
 
     // Start is called before the first frame update
     void Start()
     {
-        canvas = GameObject.Find("Canvas");
-        //enemies = new List<GameObject>();
-        hasBegun = false;
-        currentRound = 1;
-        nextRound = false;
+        healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         enemy = Resources.Load<GameObject>("enemy car (Tier 1)");
         enemy2 = Resources.Load<GameObject>("enemy car (Tier 2)");
         enemy3 = Resources.Load<GameObject>("enemy car (Tier 3)");
+        canvas = GameObject.Find("Canvas");
+        hasBegun = false;
+        nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
+        nextLevel.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
-        nextLevel.gameObject.SetActive(false);
-        healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         weaponsPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = t1Price.ToString();
         weaponsPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = t2Price.ToString();
         weaponsPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = t3Price.ToString();
-        begintrackingEnemies = false;
-        enemyIndex = 0;
+        currentRound = 1;
         tower = FindTower(GetTrack());
-        tower.GetComponent<Tower>().setHealth(1f);
-        isgameOver = false;
     }
 
     // Update is called once per frame
@@ -139,6 +120,7 @@ public class GameManager : MonoBehaviour
     // returns the rpice of the tier 3 weapon
     public int GetT3Price() { return t3Price; }
     public float GetT3PriceF() { return 8.0f; }
+    public GameObject GetTower() { return tower; }
     public void YouWON()
     {
         victoryDisplay.GetComponent<TextMeshProUGUI>().text = "YOU WIN! Get Ready For The Next Round!";
@@ -152,19 +134,11 @@ public class GameManager : MonoBehaviour
         victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 8));
     }
 
-    public void ResetUI()
-    {
-        beginroundButton.SetActive(false);
-        restart.gameObject.SetActive(false);
-        //weaponsButton.gameObject.SetActive(false);
-    }
-
     public void LoadTrackInst()
     {
         track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track " + GetTrackIndex());
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
         tower = FindTower(track);
-        Debug.Log(tower);
         enemystartingPos = FindEnemySpawn(track);
     }
 
@@ -174,20 +148,11 @@ public class GameManager : MonoBehaviour
         beginroundButton.gameObject.SetActive(false);
     }
 
-    public bool CanBeginRound()
-    {
-        return hasBegun;
-    }
+    public bool CanBeginRound() { return hasBegun; }
 
-    public void SetHasBegun(bool hasbegun)
-    {
-        hasBegun = hasbegun;
-    }
+    public void SetHasBegun(bool hasbegun) { hasBegun = hasbegun; }
 
-    public GameObject GetTrack()
-    {
-        return track;
-    }
+    public GameObject GetTrack() { return track; }
 
     public GameObject FindTower(GameObject track)
     {
@@ -199,7 +164,6 @@ public class GameManager : MonoBehaviour
             else
                 ++i;
         }
-        //track.transform.GetChild(i).GetComponent<Tower>().setHealth(1f);
         return track.transform.GetChild(i).gameObject;
     }
 
@@ -216,27 +180,4 @@ public class GameManager : MonoBehaviour
         return track.transform.GetChild(i).gameObject;
     }
 
-    public void SetBeginTrackingEnemies(bool canTrack)
-    {
-        begintrackingEnemies = canTrack;
-    }
-
-    public bool BeginTrackingEnemies()
-    {
-        return begintrackingEnemies;
-    }
-
-    public int GetEnemyIndex()
-    {
-        return enemyIndex;
-    }
-    public void SetEnemyIndex(int enemIndex)
-    {
-        enemyIndex = enemIndex;
-    }
-
-    public GameObject GetTower()
-    {
-        return tower;
-    }
 }
