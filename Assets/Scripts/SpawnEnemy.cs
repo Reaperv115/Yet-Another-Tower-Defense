@@ -55,6 +55,24 @@ public class SpawnEnemy : MonoBehaviour
                     }
                     break;
                 }
+                case "enemy car (Tier 2)(Clone)":
+                {
+                    if (enemy.GetComponent<Enemy2>().Health <= 0)
+                    {
+                        Destroy(enemy);
+                        gm.SetScore(gm.GetScore() + 1);
+                    }
+                    break;
+                }
+                case "enemy car (Tier 3)(Clone)":
+                {
+                    if (enemy.GetComponent<Enemy3>().Health <= 0)
+                    {
+                        Destroy(enemy);
+                        gm.SetScore(gm.GetScore() + 1);
+                    }
+                    break;
+                }
             }
         }
 
@@ -98,8 +116,16 @@ public class SpawnEnemy : MonoBehaviour
                     {
                         if (gm.GetCurrentRound().Equals(5))
                         {
-                            gm.GetVictoryDisplay().text = "You Win! Continue to the next round when you're ready!";
-                            gm.GetNextLevelButton().gameObject.SetActive(true);
+                            if (gm.GetTrackIndex().Equals(5))
+                            {
+                                gm.GetVictoryDisplay().text = "YOU'VE BEATEN THE GAME! CONGRATS! Be sure to be on the lookout for more title by GLITC Gaming!";
+                                gm.GetRestartButton().gameObject.SetActive(true);
+                            }
+                            else
+                            {
+                                gm.GetVictoryDisplay().text = "You Win! Continue to the next round when you're ready!";
+                                gm.GetNextLevelButton().gameObject.SetActive(true);
+                            }
                         }
                         else
                         {

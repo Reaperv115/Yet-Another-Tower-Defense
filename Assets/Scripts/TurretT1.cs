@@ -19,14 +19,13 @@ public class TurretT1 : WeaponBase
         visionDistance = 10;
         damage = 2;
         price = 3;
-        firerateinSeconds = .5f;
+        firerateinSeconds = .0025f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(gm.BeginTrackingEnemies());
         // do nothing if no target is close enough
         if (target == null) return;
 
@@ -34,7 +33,17 @@ public class TurretT1 : WeaponBase
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
-        if (hit) Invoke("Fire", firerateinSeconds);
+        if (hit)
+        {
+            Fire();
+            // if (firerateinSeconds <= 0f)
+            // { 
+                
+            //     firerateinSeconds = .0025f;
+            // }
+            // else
+            //     firerateinSeconds -= Time.deltaTime;
+        }
     }
 
     void UpdateTarget()
@@ -72,7 +81,6 @@ public class TurretT1 : WeaponBase
                 case "enemy car (Tier 1)(Clone)":
                     {
                         target.GetComponent<Enemy1>().Health -= damage;
-                        //Debug.Log(target.GetComponent<Enemy1>().Health);
                         break;
                     }
                 case "enemy car (Tier 2)(Clone)":
