@@ -60,7 +60,7 @@ public class SpawnEnemy : MonoBehaviour
                     if (enemy.GetComponent<Enemy2>().Health <= 0)
                     {
                         Destroy(enemy);
-                        gm.SetScore(gm.GetScore() + 1);
+                        gm.SetScore(gm.GetScore() + 2);
                     }
                     break;
                 }
@@ -69,7 +69,7 @@ public class SpawnEnemy : MonoBehaviour
                     if (enemy.GetComponent<Enemy3>().Health <= 0)
                     {
                         Destroy(enemy);
-                        gm.SetScore(gm.GetScore() + 1);
+                        gm.SetScore(gm.GetScore() + 3);
                     }
                     break;
                 }
@@ -93,6 +93,7 @@ public class SpawnEnemy : MonoBehaviour
                     gm.MoveOn();
                 }
                 intermission -= .05f;
+                //gm.GetVictoryDisplay().text = "YOU WIN! Get Ready For The Next Round!";
                 gm.YouWON();
             }
         }

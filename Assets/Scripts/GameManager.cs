@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         beginroundButton.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
         nextLevel.gameObject.SetActive(false);
-        victorydisplayColors = new List<Color>() { Color.blue, Color.green, Color.black, Color.cyan };
+        victorydisplayColors = new List<Color>() { Color.blue, Color.cyan, Color.gray, Color.magenta, Color.grey };
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
@@ -127,11 +127,10 @@ public class GameManager : MonoBehaviour
         if (changeColor <= 0)
         {
             colorIndex = Random.Range(0, victorydisplayColors.Count);
-            colorIndex2 = Random.Range(0, victorydisplayColors.Count);
-            changeColor = 1;
+            changeColor = 1f;
         }
         changeColor -= Time.deltaTime;
-        victoryDisplay.GetComponent<TextMeshProUGUI>().color = Color.Lerp(victorydisplayColors[colorIndex], victorydisplayColors[colorIndex2], Mathf.PingPong(Time.time, 8));
+        victoryDisplay.GetComponent<TextMeshProUGUI>().color = victorydisplayColors[colorIndex];
     }
 
     public void LoadTrackInst()

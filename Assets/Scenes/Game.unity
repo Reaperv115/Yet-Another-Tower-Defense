@@ -1891,6 +1891,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 230751647}
     m_Modifications:
+    - target: {fileID: 8510881881542384259, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510881881542384259, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510881881542384259, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510881881542384259, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510881881542384259, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510881881542384259, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8510881881542384260, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
       propertyPath: m_Name
       value: Victory
@@ -1969,7 +1993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8510881882113616567, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 12
+      value: 77.9
       objectReference: {fileID: 0}
     - target: {fileID: 8510881882113616567, guid: 97fe64e724e60ec45900cc6dd6122ac5, type: 3}
       propertyPath: m_AnchoredPosition.y
