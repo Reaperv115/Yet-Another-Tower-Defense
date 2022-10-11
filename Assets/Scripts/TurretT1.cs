@@ -33,17 +33,7 @@ public class TurretT1 : WeaponBase
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
-        if (hit)
-        {
-            Fire();
-            // if (firerateinSeconds <= 0f)
-            // { 
-                
-            //     firerateinSeconds = .0025f;
-            // }
-            // else
-            //     firerateinSeconds -= Time.deltaTime;
-        }
+        if (hit) Fire();
     }
 
     void UpdateTarget()
@@ -69,8 +59,8 @@ public class TurretT1 : WeaponBase
     // depeneding on which type of enemy it is.
     void Fire()
     {
-        int tmpCol = Random.Range(0, colors.Length);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
+        int color = Random.Range(0, colors.Length);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[color];
         // literally no idea why this if-check is required all of a sudden
         // game still functions properly without it,
         // it just throws a bunch of errors in Unity though
@@ -98,15 +88,6 @@ public class TurretT1 : WeaponBase
             }
             
         }
-    }
-
-    // updating the score if an enemy is killed
-    // depending on which type of enemy is killed
-    void UpdateScore(Transform enem)
-    {
-        if (enem.name.Equals("enemy car (Tier 1)(Clone)")) gm.SetScore(gm.GetScore() + 1);
-        if (enem.name.Equals("enemy car (Tier 2)(Clone)")) gm.SetScore(gm.GetScore() + 2);
-        if (enem.name.Equals("enemy car (Tier 3)(Clone)")) gm.SetScore(gm.GetScore() + 3);
     }
 
 }

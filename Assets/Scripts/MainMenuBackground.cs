@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -16,10 +14,7 @@ public class MainMenuBackground : MonoBehaviour
     {
         tmp = Random.Range(0, backgroundColors.Length);
         newtmp = tmp + 3;
-        if (newtmp > backgroundColors.Length - 1)
-        {
-            newtmp = newtmp - backgroundColors.Length;
-        }
+        if (newtmp > backgroundColors.Length - 1) newtmp = newtmp - backgroundColors.Length;
         GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
         Title.color = backgroundColors[newtmp];
         colorTimer = 5f;
@@ -33,17 +28,11 @@ public class MainMenuBackground : MonoBehaviour
             tmp = Random.Range(0, backgroundColors.Length);
             newtmp = tmp + 3;
             Debug.Log("newtmp: " + newtmp);
-            if (newtmp > backgroundColors.Length - 1)
-            {
-                newtmp = newtmp - backgroundColors.Length;
-            }
+            if (newtmp > backgroundColors.Length - 1) newtmp = newtmp - backgroundColors.Length;
             GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
             Title.color = backgroundColors[newtmp];
             colorTimer = 5f;
         }
-        else
-        {
-            colorTimer -= Time.deltaTime;
-        }
+        else colorTimer -= Time.deltaTime;
     }
 }

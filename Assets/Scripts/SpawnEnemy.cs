@@ -88,12 +88,8 @@ public class SpawnEnemy : MonoBehaviour
             }
             else
             {
-                if (intermission < 3f)
-                {
-                    gm.MoveOn();
-                }
+                if (intermission < 3f) gm.MoveOn();
                 intermission -= .05f;
-                //gm.GetVictoryDisplay().text = "YOU WIN! Get Ready For The Next Round!";
                 gm.YouWON();
             }
         }
@@ -141,13 +137,9 @@ public class SpawnEnemy : MonoBehaviour
                     }
 
                 }
-                else
-                {
-                    Spawn(gm.GetCurrentRound());
-                }
+                else Spawn(gm.GetCurrentRound());
             }
-            else
-                timebetweenSpawn -= .05f;
+            else timebetweenSpawn -= .05f;
 
         }
     }

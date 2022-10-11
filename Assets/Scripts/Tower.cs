@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
@@ -21,26 +19,14 @@ public class Tower : MonoBehaviour
     bool spawn;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        fHealth = 1f;
-        //Debug.Log(fHealth);
-    }
     void Start()
     {
-        //fHealth = 1f;
+        fHealth = 1f;
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         enemystartingPoint = GameObject.Find("enemy starting tile");
         isgameOver = false;
         spawn = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(fHealth);
-        //gm.GetHealthBar().localScale = new Vector3(fHealth, 1f);
     }
 
     public float getHealth()
@@ -58,10 +44,8 @@ public class Tower : MonoBehaviour
     {
         if (collision.transform.tag.Equals("enemy"))
         {
-            //gm.GetEnemies().Remove(collision.gameObject);
             Destroy(collision.gameObject);
             fHealth -= .1f;
-            Debug.Log(fHealth);
             gm.GetHealthBar().localScale = new Vector3(fHealth, 1f);
             if (getHealth() <= 0f)
             {

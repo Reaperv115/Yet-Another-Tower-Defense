@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
@@ -15,15 +13,5 @@ public class WeaponBase : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Player>();
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

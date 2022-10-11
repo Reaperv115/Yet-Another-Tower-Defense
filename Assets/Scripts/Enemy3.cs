@@ -12,7 +12,7 @@ public class Enemy3 : EnemyBase
     {
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         Health = 175;
-        speed = 20f * Time.deltaTime;
+        speed = 10f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
         track = gm.GetTrack();
@@ -39,10 +39,7 @@ public class Enemy3 : EnemyBase
     {
         if (transform.position.Equals(pathwayMarkers[pathIndex].transform.position))
         {
-            if (pathIndex.Equals(pathwayMarkers.Count - 1))
-            {
-                attackTower = true;
-            }
+            if (pathIndex.Equals(pathwayMarkers.Count - 1))  attackTower = true;
             else
             {
                 ++pathIndex;
@@ -50,10 +47,7 @@ public class Enemy3 : EnemyBase
             }
 
         }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, pathwayMarkers[pathIndex].transform.position, _speed);
-        }
+        else transform.position = Vector3.MoveTowards(transform.position, pathwayMarkers[pathIndex].transform.position, _speed);
     }
 
     // getting track info
@@ -65,8 +59,5 @@ public class Enemy3 : EnemyBase
         }
     }
 
-    public int GetHealth()
-    {
-        return Health;
-    }
+    public int GetHealth() { return Health; }
 }

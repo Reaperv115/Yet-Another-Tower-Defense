@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class TurretT2 : WeaponBase
 {
     GameManager gm;
-    Collider2D enemyCollider;
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
@@ -39,14 +34,12 @@ public class TurretT2 : WeaponBase
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
         if (hit)
         {
-            Debug.Log(firerateinSeconds);
             if (firerateinSeconds <= 0f)
             {
                 Fire();
                 firerateinSeconds = 2f;
             }
-            else
-                firerateinSeconds -= Time.deltaTime;
+            else firerateinSeconds -= Time.deltaTime;
         }
     }
 
@@ -70,8 +63,8 @@ public class TurretT2 : WeaponBase
     }
     void Fire()
     {
-        int tmpCol = Random.Range(0, colors.Length);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
+        int color = Random.Range(0, colors.Length);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[color];
         if (target)
         {
             switch (target.name)

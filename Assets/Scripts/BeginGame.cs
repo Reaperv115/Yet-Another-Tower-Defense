@@ -3,8 +3,5 @@ using UnityEngine.SceneManagement;
 
 public class BeginGame : MonoBehaviour
 {
-    public void StartPlaying()
-    {
-        SceneManager.LoadScene("Game");
-    }
+    public void StartPlaying() { SceneManager.LoadScene("Game"); }
 }

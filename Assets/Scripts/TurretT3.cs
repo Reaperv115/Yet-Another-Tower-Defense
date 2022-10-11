@@ -37,8 +37,7 @@ public class TurretT3 : WeaponBase
                 Fire();
                 firerateinSeconds = 4f;
             }
-            else
-                firerateinSeconds -= Time.deltaTime;
+            else firerateinSeconds -= Time.deltaTime;
         }
     }
 
@@ -64,8 +63,8 @@ public class TurretT3 : WeaponBase
     // depeneding on which type of enemy it is.
     void Fire()
     {
-        int tmpCol = Random.Range(0, colors.Length);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[tmpCol];
+        int color = Random.Range(0, colors.Length);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[color];
         if (target)
         {
             switch (target.name)

@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private float score = 6f;
     int currentRound;
     float changeColor = 1;
-    int colorIndex = 0, colorIndex2 = 1;
+    int colorIndex = 0;
     int trackIndex;
     int t1Price = 2, t2Price = 6, t3Price = 10;
 
@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
     // returns the rpice of the tier 3 weapon
     public int GetT3Price() { return t3Price; }
     public float GetT3PriceF() { return 8.0f; }
+    
     public GameObject GetTower() { return tower; }
     public void YouWON()
     {

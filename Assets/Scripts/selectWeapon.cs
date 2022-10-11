@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.EventSystems;
 
 public class selectWeapon : MonoBehaviour
 {
@@ -175,11 +171,6 @@ public class selectWeapon : MonoBehaviour
     public Vector3 GetWeaponPosition()
     {
         return mouseWorldPosition;
-    }
-
-    public Touch GetTouch()
-    {
-        return touch;
     }
 
     public bool checkT1Funds()

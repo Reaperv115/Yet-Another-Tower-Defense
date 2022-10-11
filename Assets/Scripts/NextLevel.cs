@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -21,7 +18,6 @@ public class NextLevel : MonoBehaviour
             Destroy(obj);
         Destroy(gm.GetTrackInst());
         gm.SetTrackIndex(gm.GetTrackIndex() + 1);
-        Debug.Log(gm.GetTrackIndex());
         gm.LoadTrackInst();
         gm.GetWeaponsButton().gameObject.SetActive(true);
         gm.SetHasBegun(false);
