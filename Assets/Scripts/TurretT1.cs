@@ -59,8 +59,6 @@ public class TurretT1 : WeaponBase
     // depeneding on which type of enemy it is.
     void Fire()
     {
-        int color = Random.Range(0, colors.Length);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[color];
         // literally no idea why this if-check is required all of a sudden
         // game still functions properly without it,
         // it just throws a bunch of errors in Unity though

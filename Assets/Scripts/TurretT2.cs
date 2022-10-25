@@ -63,8 +63,6 @@ public class TurretT2 : WeaponBase
     }
     void Fire()
     {
-        int color = Random.Range(0, colors.Length);
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = colors[color];
         if (target)
         {
             switch (target.name)
