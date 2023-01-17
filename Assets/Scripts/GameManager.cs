@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // displaying score and current round
-        scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
+        scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + ScoreManager.instance.amount;
         round.GetComponent<TextMeshProUGUI>().text = "Round: " + currentRound.ToString();
     }
 
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
 
     // setters
-    public void SetScore(float newScore) { score = newScore; }
+    public void SetScore(int newScore) { ScoreManager.instance.amount = newScore; }
     public float GetScore() { return score; }
     public void SetCurrentRound(int newRound) { currentRound = newRound; }
     public void SetNextRound(bool nextround) { nextRound = nextround; }
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     public int GetT2Price() { return t2Price; }
     public float GetT2PriceF() { return 6.0f; }
 
-    // returns the rpice of the tier 3 weapon
+    // returns the price of the tier 3 weapon
     public int GetT3Price() { return t3Price; }
     public float GetT3PriceF() { return 8.0f; }
     

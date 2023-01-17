@@ -51,7 +51,6 @@ public class SpawnEnemy : MonoBehaviour
                     if (enemy.GetComponent<Enemy1>().Health <= 0)
                     {
                         Destroy(enemy);
-                        gm.SetScore(gm.GetScore() + 1);
                     }
                     break;
                 }
@@ -60,7 +59,6 @@ public class SpawnEnemy : MonoBehaviour
                     if (enemy.GetComponent<Enemy2>().Health <= 0)
                     {
                         Destroy(enemy);
-                        gm.SetScore(gm.GetScore() + 2);
                     }
                     break;
                 }
@@ -69,7 +67,6 @@ public class SpawnEnemy : MonoBehaviour
                     if (enemy.GetComponent<Enemy3>().Health <= 0)
                     {
                         Destroy(enemy);
-                        gm.SetScore(gm.GetScore() + 3);
                     }
                     break;
                 }

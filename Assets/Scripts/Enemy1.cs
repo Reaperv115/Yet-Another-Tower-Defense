@@ -57,5 +57,7 @@ public class Enemy1 : EnemyBase
         for (int i = 0; i < track.transform.GetChild(0).transform.childCount; ++i) pathwayMarkers.Add(track.transform.GetChild(0).transform.GetChild(i));
     }
 
+
+
     public int GetHealth() { return Health; }
 }

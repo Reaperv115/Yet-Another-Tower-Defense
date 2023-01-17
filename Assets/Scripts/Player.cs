@@ -116,9 +116,9 @@ public class Player : MonoBehaviour
         gm.GetWeaponsButton().SetActive(false);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
         gm.GetWeaponsPanel().SetActive(false);
-        if (mainWeapon.transform.name.Contains("1")) gm.SetScore(gm.GetScore() - gm.GetT1Price());
-        if (mainWeapon.transform.name.Contains("2")) gm.SetScore(gm.GetScore() - gm.GetT2Price());
-        if (mainWeapon.transform.name.Contains("3")) gm.SetScore(gm.GetScore() - gm.GetT3Price());
+        if (mainWeapon.transform.name.Contains("1")) gm.SetScore(ScoreManager.instance.amount - gm.GetT1Price());
+        if (mainWeapon.transform.name.Contains("2")) gm.SetScore(ScoreManager.instance.amount - gm.GetT2Price());
+        if (mainWeapon.transform.name.Contains("3")) gm.SetScore(ScoreManager.instance.amount - gm.GetT3Price());
     }
     public GameObject instantiatedmainWeapon { get;  set; }
     public GameObject mainWeapon { get; set; }
