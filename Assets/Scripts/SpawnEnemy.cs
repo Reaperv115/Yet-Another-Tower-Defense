@@ -22,18 +22,8 @@ public class SpawnEnemy : MonoBehaviour
         // getting the Game Manager component
         gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         spawn = false;
-        round1 = gm.GetTier1Enemy();
         tower = gm.GetTower();
         
-
-        round2 = new List<GameObject>();
-        round2.Add(gm.GetTier2Enemy());
-        round2.Add(gm.GetTier3Enemy());
-
-        round3 = new List<GameObject>();
-        round3.Add(gm.GetTier1Enemy());
-        round3.Add(gm.GetTier2Enemy());
-        round3.Add(gm.GetTier3Enemy());
         numenemiestoAdd = 10;
         maxnumnEnemies = numenemiestoAdd;
     }
@@ -41,37 +31,8 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject[] enemyhealthCheck = GameObject.FindGameObjectsWithTag("enemy");
-        foreach(GameObject enemy in enemyhealthCheck)
-        {
-            switch(enemy.transform.name)
-            {
-                case "enemy car (Tier 1)(Clone)":
-                {
-                    if (enemy.GetComponent<Enemy1>().Health <= 0)
-                    {
-                        Destroy(enemy);
-                    }
-                    break;
-                }
-                case "enemy car (Tier 2)(Clone)":
-                {
-                    if (enemy.GetComponent<Enemy2>().Health <= 0)
-                    {
-                        Destroy(enemy);
-                    }
-                    break;
-                }
-                case "enemy car (Tier 3)(Clone)":
-                {
-                    if (enemy.GetComponent<Enemy3>().Health <= 0)
-                    {
-                        Destroy(enemy);
-                    }
-                    break;
-                }
-            }
-        }
+        if (EnemyManager.instance.enemies.Count > 0)
+            EnemyHealthCheck();
 
         // giving the player a slight intermission between rounds
         if (gm.GetNextRound())
@@ -105,8 +66,7 @@ public class SpawnEnemy : MonoBehaviour
                 
                 if (numenemiestoAdd <= 0)
                 {
-                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-                    if (enemies.Length.Equals(0))
+                    if (EnemyManager.instance.enemies.Count.Equals(0))
                     {
                         if (gm.GetCurrentRound().Equals(5))
                         {
@@ -150,45 +110,72 @@ public class SpawnEnemy : MonoBehaviour
         {
             case 1:
                 {
-                    enemyInst = Instantiate(gm.GetTier1Enemy(), transform.position, transform.rotation);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound1Pack(), transform.position, transform.rotation);
+                    EnemyManager.instance.enemies.Add(enemyInst);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
                 }
             case 2:
                 {
-                    int randomEnem = Random.Range(0, round2.Count);
-                    enemyInst = Instantiate(round2[randomEnem], transform.position, round2[randomEnem].transform.rotation);
+                    int randomEnem = Random.Range(0, EnemyManager.instance.GetRound2Pack().Length);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound2Pack()[randomEnem], transform.position, round2[randomEnem].transform.rotation);
+                    EnemyManager.instance.enemies.Add(enemyInst);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
                 }
             case 3:
                 {
-                    int randomEnem = Random.Range(0, round3.Count);
-                    enemyInst = Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    int randomEnem = Random.Range(0, EnemyManager.instance.GetRound3Pack().Length);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    EnemyManager.instance.enemies.Add(enemyInst);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
                 }
             case 4:
                 {
-                    int randomEnem = Random.Range(0, round3.Count);
-                    enemyInst = Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    int randomEnem = Random.Range(0, EnemyManager.instance.GetRound3Pack().Length);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    EnemyManager.instance.enemies.Add(enemyInst);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
                 }
             case 5:
                 {
-                    int randomEnem = Random.Range(0, round3.Count);
-                    enemyInst = Instantiate(round3[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    int randomEnem = Random.Range(0, EnemyManager.instance.GetRound3Pack().Length);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, round3[randomEnem].transform.rotation);
+                    EnemyManager.instance.enemies.Add(enemyInst);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
                 }
             default:
                 break;
+        }
+    }
+
+    void EnemyHealthCheck()
+    {
+        foreach (GameObject enemy in EnemyManager.instance.enemies)
+        {
+            switch (enemy.transform.name)
+            {
+                case "enemy car (Tier 1)(Clone)":
+                    if (enemy.GetComponent<Enemy1>().Health <= 0)
+                    {
+                        Destroy(enemy);
+                    }
+                    break;
+                case "enemy car (Tier 2)(Clone)":
+                    if (enemy.GetComponent<Enemy2>().Health <= 0) Destroy(enemy);
+                    break;
+                case "enemy car (Tier 3)(Clone)":
+                    if (enemy.GetComponent<Enemy3>().Health <= 0) Destroy(enemy);
+                    break;
+            }
         }
     }
 
