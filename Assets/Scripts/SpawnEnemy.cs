@@ -111,7 +111,6 @@ public class SpawnEnemy : MonoBehaviour
             case 1:
                 {
                     enemyInst = Instantiate(EnemyManager.instance.GetRound1Pack(), transform.position, transform.rotation);
-                    EnemyManager.instance.enemies.Add(enemyInst);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -119,8 +118,7 @@ public class SpawnEnemy : MonoBehaviour
             case 2:
                 {
                     int randomEnem = Random.Range(0, EnemyManager.instance.GetRound2Pack().Length);
-                    enemyInst = Instantiate(EnemyManager.instance.GetRound2Pack()[randomEnem], transform.position, round2[randomEnem].transform.rotation);
-                    EnemyManager.instance.enemies.Add(enemyInst);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound2Pack()[randomEnem], transform.position, EnemyManager.instance.GetRound2Pack()[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -128,8 +126,7 @@ public class SpawnEnemy : MonoBehaviour
             case 3:
                 {
                     int randomEnem = Random.Range(0, EnemyManager.instance.GetRound3Pack().Length);
-                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, round3[randomEnem].transform.rotation);
-                    EnemyManager.instance.enemies.Add(enemyInst);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, EnemyManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -137,8 +134,7 @@ public class SpawnEnemy : MonoBehaviour
             case 4:
                 {
                     int randomEnem = Random.Range(0, EnemyManager.instance.GetRound3Pack().Length);
-                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, round3[randomEnem].transform.rotation);
-                    EnemyManager.instance.enemies.Add(enemyInst);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, EnemyManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
@@ -146,8 +142,7 @@ public class SpawnEnemy : MonoBehaviour
             case 5:
                 {
                     int randomEnem = Random.Range(0, EnemyManager.instance.GetRound3Pack().Length);
-                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, round3[randomEnem].transform.rotation);
-                    EnemyManager.instance.enemies.Add(enemyInst);
+                    enemyInst = Instantiate(EnemyManager.instance.GetRound3Pack()[randomEnem], transform.position, EnemyManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                     timebetweenSpawn = 1.0f;
                     --numenemiestoAdd;
                     break;
