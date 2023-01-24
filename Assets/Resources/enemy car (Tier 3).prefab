@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2025355762649887245}
   - component: {fileID: -213579417341188451}
   - component: {fileID: -1518110702942764694}
-  - component: {fileID: 984591111191771797}
+  - component: {fileID: -7217122784798838938}
+  - component: {fileID: -3608715881173117238}
   m_Layer: 6
   m_Name: enemy car (Tier 3)
   m_TagString: enemy
@@ -176,7 +177,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 2
---- !u!114 &984591111191771797
+--- !u!114 &-7217122784798838938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,9 +186,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8446665429221902790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c0db16f0d3bbe4c8131181435e0e11, type: 3}
+  m_Script: {fileID: 11500000, guid: 516d25dc5988144438522c807641b4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3608715881173117238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446665429221902790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d000e60521ee1f845a57435e382ba543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 3
 --- !u!1 &8446665429348843205
 GameObject:
   m_ObjectHideFlags: 0
