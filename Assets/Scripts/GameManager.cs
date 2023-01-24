@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     [SerializeField]
     GameObject beginroundButton, weaponsButton, startButton, restart, nextLevel;
     [SerializeField]
@@ -15,9 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GameObject weaponsPanel;
-    // enemies to load and spawn-in
-    GameObject enemy, enemy2, enemy3;
-    GameObject canvas;
+    GameObject enemyManager;
 
     RectTransform healthBar;
 
@@ -44,11 +44,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Debug.LogError("trying to create a duplicate of the game manager");
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
-        enemy = Resources.Load<GameObject>("enemy car (Tier 1)");
-        enemy2 = Resources.Load<GameObject>("enemy car (Tier 2)");
-        enemy3 = Resources.Load<GameObject>("enemy car (Tier 3)");
-        canvas = GameObject.Find("Canvas");
+        enemyManager = GameObject.Find("EnemyManager");
         hasBegun = false;
         nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         // displaying score and current round
         scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + ScoreManager.instance.amount;
-        round.GetComponent<TextMeshProUGUI>().text = "Round: " + currentRound.ToString();
+        round.GetComponent<TextMeshProUGUI>().text = "Round: " + WaveManager.instance.GetRound();
     }
 
     // getters
@@ -79,9 +80,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI GetRound() { return round.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI GetVictoryDisplay() { return victoryDisplay.GetComponent<TextMeshProUGUI>(); }
     public TextMeshProUGUI GetWeaponToPlaceDisplay() { return weapontoPlace; }
-    public GameObject GetTier1Enemy() { return enemy; }
-    public GameObject GetTier2Enemy() { return enemy2; }
-    public GameObject GetTier3Enemy() { return enemy3; }
     public GameObject GetBeginRoundButton() { return beginroundButton; }
     public GameObject GetWeaponsButton() { return weaponsButton; }
     public GameObject GetStartButton() { return startButton; }
@@ -144,7 +142,9 @@ public class GameManager : MonoBehaviour
 
     public void BeginRound()
     {
-        hasBegun = true;
+        //hasBegun = true;
+        WaveManager.instance.SetSpawn(true);
+        weaponsButton.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);
     }
 
@@ -178,6 +178,11 @@ public class GameManager : MonoBehaviour
                 ++i;
         }
         return track.transform.GetChild(i).gameObject;
+    }
+
+    public GameObject GetEnemyStartingPosition()
+    {
+        return enemystartingPos;
     }
 
 }

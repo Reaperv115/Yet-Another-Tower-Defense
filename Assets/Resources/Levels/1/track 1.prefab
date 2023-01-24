@@ -1174,37 +1174,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy starting tile
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4932743727197390527, guid: da1a4285cab9cf4458a0d1a4c1230322, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7511633614950503378, guid: da1a4285cab9cf4458a0d1a4c1230322, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 837689848626205118}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da1a4285cab9cf4458a0d1a4c1230322, type: 3}
 --- !u!4 &1162802775814335862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2825363191109289181, guid: da1a4285cab9cf4458a0d1a4c1230322, type: 3}
   m_PrefabInstance: {fileID: 3969551629531277739}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6856731350146939513 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7511633614950503378, guid: da1a4285cab9cf4458a0d1a4c1230322, type: 3}
-  m_PrefabInstance: {fileID: 3969551629531277739}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &837689848626205118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6856731350146939513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac89a39b51e999488b63b358c6c0da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies: []
 --- !u!1001 &5677143881292677422
 PrefabInstance:
   m_ObjectHideFlags: 0

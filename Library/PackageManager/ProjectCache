@@ -5,22 +5,22 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638095599588882964
-    m_Hash: 31737590
+      ticks: 638101108427624652
+    m_Hash: 4265833996
   m_LockFileStatus:
     m_FilePath: G:/Dev/Yet-Another-Tower-Defense/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638095600656154804
-    m_Hash: 418389348
+      ticks: 638101109108921738
+    m_Hash: 4058791127
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: G:/Dev/Yet-Another-Tower-Defense/Packages
-m_EditorVersion: 2022.2.2f1 (c93c5d3acf5b)
+m_EditorVersion: 2022.2.3f1 (55531d7fa82e)
 m_ResolvedPackages:
 - packageId: com.unity.2d.animation@9.0.1
   testable: 0
@@ -218,12 +218,12 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.2d.pixel-perfect@5.0.2
+- packageId: com.unity.2d.pixel-perfect@5.0.3
   testable: 0
   isDirectDependency: 1
-  version: 5.0.2
+  version: 5.0.3
   source: 1
-  resolvedPath: G:\Dev\Yet-Another-Tower-Defense\Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2
+  resolvedPath: G:\Dev\Yet-Another-Tower-Defense\Library\PackageCache\com.unity.2d.pixel-perfect@5.0.3
   assetPath: Packages/com.unity.2d.pixel-perfect
   name: com.unity.2d.pixel-perfect
   displayName: 2D Pixel Perfect
@@ -265,7 +265,6 @@ m_ResolvedPackages:
     - 5.0.2
     - 5.0.3
     compatible:
-    - 5.0.2
     - 5.0.3
     recommended: 5.0.3
     deprecated: []
@@ -286,28 +285,28 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637977148500000000
+  datePublishedTicks: 638023910590000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/2d.git
-    revision: bc53d04adcc860159dcd9355c8e721a5124b1a35
+    revision: 6dea8ac5bd6953acd64f1ac9d470912954b0c015
     path: 
   unityLifecycle:
-    version: 5.0.2
+    version: 5.0.3
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.2d.psdimporter@8.0.1
+- packageId: com.unity.2d.psdimporter@8.0.2
   testable: 0
   isDirectDependency: 1
-  version: 8.0.1
+  version: 8.0.2
   source: 1
-  resolvedPath: G:\Dev\Yet-Another-Tower-Defense\Library\PackageCache\com.unity.2d.psdimporter@8.0.1
+  resolvedPath: G:\Dev\Yet-Another-Tower-Defense\Library\PackageCache\com.unity.2d.psdimporter@8.0.2
   assetPath: Packages/com.unity.2d.psdimporter
   name: com.unity.2d.psdimporter
   displayName: 2D PSD Importer
@@ -395,7 +394,6 @@ m_ResolvedPackages:
     - 9.0.0-pre.1
     - 9.0.0-pre.2
     compatible:
-    - 8.0.1
     - 8.0.2
     recommended: 8.0.2
     deprecated: []
@@ -447,16 +445,16 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 0
   isAssetStorePackage: 0
-  datePublishedTicks: 638029769650000000
-  documentationUrl: 
+  datePublishedTicks: 638067518780000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@8.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/2d.git
-    revision: 6fc635d83d4bb0b2640893b8d4a0f3934044aeb5
+    revision: fc4212736e8bcb753039f1a18964b98d929e4093
     path: 
   unityLifecycle:
-    version: 8.0.1
+    version: 8.0.2
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0

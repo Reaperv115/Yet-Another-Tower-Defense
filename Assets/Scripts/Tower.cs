@@ -7,8 +7,6 @@ public class Tower : MonoBehaviour
     
     private float fHealth;
 
-    GameManager gm;
-
     GameObject[] enemy;
     List<GameObject> enemyList;
 
@@ -23,7 +21,6 @@ public class Tower : MonoBehaviour
     {
         fHealth = 1f;
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
-        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         enemystartingPoint = GameObject.Find("enemy starting tile");
         isgameOver = false;
         spawn = false;
@@ -46,10 +43,10 @@ public class Tower : MonoBehaviour
         {
             Destroy(collision.gameObject);
             fHealth -= .1f;
-            gm.GetHealthBar().localScale = new Vector3(fHealth, 1f);
+            GameManager.instance.GetHealthBar().localScale = new Vector3(fHealth, 1f);
             if (getHealth() <= 0f)
             {
-                gm.SetHasBegun(false);
+                GameManager.instance.SetHasBegun(false);
                 gameOver.text = "Game Over";
                 GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
                 for (int i = 0; i < enemy.Length; ++i)

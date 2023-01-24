@@ -7,10 +7,12 @@ public class ScoreOnDeath : MonoBehaviour
     [SerializeField]
     int amount;
 
-    private void OnDestroy()
+    private void Update()
     {
-        Debug.Log("incrementing score using score manager instance");
-        ScoreManager.instance.amount += amount;
-        EnemyManager.instance.enemies.Remove(this.gameObject);
+        if (GetComponent<Enemy1>().Health <= 0f)
+        {
+            ScoreManager.instance.amount += amount;
+            EnemyManager.instance.enemies.Remove(this.gameObject);
+        }
     }
 }

@@ -14,7 +14,6 @@ public class TurretT1 : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 2;
@@ -56,7 +55,7 @@ public class TurretT1 : WeaponBase
     }
 
     // checking to see what needs to happen if an enemy is shot
-    // depeneding on which type of enemy it is.
+    // depending on which type of enemy it is.
     void Fire()
     {
         // literally no idea why this if-check is required all of a sudden
@@ -64,27 +63,7 @@ public class TurretT1 : WeaponBase
         // it just throws a bunch of errors in Unity though
         if (target)
         {
-            switch (target.name)
-            {
-                case "enemy car (Tier 1)(Clone)":
-                    {
-                        target.GetComponent<Enemy1>().Health -= damage;
-                        break;
-                    }
-                case "enemy car (Tier 2)(Clone)":
-                    {
-                        target.GetComponent<Enemy2>().Health -= damage;
-                        break;
-                    }
-                case "enemy car (Tier 3)(Clone)":
-                    {
-                        target.GetComponent<Enemy3>().Health -= damage;
-                        break;
-                    }
-                default:
-                    break;
-            }
-            
+            target.GetComponent<Enemy>().Health -= damage;
         }
     }
 
