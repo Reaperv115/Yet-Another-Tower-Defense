@@ -18,6 +18,8 @@ public class WaveManager : MonoBehaviour
     bool spawn = false;
     int numenemiestoSpawn, maxnumEnemies;
 
+    bool roundWon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,8 @@ public class WaveManager : MonoBehaviour
         round3Pack[2] = EnemyManager.instance.GetRound3Car();
 
         maxnumEnemies = numenemiestoSpawn = 10;
-        level = round = 5;
+        level = round = 1;
+        roundWon = false;
     }
 
 
@@ -97,5 +100,17 @@ public class WaveManager : MonoBehaviour
     public void SetRound(int newRound)
     {
         round = newRound;
+    }
+    public void RoundWon()
+    {
+        roundWon = true;
+    }
+    public bool DidWinRound()
+    {
+        return roundWon;
+    }
+    public void SetWinRound(bool didWin)
+    {
+        roundWon = didWin;
     }
 }
