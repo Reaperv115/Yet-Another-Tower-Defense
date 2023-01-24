@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SubsystemsImplementation;
@@ -12,22 +13,22 @@ public class WaveSpawner : MonoBehaviour
     int randomEnem;
 
     GameObject enemInst;
+    private float intermission;
 
     // Start is called before the first frame update
     void Start()
     {
         spawnTimer = 1f;
         startingPos = GameManager.instance.GetEnemyStartingPosition().transform;
-        Debug.Log(WaveManager.instance.GetRound());
+        intermission = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (WaveManager.instance.DidWinRound())
+        if (GameManager.instance.GetNextRound())
         {
-            WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
-            WaveManager.instance.SetWinRound(false);
+            VictoryIntermission();
         }
         
         if (WaveManager.instance.GetRound().Equals(6) && WaveManager.instance.GetLevel().Equals(6))
@@ -55,8 +56,10 @@ public class WaveSpawner : MonoBehaviour
                     Debug.Log(WaveManager.instance.enemyhealthCheck.Length);
                     if (WaveManager.instance.enemyhealthCheck.Length <= 0)
                     {
-                        WaveManager.instance.RoundWon();
                         WaveManager.instance.SetSpawn(false);
+                        GameManager.instance.GetWeaponsButton().SetActive(true);
+                        GameManager.instance.SetNextRound(true);
+                        WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
                     }
                 }
             }
@@ -91,6 +94,23 @@ public class WaveSpawner : MonoBehaviour
                 enemInst = Instantiate(WaveManager.instance.GetRound3Pack()[randomEnem], startingPos.position, WaveManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                 EnemyManager.instance.enemies.Add(enemInst);
                 break;
+        }
+    }
+
+    void VictoryIntermission()
+    {
+        if (intermission <= 0.0f)
+        {
+            GameManager.instance.GetBeginRoundButton().SetActive(true);
+            intermission = 5.0f;
+            GameManager.instance.SetNextRound(false);
+            GameManager.instance.MoveOn();
+        }
+        else
+        {
+            if (intermission < 3f) GameManager.instance.MoveOn();
+            intermission -= .05f;
+            GameManager.instance.YouWON();
         }
     }
 }
