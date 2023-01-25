@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -213579417341188451}
   - component: {fileID: -1518110702942764694}
   - component: {fileID: 2355136343867899048}
-  - component: {fileID: 4290809269103412244}
   m_Layer: 6
   m_Name: enemy car (Tier 2)
   m_TagString: enemy
@@ -189,19 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd4d741f215a814ea89b347dd4bca96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4290809269103412244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8446665429221902790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d000e60521ee1f845a57435e382ba543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 2
 --- !u!1 &8446665429348843205
 GameObject:
   m_ObjectHideFlags: 0

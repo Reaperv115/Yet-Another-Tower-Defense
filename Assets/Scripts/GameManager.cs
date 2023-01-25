@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadTrackInst()
     {
-        track = Resources.Load<GameObject>("Levels/" + GetTrackIndex() + "/track " + GetTrackIndex());
+        track = Resources.Load<GameObject>("Levels/" + trackIndex + "/track " + trackIndex);
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
         tower = FindTower(track);
         enemystartingPos = FindEnemySpawn(track);

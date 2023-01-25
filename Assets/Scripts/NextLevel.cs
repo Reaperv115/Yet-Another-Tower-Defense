@@ -17,16 +17,17 @@ public class NextLevel : MonoBehaviour
         foreach(GameObject obj in turrets)
             Destroy(obj);
         Destroy(gm.GetTrackInst());
-        gm.SetTrackIndex(gm.GetTrackIndex() + 1);
+        gm.SetTrackIndex(WaveManager.instance.GetLevel());
         gm.LoadTrackInst();
         gm.GetWeaponsButton().gameObject.SetActive(true);
-        gm.SetHasBegun(false);
         gameObject.SetActive(false);
         gm.GetVictoryDisplay().GetComponent<TextMeshProUGUI>().text = "";
         tower = gm.FindTower(gm.GetTrack());
         tower.GetComponent<Tower>().setHealth(1f);
         gm.GetHealthBar().localScale = new Vector3(tower.GetComponent<Tower>().getHealth(), 1f);
         gm.SetScore(6);
-        gm.SetCurrentRound(1);
+        WaveManager.instance.SetRound(1);
+        WaveManager.instance.ResetMaxNumEnemies();
+        WaveSpawner.instance.startingPos = GameManager.instance.FindEnemySpawn(GameManager.instance.GetTrack()).transform;
     }
 }

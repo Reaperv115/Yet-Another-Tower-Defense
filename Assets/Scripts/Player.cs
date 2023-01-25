@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         {
 
             // if you have enough then make the purchase
-            if (gm.GetScore() >= gm.GetT1Price())
+            if (ScoreManager.instance.amount >= gm.GetT1Price())
             {
                 LoadWeapon("turret (Tier 1)");
                 swRef.setT1Check(false);
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         {
 
             // if you have enough then make the purchase
-            if (gm.GetScore() >= gm.GetT2Price())
+            if (ScoreManager.instance.amount >= gm.GetT2Price())
             {
                 LoadWeapon("turret (Tier 2)");
                 swRef.setT2Check(false);
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         if (swRef.checkT3Funds())
         {
             // if you have enough then make the purchase
-            if (gm.GetScore() >= gm.GetT3Price())
+            if (ScoreManager.instance.amount >= gm.GetT3Price())
             {
                 LoadWeapon("turret (Tier 3)");
                 swRef.setT3Check(false);

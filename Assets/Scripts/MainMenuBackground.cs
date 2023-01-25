@@ -27,7 +27,6 @@ public class MainMenuBackground : MonoBehaviour
         {
             tmp = Random.Range(0, backgroundColors.Length);
             newtmp = tmp + 3;
-            Debug.Log("newtmp: " + newtmp);
             if (newtmp > backgroundColors.Length - 1) newtmp = newtmp - backgroundColors.Length;
             GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
             Title.color = backgroundColors[newtmp];

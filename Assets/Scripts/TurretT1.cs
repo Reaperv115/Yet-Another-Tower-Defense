@@ -67,7 +67,6 @@ public class TurretT1 : WeaponBase
             {
                 case "enemy car (Tier 1)(Clone)":
                     target.GetComponent<Enemy1>().Health -= damage;
-                    Debug.Log(target.GetComponent<Enemy1>().Health);
                     break;
                 case "enemy car (Tier 2)(Clone)":
                     target.GetComponent<Enemy2>().Health -= damage;

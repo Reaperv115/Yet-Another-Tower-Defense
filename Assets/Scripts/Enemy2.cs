@@ -23,6 +23,12 @@ public class Enemy2 : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        if (Health <= 0f)
+        {
+            ScoreManager.instance.amount += 2;
+            EnemyManager.instance.enemies.Remove(gameObject);
+            Destroy(gameObject);
+        }
         // attacking the tower if
         // at the end of the track
         if (attackTower)
