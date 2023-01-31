@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tower : MonoBehaviour
 {
@@ -18,12 +19,12 @@ public class Tower : MonoBehaviour
         isgameOver = false;
     }
 
-    public float getHealth()
+    public float GetHealth()
     {
         return fHealth;
     }
 
-    public void setHealth(float health)
+    public void SetHealth(float health)
     {
         fHealth = health;
     }
@@ -36,23 +37,24 @@ public class Tower : MonoBehaviour
             Destroy(collision.gameObject);
             fHealth -= .1f;
             GameManager.instance.GetHealthBar().localScale = new Vector3(fHealth, 1f);
-            if (getHealth() <= 0f)
+            if (GetHealth() <= 0f)
             {
-                gameOver.text = "Game Over";
-                GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
-                for (int i = 0; i < enemy.Length; ++i)
-                {
-                    Destroy(enemy[i]);
-                }
-                isgameOver = true;
-                WaveManager.instance.SetSpawn(false);
+                //gameOver.text = "Game Over";
+                //GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
+                //for (int i = 0; i < enemy.Length; ++i)
+                //{
+                //    Destroy(enemy[i]);
+                //}
+                //isgameOver = true;
+                //WaveManager.instance.SetSpawn(false);
+                SceneManager.LoadScene("Defeat");
             }
 
         }
     }
 
 
-    public bool getisgameOver()
+    public bool GetIsGameOver()
     {
         return isgameOver;
     }

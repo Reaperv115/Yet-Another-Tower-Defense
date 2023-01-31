@@ -18,8 +18,8 @@ public class NextLevel : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.instance.GetVictoryDisplay().GetComponent<TextMeshProUGUI>().text = "";
         tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
-        tower.GetComponent<Tower>().setHealth(1f);
-        GameManager.instance.GetHealthBar().localScale = new Vector3(tower.GetComponent<Tower>().getHealth(), 1f);
+        tower.GetComponent<Tower>().SetHealth(1f);
+        GameManager.instance.GetHealthBar().localScale = new Vector3(tower.GetComponent<Tower>().GetHealth(), 1f);
         GameManager.instance.SetScore(6);
         WaveManager.instance.SetRound(1);
         WaveManager.instance.ResetMaxNumEnemies();

@@ -11,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
     float spawnTimer;
     [HideInInspector]
     public Transform startingPos;
+    GameObject tower;
     
     int randomEnem;
 
@@ -28,6 +29,7 @@ public class WaveSpawner : MonoBehaviour
         spawnTimer = 1f;
         startingPos = GameManager.instance.GetEnemyStartingPosition().transform;
         intermission = 5f;
+        tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
     }
 
     // Update is called once per frame
@@ -55,30 +57,37 @@ public class WaveSpawner : MonoBehaviour
                 WaveManager.instance.enemyhealthCheck = GameObject.FindGameObjectsWithTag("enemy");
                 if (WaveManager.instance.enemyhealthCheck.Length <= 0)
                 {
-                    WaveManager.instance.SetSpawn(false);
-                    GameManager.instance.GetWeaponsButton().SetActive(true);
-                    GameManager.instance.SetNextRound(true);
-                    if (WaveManager.instance.GetLevel().Equals(5) && WaveManager.instance.GetRound().Equals(5))
+                    if (tower.GetComponent<Tower>().GetHealth() <= 0f)
                     {
-                        SceneManager.LoadScene("Victory");
+                        SceneManager.LoadScene("Defeat");
                     }
                     else
                     {
-                        if (!WaveManager.instance.GetRound().Equals(5))
+                        WaveManager.instance.SetSpawn(false);
+                        GameManager.instance.GetWeaponsButton().SetActive(true);
+                        GameManager.instance.SetNextRound(true);
+                        if (WaveManager.instance.GetLevel().Equals(5) && WaveManager.instance.GetRound().Equals(5))
                         {
-                            WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
-
+                            SceneManager.LoadScene("Victory");
                         }
                         else
                         {
-                            if (!WaveManager.instance.GetLevel().Equals(5))
+                            if (!WaveManager.instance.GetRound().Equals(5))
                             {
-                                GameManager.instance.GetNextLevelButton().SetActive(true);
-                                WaveManager.instance.SetLevel(WaveManager.instance.GetLevel() + 1);
+                                WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
+
                             }
                             else
                             {
-                                SceneManager.LoadScene("Victory");
+                                if (!WaveManager.instance.GetLevel().Equals(5))
+                                {
+                                    GameManager.instance.GetNextLevelButton().SetActive(true);
+                                    WaveManager.instance.SetLevel(WaveManager.instance.GetLevel() + 1);
+                                }
+                                else
+                                {
+                                    SceneManager.LoadScene("Victory");
+                                }
                             }
                         }
                     }
