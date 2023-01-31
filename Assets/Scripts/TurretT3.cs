@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TurretT3 : WeaponBase
 {
-    GameManager gm;
 
     Vector3 offSet;
     RaycastHit2D hit;
@@ -12,7 +11,6 @@ public class TurretT3 : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 75;
@@ -60,7 +58,7 @@ public class TurretT3 : WeaponBase
     }
 
     // checking to see what needs to happen if an enemy is shot
-    // depeneding on which type of enemy it is.
+    // depending on which type of enemy it is.
     void Fire()
     {
         if (target)

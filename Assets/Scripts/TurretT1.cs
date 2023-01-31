@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class TurretT1 : WeaponBase
 {
-    GameManager gm;
-    SpawnEnemy seRef;
 
     Vector3 offSet;
     RaycastHit2D hit;

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TurretT2 : WeaponBase
 {
-    GameManager gm;
     RaycastHit2D hit;
     Vector3 offSet;
     Vector3 dir;
@@ -13,7 +12,6 @@ public class TurretT2 : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
-        gm = GameObject.Find("Main Camera").GetComponent<GameManager>();
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 25;

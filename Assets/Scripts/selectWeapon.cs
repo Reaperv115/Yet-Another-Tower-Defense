@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class selectWeapon : MonoBehaviour
 {
-    GameManager gm;
     Player player;
     Ray ray;
     RaycastHit2D hit;
@@ -24,7 +23,6 @@ public class selectWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gm = GetComponent<GameManager>();
         player = GetComponent<Player>();
         placingWeapon = false;
         rotationSpeed = rotationAngle;
@@ -41,7 +39,7 @@ public class selectWeapon : MonoBehaviour
         {
             if (player.IsPlacingWeapon())
             {
-                gm.GetWeaponsButton().SetActive(false);
+                GameManager.instance.GetWeaponsButton().SetActive(false);
                 
                 if (Input.touchCount > 0)
                 {
@@ -55,12 +53,12 @@ public class selectWeapon : MonoBehaviour
                         if (timetoplaceWeapon <= 0f)
                         {
                             player.mainWeapon.transform.position = mouseWorldPosition;
-                            gm.GetWeaponsButton().SetActive(true);
-                            gm.GetBeginRoundButton().SetActive(true);
-                            gm.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
+                            GameManager.instance.GetWeaponsButton().SetActive(true);
+                            GameManager.instance.GetBeginRoundButton().SetActive(true);
+                            GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
                             player.SetIsPlacing(false);
                             timetoplaceWeapon = 1f;
-                            gm.GetRestartButton().SetActive(true);
+                            GameManager.instance.GetRestartButton().SetActive(true);
                         }
                         else
                             timetoplaceWeapon -= Time.deltaTime;
@@ -99,7 +97,7 @@ public class selectWeapon : MonoBehaviour
                 {
                     player.mainWeapon.transform.position = mouseWorldPosition;
                     ToggleWeaponAdjusting(false);
-                    gm.GetStartButton().SetActive(true);
+                    GameManager.instance.GetStartButton().SetActive(true);
                     player.SetIsPlacing(false);
                 }
                 else
@@ -126,7 +124,7 @@ public class selectWeapon : MonoBehaviour
     public void onClick()
     {
         activateweaponsPanel = !activateweaponsPanel;
-        gm.GetWeaponsPanel().SetActive(activateweaponsPanel);
+        GameManager.instance.GetWeaponsPanel().SetActive(activateweaponsPanel);
     }
 
     // selects the tier 1 turret
@@ -135,7 +133,7 @@ public class selectWeapon : MonoBehaviour
         checkfundsT1 = true;
         player.SetDisplayTimer(2f);
         activateweaponsPanel = !activateweaponsPanel;
-        gm.GetRestartButton().SetActive(false);
+        GameManager.instance.GetRestartButton().SetActive(false);
     }
 
     // selects the tier 2 turret
@@ -144,7 +142,7 @@ public class selectWeapon : MonoBehaviour
         checkfundsT2 = true;
         player.SetDisplayTimer(2f);
         activateweaponsPanel = !activateweaponsPanel;
-        gm.GetRestartButton().SetActive(false);
+        GameManager.instance.GetRestartButton().SetActive(false);
     }
 
     // selects the tier 3 turret
@@ -153,7 +151,7 @@ public class selectWeapon : MonoBehaviour
         checkfundsT3 = true;
         player.SetDisplayTimer(2f);
         activateweaponsPanel = !activateweaponsPanel;
-        gm.GetRestartButton().SetActive(false);
+        GameManager.instance.GetRestartButton().SetActive(false);
     }
 
     
@@ -165,7 +163,7 @@ public class selectWeapon : MonoBehaviour
 
     public void ToggleWeaponAdjusting(bool isAdjusting)
     {
-        gm.GetWeaponsButton().SetActive(isAdjusting);
+        GameManager.instance.GetWeaponsButton().SetActive(isAdjusting);
     }
 
     public Vector3 GetWeaponPosition()

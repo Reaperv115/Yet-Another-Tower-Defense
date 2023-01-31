@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    GameManager gm;
     
     TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
@@ -14,7 +13,6 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
-        gm = GetComponent<GameManager>();
         swRef = GetComponent<selectWeapon>();
         lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }
@@ -27,7 +25,7 @@ public class Player : MonoBehaviour
         {
 
             // if you have enough then make the purchase
-            if (ScoreManager.instance.amount >= gm.GetT1Price())
+            if (ScoreManager.instance.amount >= GameManager.instance.GetT1Price())
             {
                 LoadWeapon("turret (Tier 1)");
                 swRef.setT1Check(false);
@@ -42,7 +40,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    gm.GetWeaponsPanel().SetActive(false);
+                    GameManager.instance.GetWeaponsPanel().SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
                 }
@@ -55,7 +53,7 @@ public class Player : MonoBehaviour
         {
 
             // if you have enough then make the purchase
-            if (ScoreManager.instance.amount >= gm.GetT2Price())
+            if (ScoreManager.instance.amount >= GameManager.instance.GetT2Price())
             {
                 LoadWeapon("turret (Tier 2)");
                 swRef.setT2Check(false);
@@ -71,7 +69,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    gm.GetWeaponsPanel().SetActive(false);
+                    GameManager.instance.GetWeaponsPanel().SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
                 }
@@ -83,7 +81,7 @@ public class Player : MonoBehaviour
         if (swRef.checkT3Funds())
         {
             // if you have enough then make the purchase
-            if (ScoreManager.instance.amount >= gm.GetT3Price())
+            if (ScoreManager.instance.amount >= GameManager.instance.GetT3Price())
             {
                 LoadWeapon("turret (Tier 3)");
                 swRef.setT3Check(false);
@@ -98,7 +96,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    gm.GetWeaponsPanel().SetActive(false);
+                    GameManager.instance.GetWeaponsPanel().SetActive(false);
                     lackoffundsDisplay.text = "NOT ENOUGH MONEY";
                     lackoffundsdisplayTimer -= .05f;
                 }
@@ -111,14 +109,14 @@ public class Player : MonoBehaviour
     void LoadWeapon(string weapon)
     {
         mainWeapon = Resources.Load<GameObject>(weapon);
-        gm.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = mainWeapon.name;
+        GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = mainWeapon.name;
         placingWeapon = true;
-        gm.GetWeaponsButton().SetActive(false);
+        GameManager.instance.GetWeaponsButton().SetActive(false);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
-        gm.GetWeaponsPanel().SetActive(false);
-        if (mainWeapon.transform.name.Contains("1")) gm.SetScore(ScoreManager.instance.amount - gm.GetT1Price());
-        if (mainWeapon.transform.name.Contains("2")) gm.SetScore(ScoreManager.instance.amount - gm.GetT2Price());
-        if (mainWeapon.transform.name.Contains("3")) gm.SetScore(ScoreManager.instance.amount - gm.GetT3Price());
+        GameManager.instance.GetWeaponsPanel().SetActive(false);
+        if (mainWeapon.transform.name.Contains("1")) GameManager.instance.SetScore(ScoreManager.instance.amount - GameManager.instance.GetT1Price());
+        if (mainWeapon.transform.name.Contains("2")) GameManager.instance.SetScore(ScoreManager.instance.amount - GameManager.instance.GetT2Price());
+        if (mainWeapon.transform.name.Contains("3")) GameManager.instance.SetScore(ScoreManager.instance.amount - GameManager.instance.GetT3Price());
     }
     public GameObject instantiatedmainWeapon { get;  set; }
     public GameObject mainWeapon { get; set; }

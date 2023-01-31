@@ -7,23 +7,15 @@ public class Tower : MonoBehaviour
     
     private float fHealth;
 
-    GameObject[] enemy;
-    List<GameObject> enemyList;
-
     TextMeshProUGUI gameOver;
-    GameObject enemystartingPoint;
     bool isgameOver;
-    bool allenemsGone;
-    bool spawn;
 
     // Start is called before the first frame update
     void Start()
     {
         fHealth = 1f;
         gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
-        enemystartingPoint = GameObject.Find("enemy starting tile");
         isgameOver = false;
-        spawn = false;
     }
 
     public float getHealth()
@@ -46,7 +38,6 @@ public class Tower : MonoBehaviour
             GameManager.instance.GetHealthBar().localScale = new Vector3(fHealth, 1f);
             if (getHealth() <= 0f)
             {
-                GameManager.instance.SetHasBegun(false);
                 gameOver.text = "Game Over";
                 GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
                 for (int i = 0; i < enemy.Length; ++i)
@@ -54,7 +45,7 @@ public class Tower : MonoBehaviour
                     Destroy(enemy[i]);
                 }
                 isgameOver = true;
-                enemystartingPoint.GetComponent<SpawnEnemy>().SetSpawn(false);
+                WaveManager.instance.SetSpawn(false);
             }
 
         }
@@ -64,13 +55,5 @@ public class Tower : MonoBehaviour
     public bool getisgameOver()
     {
         return isgameOver;
-    }
-    public void SetSpawn(bool canSpawn)
-    {
-        spawn = canSpawn;
-    }
-    public bool GetCanSpawn()
-    {
-        return spawn;
     }
 }

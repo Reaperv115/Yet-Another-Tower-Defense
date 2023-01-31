@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,8 +29,6 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI gameOver;
     Player player;
 
-    bool hasBegun;
-
     bool nextRound;
 
     private float score = 6f;
@@ -50,7 +47,6 @@ public class GameManager : MonoBehaviour
             Debug.LogError("trying to create a duplicate of the game manager");
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         enemyManager = GameObject.Find("EnemyManager");
-        hasBegun = false;
         nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);
@@ -147,10 +143,6 @@ public class GameManager : MonoBehaviour
         weaponsButton.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);
     }
-
-    public bool CanBeginRound() { return hasBegun; }
-
-    public void SetHasBegun(bool hasbegun) { hasBegun = hasbegun; }
 
     public GameObject GetTrack() { return track; }
 

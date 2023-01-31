@@ -17,18 +17,19 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // setting EnemyManager instance
         if (instance == null)
             instance = this;
         else
             Debug.LogError("trying to create a duplicate of the enemy manager");
+
+        // loading enemy car resources
         round1Car = Resources.Load<GameObject>("enemy car (Tier 1)");
         round2Car = Resources.Load<GameObject>("enemy car (Tier 2)");
         round3Car = Resources.Load<GameObject>("enemy car (tier 3)");
     }
-    private void Update()
-    {
-        
-    }
+
+    // getters for enemy car objects
     public GameObject GetRound1Car()
     {
         return round1Car;
@@ -41,4 +42,5 @@ public class EnemyManager : MonoBehaviour
     {
         return round3Car;
     }
+    //
 }
