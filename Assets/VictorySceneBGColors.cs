@@ -1,26 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VictorySceneBGColors : MonoBehaviour
 {
     Color[] possibleColors = { Color.black, Color.red, Color.green, Color.blue, Color.cyan, Color.magenta };
-    int colorIndex;
-    float colorTimer = 0f;
+    int colorIndex, congratscolorIndex;
+    float bgcolorTimer = 0f;
+    [SerializeField]
+    GameObject congratulations;
     // Start is called before the first frame update
     void Start()
     {
         colorIndex = 0;
+        congratscolorIndex = colorIndex + 1;
         Debug.Log(possibleColors.Length);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        GetComponent<RawImage>().color = Color.Lerp(possibleColors[colorIndex], possibleColors[colorIndex + 1], colorTimer);
-        if (colorTimer > 1f)
+        GetComponent<RawImage>().color = Color.Lerp(possibleColors[colorIndex], possibleColors[colorIndex + 1], bgcolorTimer);
+        congratulations.GetComponent<TextMeshProUGUI>().color = Color.Lerp(possibleColors[congratscolorIndex], possibleColors[congratscolorIndex + 1], bgcolorTimer);
+        if (bgcolorTimer > 1f)
         {
             if (colorIndex.Equals(possibleColors.Length - 2))
             {
@@ -30,11 +34,19 @@ public class VictorySceneBGColors : MonoBehaviour
             {
                 ++colorIndex;
             }
-            colorTimer = 0f;
+            if (congratscolorIndex.Equals(possibleColors.Length - 2))
+            {
+                congratscolorIndex = 0;
+            }
+            else
+            {
+                ++congratscolorIndex;
+            }
+            bgcolorTimer = 0f;
         }
         else
         {
-            colorTimer += Time.deltaTime;
+            bgcolorTimer += Time.deltaTime;
         }
     }
 }
