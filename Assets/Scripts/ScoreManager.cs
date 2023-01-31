@@ -16,6 +16,6 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.LogError("an instance of this class already exists");
         }
-        amount = 6;
+        amount = 50;
     }
 }

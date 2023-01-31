@@ -36,7 +36,7 @@ public class WaveManager : MonoBehaviour
         round3Pack[2] = EnemyManager.instance.GetRound3Car();
 
         maxnumEnemies = numenemiestoSpawn = 10;
-        level = round = 1;
+        level = round = 5;
     }
 
 
