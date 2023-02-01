@@ -46,7 +46,7 @@ public class WaveSpawner : MonoBehaviour
                 if (spawnTimer <= 0f)
                 {
                     SpawnEnemy(WaveManager.instance.GetRound());
-                    spawnTimer = Mathf.PingPong(Time.time, 1f);
+                    spawnTimer = 1f;
                     Debug.Log(spawnTimer);
                 }
                 else
