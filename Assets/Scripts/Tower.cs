@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class Tower : MonoBehaviour
@@ -10,6 +11,8 @@ public class Tower : MonoBehaviour
 
     TextMeshProUGUI gameOver;
     bool isgameOver;
+
+    public UnityEvent onDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -39,18 +42,23 @@ public class Tower : MonoBehaviour
             GameManager.instance.GetHealthBar().localScale = new Vector3(fHealth, 1f);
             if (GetHealth() <= 0f)
             {
-                //gameOver.text = "Game Over";
-                //GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
-                //for (int i = 0; i < enemy.Length; ++i)
-                //{
-                //    Destroy(enemy[i]);
-                //}
-                //isgameOver = true;
-                //WaveManager.instance.SetSpawn(false);
-                SceneManager.LoadScene("Defeat");
+                onDeath.Invoke();
             }
 
         }
+    }
+
+    public void EndGame()
+    {
+        gameOver.text = "Game Over";
+        GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
+        for (int i = 0; i < enemy.Length; ++i)
+        {
+            Destroy(enemy[i]);
+        }
+        isgameOver = true;
+        WaveManager.instance.SetSpawn(false);
+        SceneManager.LoadScene("Defeat");
     }
 
 

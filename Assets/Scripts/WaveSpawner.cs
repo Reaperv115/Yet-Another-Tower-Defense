@@ -29,7 +29,7 @@ public class WaveSpawner : MonoBehaviour
         spawnTimer = 1f;
         startingPos = GameManager.instance.GetEnemyStartingPosition().transform;
         intermission = 5f;
-        tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
+        
     }
 
     // Update is called once per frame
@@ -57,6 +57,7 @@ public class WaveSpawner : MonoBehaviour
                 WaveManager.instance.enemyhealthCheck = GameObject.FindGameObjectsWithTag("enemy");
                 if (WaveManager.instance.enemyhealthCheck.Length <= 0)
                 {
+                    tower = GameManager.instance.FindTower(GameManager.instance.GetTrackInst());
                     if (tower.GetComponent<Tower>().GetHealth() <= 0f)
                     {
                         SceneManager.LoadScene("Defeat");
