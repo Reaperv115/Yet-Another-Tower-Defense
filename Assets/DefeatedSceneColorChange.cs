@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class DefeatedSceneColorChange : MonoBehaviour
 
     Color startColor, endColor;
     float lastcolorchangeTime;
+    GameObject defeaatMessage;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class DefeatedSceneColorChange : MonoBehaviour
         startColor = color1;
         endColor = color2;
         background = GetComponent<RawImage>();
+        defeaatMessage = GameObject.Find("Defeat");
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class DefeatedSceneColorChange : MonoBehaviour
         float ratio = (Time.time - lastcolorchangeTime) / fadeDuration;
         ratio = Mathf.Clamp01(ratio);
         background.color = Color.Lerp(startColor, endColor, ratio);
+        defeaatMessage.GetComponent<TextMeshProUGUI>().color = Color.Lerp(endColor, startColor, ratio);
 
         if (ratio.Equals(1f))
         {
