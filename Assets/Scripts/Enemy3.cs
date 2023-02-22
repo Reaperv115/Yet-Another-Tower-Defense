@@ -9,7 +9,7 @@ public class Enemy3 : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 175;
+        Health = 375;
         speed = 10f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;

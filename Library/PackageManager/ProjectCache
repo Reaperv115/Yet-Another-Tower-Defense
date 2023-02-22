@@ -20,7 +20,7 @@ m_EmbeddedPackageManifests:
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: G:/Dev/Yet-Another-Tower-Defense/Packages
-m_EditorVersion: 2022.2.4f1 (8216e0211249)
+m_EditorVersion: 2022.2.5f1 (551d45108343)
 m_ResolvedPackages:
 - packageId: com.unity.2d.animation@9.0.1
   testable: 0

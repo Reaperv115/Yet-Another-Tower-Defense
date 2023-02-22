@@ -9,15 +9,19 @@ public class TurretT1 : WeaponBase
 
     float range = 15f;
     Transform target;
+    GameObject muzzleFlash;
+    Transform bulletSpawn;
     // Start is called before the first frame update
     void Start()
     {
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 2;
-        price = 3;
         firerateinSeconds = .0025f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
+        audioSource.volume = .3f;
     }
 
     // Update is called once per frame
@@ -30,7 +34,18 @@ public class TurretT1 : WeaponBase
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
-        if (hit) Fire();
+        if (hit)
+        {
+            audioSource.pitch = .25f;
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            audioSource.Play();
+            Fire();
+        }
+        else
+        {
+            audioSource.Stop();
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
 
     void UpdateTarget()
@@ -64,8 +79,12 @@ public class TurretT1 : WeaponBase
             switch (target.transform.name)
             {
                 case "enemy car (Tier 1)(Clone)":
-                    target.GetComponent<Enemy1>().Health -= damage;
-                    break;
+                    {
+                        
+                        
+                        target.GetComponent<Enemy1>().Health -= damage;
+                        break;
+                    }
                 case "enemy car (Tier 2)(Clone)":
                     target.GetComponent<Enemy2>().Health -= damage;
                     break;
@@ -77,6 +96,7 @@ public class TurretT1 : WeaponBase
             }
             
         }
+
     }
 
 }

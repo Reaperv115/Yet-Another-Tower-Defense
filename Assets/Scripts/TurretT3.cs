@@ -14,9 +14,9 @@ public class TurretT3 : WeaponBase
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 75;
-        price = 9;
         firerateinSeconds = 4f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,10 +32,17 @@ public class TurretT3 : WeaponBase
         {
             if (firerateinSeconds <= 0f)
             {
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                audioSource.Play();
                 Fire();
                 firerateinSeconds = 4f;
             }
-            else firerateinSeconds -= Time.deltaTime;
+            else
+            {
+                gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                audioSource.Stop();
+                firerateinSeconds -= Time.deltaTime;
+            }
         }
     }
 
@@ -67,6 +74,7 @@ public class TurretT3 : WeaponBase
             {
                 case "enemy car (Tier 1)(Clone)":
                     {
+                        audioSource.Play();
                         target.GetComponent<Enemy1>().Health -= damage;
                         break;
                     }
