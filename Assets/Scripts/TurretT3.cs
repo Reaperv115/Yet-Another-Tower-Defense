@@ -14,9 +14,10 @@ public class TurretT3 : WeaponBase
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 75;
-        firerateinSeconds = 4f;
+        firerateinSeconds = 1f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
     }
 
     // Update is called once per frame
@@ -32,10 +33,8 @@ public class TurretT3 : WeaponBase
         {
             if (firerateinSeconds <= 0f)
             {
-                gameObject.transform.GetChild(1).gameObject.SetActive(true);
-                audioSource.Play();
                 Fire();
-                firerateinSeconds = 4f;
+                firerateinSeconds = 1f;
             }
             else
             {
@@ -43,6 +42,12 @@ public class TurretT3 : WeaponBase
                 audioSource.Stop();
                 firerateinSeconds -= Time.deltaTime;
             }
+        }
+        else
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            audioSource.Stop();
+            firerateinSeconds -= Time.deltaTime;
         }
     }
 
@@ -70,24 +75,16 @@ public class TurretT3 : WeaponBase
     {
         if (target)
         {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            audioSource.Play();
             switch (target.name)
             {
-                case "enemy car (Tier 1)(Clone)":
-                    {
-                        audioSource.Play();
-                        target.GetComponent<Enemy1>().Health -= damage;
+                case "enemy car (Tier 1)(Clone)": target.GetComponent<Enemy1>().Health -= damage;
                         break;
-                    }
-                case "enemy car (Tier 2)(Clone)":
-                    {
-                        target.GetComponent<Enemy2>().Health -= damage;
+                case "enemy car (Tier 2)(Clone)": target.GetComponent<Enemy2>().Health -= damage;
                         break;
-                    }
-                case "enemy car (Tier 3)(Clone)":
-                    {
-                        target.GetComponent<Enemy3>().Health -= damage;
+                case "enemy car (Tier 3)(Clone)": target.GetComponent<Enemy3>().Health -= damage;
                         break;
-                    }
                 default:
                     break;
             }

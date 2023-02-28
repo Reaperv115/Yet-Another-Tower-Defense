@@ -22,6 +22,7 @@ public class TurretT1 : WeaponBase
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
         audioSource.volume = .3f;
+        audioSource.pitch = .25f;
     }
 
     // Update is called once per frame
@@ -35,15 +36,10 @@ public class TurretT1 : WeaponBase
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
         if (hit)
-        {
-            audioSource.pitch = .25f;
-            gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            audioSource.Play();
             Fire();
-        }
         else
         {
-            audioSource.Stop();
+            if (audioSource.isPlaying) audioSource.Stop();
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
         }
     }
@@ -76,20 +72,15 @@ public class TurretT1 : WeaponBase
         // it just throws a bunch of errors in Unity though
         if (target)
         {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            audioSource.Play();
             switch (target.transform.name)
             {
-                case "enemy car (Tier 1)(Clone)":
-                    {
-                        
-                        
-                        target.GetComponent<Enemy1>().Health -= damage;
-                        break;
-                    }
-                case "enemy car (Tier 2)(Clone)":
-                    target.GetComponent<Enemy2>().Health -= damage;
+                case "enemy car (Tier 1)(Clone)": target.GetComponent<Enemy1>().Health -= damage;
                     break;
-                case "enemy car (Tier 3)(Clone)":
-                    target.GetComponent<Enemy3>().Health -= damage;
+                case "enemy car (Tier 2)(Clone)": target.GetComponent<Enemy2>().Health -= damage;
+                    break;
+                case "enemy car (Tier 3)(Clone)": target.GetComponent<Enemy3>().Health -= damage;
                     break;
                 default:
                     break;

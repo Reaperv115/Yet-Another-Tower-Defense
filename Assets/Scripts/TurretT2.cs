@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurretT2 : WeaponBase
@@ -15,7 +16,7 @@ public class TurretT2 : WeaponBase
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
         damage = 25;
-        firerateinSeconds = .25f;
+        firerateinSeconds = .5f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
@@ -36,10 +37,8 @@ public class TurretT2 : WeaponBase
         {
             if (firerateinSeconds <= 0f)
             {
-                audioSource.Play();
-                gameObject.transform.GetChild(1).gameObject.SetActive(true);
                 Fire();
-                firerateinSeconds = .25f;
+                firerateinSeconds = .5f;
             }
             else
             {
@@ -47,6 +46,12 @@ public class TurretT2 : WeaponBase
                 gameObject.transform.GetChild(1).gameObject.SetActive(false);
                 firerateinSeconds -= Time.deltaTime;
             }
+        }
+        else
+        {
+            audioSource.Stop();
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            firerateinSeconds -= Time.deltaTime;
         }
     }
 
@@ -72,6 +77,8 @@ public class TurretT2 : WeaponBase
     {
         if (target)
         {
+            audioSource.Play();
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
             switch (target.name)
             {
                 case "enemy car (Tier 1)(Clone)":
