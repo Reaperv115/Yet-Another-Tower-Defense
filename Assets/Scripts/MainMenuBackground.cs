@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuBackground : MonoBehaviour
 {
@@ -12,26 +13,42 @@ public class MainMenuBackground : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tmp = Random.Range(0, backgroundColors.Length);
-        newtmp = tmp + 3;
-        if (newtmp > backgroundColors.Length - 1) newtmp = newtmp - backgroundColors.Length;
+        tmp = 0;
+        newtmp = tmp + 1;
         GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
         Title.color = backgroundColors[newtmp];
-        colorTimer = 5f;
+        colorTimer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (colorTimer <= 0f)
+        GetComponent<SpriteRenderer>().color = Color.Lerp(backgroundColors[tmp], backgroundColors[tmp + 1], colorTimer);
+        Title.color = Color.Lerp(backgroundColors[newtmp], backgroundColors[newtmp + 1], colorTimer);
+        if (colorTimer > 1f)
         {
-            tmp = Random.Range(0, backgroundColors.Length);
-            newtmp = tmp + 3;
-            if (newtmp > backgroundColors.Length - 1) newtmp = newtmp - backgroundColors.Length;
-            GetComponent<SpriteRenderer>().color = backgroundColors[tmp];
-            Title.color = backgroundColors[newtmp];
-            colorTimer = 5f;
+            if (tmp.Equals(backgroundColors.Length - 2))
+            {
+                tmp = 0;
+            }
+            else
+            {
+                ++tmp;
+            }
+            if (newtmp.Equals(backgroundColors.Length - 2))
+            {
+                newtmp = 0;
+            }
+            else
+            {
+                ++newtmp;
+            }
+            colorTimer = 0f;
         }
-        else colorTimer -= Time.deltaTime;
+        else
+        {
+            colorTimer += Time.deltaTime;
+        }
+
     }
 }
