@@ -15,7 +15,7 @@ public class TurretT1 : WeaponBase
     void Start()
     {
         mask = LayerMask.GetMask("enemy");
-        visionDistance = 10;
+        visionDistance = 9;
         damage = 2;
         firerateinSeconds = .0025f;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -29,7 +29,12 @@ public class TurretT1 : WeaponBase
     void Update()
     {
         // do nothing if no target is close enough
-        if (target == null) return;
+        if (target == null)
+        {
+            if (audioSource.isPlaying) audioSource.Stop();
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            return;
+        }
 
         // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
