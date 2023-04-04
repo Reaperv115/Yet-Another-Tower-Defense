@@ -15,10 +15,10 @@ public class TurretT1 : WeaponBase
     void Start()
     {
         mask = LayerMask.GetMask("enemy");
-        visionDistance = 9;
+        visionDistance = 10;
         damage = 2;
         firerateinSeconds = .0025f;
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
         audioSource.volume = .3f;
