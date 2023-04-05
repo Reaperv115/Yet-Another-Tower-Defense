@@ -37,10 +37,13 @@ public class Tower : MonoBehaviour
             Destroy(collision.gameObject);
             fHealth -= .1f;
             GameManager.instance.GetHealthBar().localScale = new Vector3(fHealth, 1f);
-            if (GetHealth() <= 0f)
+            switch (collision.transform.name)
             {
-                onDeath.Invoke();
+                case "Basic Enemy(Clone)": ScoreManager.instance.amount -= 1; break;
+                case "Advanced Enemy(Clone)": ScoreManager.instance.amount -= 2; break;
+                case "Ultimate Enemy(Clone)": ScoreManager.instance.amount -= 3; break;
             }
+            if (GetHealth() <= 0f) onDeath.Invoke();
 
         }
     }

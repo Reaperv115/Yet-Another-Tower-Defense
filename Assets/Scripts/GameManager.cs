@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI gameOver;
     Player player;
 
-    string apologies = "Sorry, no turrets availble to place";
+    string apologies = "Sorry, no turrets available to place";
 
     bool nextRound;
 
@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     int currentRound;
     int colorIndex = 0;
     int trackIndex;
-    int t1Price = 2, t2Price = 6, t3Price = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +60,6 @@ public class GameManager : MonoBehaviour
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
-        weaponsPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = t1Price.ToString();
-        weaponsPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = t2Price.ToString();
-        weaponsPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = t3Price.ToString();
         currentRound = 1;
         tower = FindTower(GetTrack());
     }
@@ -116,18 +112,6 @@ public class GameManager : MonoBehaviour
 
 
     public void MoveOn() { victoryDisplay.GetComponent<TextMeshProUGUI>().text = ""; }
-
-    // returns the price of the tier 1 weapon
-    public int GetT1Price() { return t1Price;  }
-    public float GetT1PriceF() { return 4.0f; }
-
-    // returns the price of the tier 2 weapon
-    public int GetT2Price() { return t2Price; }
-    public float GetT2PriceF() { return 6.0f; }
-
-    // returns the price of the tier 3 weapon
-    public int GetT3Price() { return t3Price; }
-    public float GetT3PriceF() { return 8.0f; }
     
     public GameObject GetTower() { return tower; }
     public void YouWON()

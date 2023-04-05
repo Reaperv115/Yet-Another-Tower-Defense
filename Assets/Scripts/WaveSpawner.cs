@@ -45,10 +45,8 @@ public class WaveSpawner : MonoBehaviour
             {
                 if (spawnTimer <= 0f)
                 {
-                    Debug.Log(WaveManager.instance.GetRound());
                     SpawnEnemy(WaveManager.instance.GetRound());
                     spawnTimer = 1f;
-                    Debug.Log(spawnTimer);
                 }
                 else
                     spawnTimer -= Time.deltaTime;
@@ -56,25 +54,31 @@ public class WaveSpawner : MonoBehaviour
             }
             else
             {
+                // no more enemies to spawn, check to see what enemies are left
                 WaveManager.instance.enemyhealthCheck = GameObject.FindGameObjectsWithTag("enemy");
+                // if no more enemies are alive
                 if (WaveManager.instance.enemyhealthCheck.Length <= 0)
                 {
                     tower = GameManager.instance.FindTower(GameManager.instance.GetTrackInst());
+                    // checking to see if the last enemy to be spawned was the one to destroy the tower
                     if (tower.GetComponent<Tower>().GetHealth() <= 0f) SceneManager.LoadScene("Defeat");
                     else
                     {
+                        Debug.Log("enemy health check is zero");
+                        // tower wasn't destroyed
                         WaveManager.instance.SetSpawn(false);
                         GameManager.instance.GetWeaponsButton().SetActive(true);
+                        GameManager.instance.GetRestartButton().SetActive(true);
                         GameManager.instance.SetNextRound(true);
                         if (WaveManager.instance.GetLevel().Equals(5) && WaveManager.instance.GetRound().Equals(5))
-                        {
                             SceneManager.LoadScene("Victory");
-                        }
                         else
                         {
                             if (!WaveManager.instance.GetRound().Equals(5))
                             {
+                                Debug.Log("increasing round");
                                 WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
+                                WaveManager.instance.SetMaxNumEnemiesToSpawn();
                                 WeaponManager.instance.SetNumTurretsToPlace();
 
                             }
@@ -141,7 +145,6 @@ public class WaveSpawner : MonoBehaviour
             intermission = 5.0f;
             GameManager.instance.SetNextRound(false);
             GameManager.instance.MoveOn();
-            WaveManager.instance.SetMaxNumEnemiesToSpawn();
         }
         else
         {

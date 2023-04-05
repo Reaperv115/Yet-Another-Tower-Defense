@@ -135,7 +135,7 @@ public class SelectWeapon : MonoBehaviour
     }
 
     // selects the tier 2 turret
-    public void GetTurretT2()
+    public void GetAdvancedTurret()
     {
         if (WeaponManager.instance.GetNumTurretsToPlace() <= 0) GameManager.instance.SetDisplayTimer(2f);
         else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
@@ -144,10 +144,10 @@ public class SelectWeapon : MonoBehaviour
     }
 
     // selects the tier 3 turret
-    public void GetTurretT3()
+    public void GetUltimateTurret()
     {
         if (WeaponManager.instance.GetNumTurretsToPlace() <= 0) GameManager.instance.SetDisplayTimer(2f);
-        else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
+        else player.LoadWeapon(WeaponManager.instance.GetUltimateTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
     }

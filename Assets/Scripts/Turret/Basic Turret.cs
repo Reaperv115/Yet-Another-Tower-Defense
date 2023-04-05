@@ -15,7 +15,7 @@ public class BasicTurret : TurretBase
     void Start()
     {
         mask = LayerMask.GetMask("enemy");
-        visionDistance = 5;
+        visionDistance = 8;
         damage = 2;
         firerateinSeconds = .5f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
@@ -70,7 +70,6 @@ public class BasicTurret : TurretBase
         {
             audioSource.Play();
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            Debug.Log(target.name);
             switch (target.name)
             {
                 case "Basic Enemy(Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
