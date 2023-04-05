@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class selectWeapon : MonoBehaviour
+public class SelectWeapon : MonoBehaviour
 {
     Player player;
     Ray ray;
@@ -27,13 +27,14 @@ public class selectWeapon : MonoBehaviour
         placingWeapon = false;
         rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
-        checkfundsT1 = checkfundsT2 = checkfundsT3 = activateweaponsPanel = false;
+        activateweaponsPanel = false;
         weaponSpot = LayerMask.GetMask("WeaponSpot");
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameManager.instance.GetWeaponsPanel().SetActive(activateweaponsPanel);
         // weapon placement mechanics for android
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
@@ -130,8 +131,8 @@ public class selectWeapon : MonoBehaviour
     // selects the tier 1 turret
     public void GetTurret()
     {
-        checkfundsT1 = true;
-        player.SetDisplayTimer(2f);
+        if (GameManager.instance.GetT1Price() > ScoreManager.instance.amount) GameManager.instance.SetDisplayTimer(2f);
+        else player.LoadWeapon(WeaponManager.instance.GetBasicTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
     }
@@ -139,8 +140,8 @@ public class selectWeapon : MonoBehaviour
     // selects the tier 2 turret
     public void GetTurretT2()
     {
-        checkfundsT2 = true;
-        player.SetDisplayTimer(2f);
+        if (GameManager.instance.GetT2Price() > ScoreManager.instance.amount) GameManager.instance.SetDisplayTimer(2f);
+        else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
     }
@@ -148,8 +149,8 @@ public class selectWeapon : MonoBehaviour
     // selects the tier 3 turret
     public void GetTurretT3()
     {
-        checkfundsT3 = true;
-        player.SetDisplayTimer(2f);
+        if (GameManager.instance.GetT3Price() > ScoreManager.instance.amount) GameManager.instance.SetDisplayTimer(2f);
+        else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
     }

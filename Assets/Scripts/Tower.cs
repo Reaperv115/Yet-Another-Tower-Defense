@@ -8,8 +8,6 @@ public class Tower : MonoBehaviour
 {
     
     private float fHealth;
-
-    TextMeshProUGUI gameOver;
     bool isgameOver;
 
     public UnityEvent onDeath;
@@ -18,7 +16,6 @@ public class Tower : MonoBehaviour
     void Start()
     {
         fHealth = 1f;
-        gameOver = GameObject.Find("game over").GetComponent<TextMeshProUGUI>();
         isgameOver = false;
     }
 
@@ -50,7 +47,6 @@ public class Tower : MonoBehaviour
 
     public void EndGame()
     {
-        gameOver.text = "Game Over";
         GameObject[] enemy = GameObject.FindGameObjectsWithTag("enemy");
         for (int i = 0; i < enemy.Length; ++i)
         {

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     GameObject scoreBoard, round, victoryDisplay;
     [SerializeField]
     TextMeshProUGUI weapontoPlace;
+    [SerializeField]
+    TextMeshProUGUI lackofFunds;
 
 
     [SerializeField]
@@ -32,8 +34,9 @@ public class GameManager : MonoBehaviour
     bool nextRound;
 
     private float score = 6f;
-    int currentRound;
     float changeColor = 1;
+    float lackoffundsdisplayTimer;
+    int currentRound;
     int colorIndex = 0;
     int trackIndex;
     int t1Price = 2, t2Price = 6, t3Price = 10;
@@ -66,6 +69,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(lackoffundsdisplayTimer);
+        if (lackoffundsdisplayTimer > 0)
+        {
+            lackofFunds.text = "not enough money";
+            lackoffundsdisplayTimer -= Time.deltaTime;
+        }
+        else
+            lackofFunds.text = "";
         // displaying score and current round
         scoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + ScoreManager.instance.amount;
         round.GetComponent<TextMeshProUGUI>().text = "Round: " + WaveManager.instance.GetRound();
@@ -87,6 +98,7 @@ public class GameManager : MonoBehaviour
     public GameObject GetTrackInst() { return trackInst; }
     public GameObject GetNextLevelButton() { return nextLevel; }
     public RectTransform GetHealthBar() { return healthBar; }
+    public TextMeshProUGUI GetLackOfFundsDisplay() { return lackofFunds; }
 
 
     // setters
@@ -95,6 +107,7 @@ public class GameManager : MonoBehaviour
     public void SetCurrentRound(int newRound) { currentRound = newRound; }
     public void SetNextRound(bool nextround) { nextRound = nextround; }
     public void SetTrackIndex(int newIndex) { trackIndex = newIndex; }
+    public void SetDisplayTimer(float displaytimer) { lackoffundsdisplayTimer = displaytimer; }
 
     public void RestartGame() { SceneManager.LoadScene("Game"); }
 

@@ -328,9 +328,9 @@ GameObject:
   - component: {fileID: 4046014438110531125}
   - component: {fileID: 560501280688699906}
   - component: {fileID: 6196668136640899630}
-  - component: {fileID: 1603581753219491260}
   - component: {fileID: 2609697260523242673}
   - component: {fileID: 5798566116911544995}
+  - component: {fileID: 7882238194558185624}
   m_Layer: 0
   m_Name: turret (Tier 3)
   m_TagString: weapon
@@ -392,18 +392,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5075d7cc7c7d614fa05a326b83e05f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1603581753219491260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8076428977141698251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee3c301b0b374f4b95f759104f62fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &2609697260523242673
@@ -554,3 +542,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7882238194558185624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8076428977141698251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f4cab6eb6603a40a9669775d10c795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

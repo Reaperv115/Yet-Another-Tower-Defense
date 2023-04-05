@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2025355762649887245}
   - component: {fileID: -213579417341188451}
   - component: {fileID: -1518110702942764694}
-  - component: {fileID: 2355136343867899048}
+  - component: {fileID: 8025568061333956155}
   m_Layer: 6
   m_Name: enemy car (Tier 2)
   m_TagString: enemy
@@ -176,7 +176,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 2
---- !u!114 &2355136343867899048
+--- !u!114 &8025568061333956155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8446665429221902790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd4d741f215a814ea89b347dd4bca96, type: 3}
+  m_Script: {fileID: 11500000, guid: b80f100b91f8e49418b7ec8ec3e0f959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8446665429348843205
