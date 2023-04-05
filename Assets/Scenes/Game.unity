@@ -507,6 +507,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1308408118898405824, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
   m_PrefabInstance: {fileID: 5147638802822017970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &433386384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433386379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ad7d0832ecd0d4f965706e00f61315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &529360247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,11 +2174,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeginRound
       objectReference: {fileID: 0}
+    - target: {fileID: 5216012578126576486, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 433386384}
+    - target: {fileID: 5216012578126576486, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartRound
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216012578126576486, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BeginRound, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5147638803278167444, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6905024378372840040, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 433386384}
   m_SourcePrefab: {fileID: 100100000, guid: 82438a81c712a3a47b88931ee5bf1ee1, type: 3}
 --- !u!1001 &6231866776512968286
 PrefabInstance:

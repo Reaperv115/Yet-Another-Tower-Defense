@@ -24,9 +24,9 @@ public class EnemyManager : MonoBehaviour
             Debug.LogError("trying to create a duplicate of the enemy manager");
 
         // loading enemy car resources
-        round1Car = Resources.Load<GameObject>("enemy car (Tier 1)");
-        round2Car = Resources.Load<GameObject>("enemy car (Tier 2)");
-        round3Car = Resources.Load<GameObject>("enemy car (tier 3)");
+        round1Car = Resources.Load<GameObject>("Basic Enemy");
+        round2Car = Resources.Load<GameObject>("Advanced Enemy");
+        round3Car = Resources.Load<GameObject>("Ultimate Enemy");
     }
 
     // getters for enemy car objects

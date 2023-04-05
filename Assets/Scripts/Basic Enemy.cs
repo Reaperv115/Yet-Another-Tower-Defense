@@ -10,7 +10,7 @@ public class BasicEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 150;
+        Health = 75;
         speed = 25f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
@@ -22,6 +22,7 @@ public class BasicEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Health);
         if (Health <= 0f)
         {
             ScoreManager.instance.amount += 1;

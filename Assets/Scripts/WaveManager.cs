@@ -98,4 +98,8 @@ public class WaveManager : MonoBehaviour
     {
         round = newRound;
     }
+    public void BeginRound()
+    {
+        SetSpawn(true);
+    }
 }

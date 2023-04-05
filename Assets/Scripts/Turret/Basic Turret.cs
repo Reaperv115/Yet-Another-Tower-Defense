@@ -38,25 +38,11 @@ public class BasicTurret : TurretBase
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
-        if (hit)
-        {
-            if (firerateinSeconds <= 0f)
-            {
-                Fire();
-                firerateinSeconds = .5f;
-            }
-            else
-            {
-                audioSource.Stop();
-                gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                firerateinSeconds -= Time.deltaTime;
-            }
-        }
+        if (hit) Fire();
         else
         {
             audioSource.Stop();
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
-            firerateinSeconds -= Time.deltaTime;
         }
     }
 
@@ -84,11 +70,12 @@ public class BasicTurret : TurretBase
         {
             audioSource.Play();
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            Debug.Log(target.name);
             switch (target.name)
             {
-                case "enemy car (Tier 1) (Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
-                case "enemy car (Tier 2) (Clone)": target.GetComponent<Enemy2>().Health -= damage; break;
-                case "enemy car (Tier 3) (Clone)": target.GetComponent<Enemy3>().Health -= damage; break;
+                case "Basic Enemy(Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
+                case "Advanced Enemy(Clone)": target.GetComponent<AdvancedEnemy>().Health -= damage; break;
+                case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
             }
         }
     }
