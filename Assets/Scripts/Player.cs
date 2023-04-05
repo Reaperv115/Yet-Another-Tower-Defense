@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
-    TextMeshProUGUI lackoffundsDisplay;
     float lackoffundsdisplayTimer = 2f;
     SelectWeapon swRef;
     bool placingWeapon;
@@ -14,7 +12,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         swRef = GetComponent<SelectWeapon>();
-        lackoffundsDisplay = GameObject.Find("LackofFunds").GetComponent<TextMeshProUGUI>();
     }
     private void Update()
     {

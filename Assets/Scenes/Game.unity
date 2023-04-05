@@ -655,6 +655,18 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8893517641461635782, guid: f4299ef3fe3c5f84ca19666bbc507ed9, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893517641461635782, guid: f4299ef3fe3c5f84ca19666bbc507ed9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5283019
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893517641461635782, guid: f4299ef3fe3c5f84ca19666bbc507ed9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.0021388757
+      objectReference: {fileID: 0}
     - target: {fileID: 8893517641461635783, guid: f4299ef3fe3c5f84ca19666bbc507ed9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1239,7 +1251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962850884695701496, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -190
       objectReference: {fileID: 0}
     - target: {fileID: 962850884695701496, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1262,20 +1274,28 @@ PrefabInstance:
       value: LackofFunds
       objectReference: {fileID: 0}
     - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
+      propertyPath: m_margin.y
+      value: -178.90839
+      objectReference: {fileID: 0}
+    - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
+      propertyPath: m_margin.z
+      value: -614.1636
+      objectReference: {fileID: 0}
+    - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.7735849
+      value: 0.9528302
       objectReference: {fileID: 0}
     - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.07338348
+      value: 0.9126107
       objectReference: {fileID: 0}
     - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.054004956
+      value: 0.91148096
       objectReference: {fileID: 0}
     - target: {fileID: 962850884701206153, guid: 5cd6ca4c7c563d141bf553423b8c4358, type: 3}
       propertyPath: m_HorizontalAlignment

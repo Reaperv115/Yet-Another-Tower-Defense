@@ -8,8 +8,6 @@ public class SelectWeapon : MonoBehaviour
     RaycastHit2D hit;
     Touch touch;
 
-    LayerMask weaponSpot;
-
     Vector3 newworldPoint, oldworldPoint;
     Vector3 mouseWorldPosition;
     bool placingWeapon;
@@ -18,7 +16,7 @@ public class SelectWeapon : MonoBehaviour
     float rotationSpeed;
     float timetoplaceWeapon;
 
-    bool checkfundsT1, checkfundsT2, checkfundsT3, activateweaponsPanel;
+    bool activateweaponsPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +26,6 @@ public class SelectWeapon : MonoBehaviour
         rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
         activateweaponsPanel = false;
-        weaponSpot = LayerMask.GetMask("WeaponSpot");
     }
 
     // Update is called once per frame
@@ -170,31 +167,6 @@ public class SelectWeapon : MonoBehaviour
     public Vector3 GetWeaponPosition()
     {
         return mouseWorldPosition;
-    }
-
-    public bool checkT1Funds()
-    {
-        return checkfundsT1;
-    }
-    public void setT1Check(bool check)
-    {
-        checkfundsT1 = check;
-    }
-    public bool checkT2Funds()
-    {
-        return checkfundsT2;
-    }
-    public void setT2Check(bool check)
-    {
-        checkfundsT2 = check;
-    }
-    public bool checkT3Funds()
-    {
-        return checkfundsT3;
-    }
-    public void setT3Check(bool check)
-    {
-        checkfundsT3 = check;
     }
     public Vector3 getMWP()
     {

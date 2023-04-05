@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI gameOver;
     Player player;
 
+    string apologies = "I'm sorry, you don't have the money to get this one";
+
     bool nextRound;
 
     private float score = 6f;
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(lackoffundsdisplayTimer);
         if (lackoffundsdisplayTimer > 0)
         {
-            lackofFunds.text = "not enough money";
+            lackofFunds.text = apologies;
             lackoffundsdisplayTimer -= Time.deltaTime;
         }
         else
