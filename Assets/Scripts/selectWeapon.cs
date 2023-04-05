@@ -128,7 +128,7 @@ public class SelectWeapon : MonoBehaviour
     // selects the tier 1 turret
     public void GetTurret()
     {
-        if (GameManager.instance.GetT1Price() > ScoreManager.instance.amount) GameManager.instance.SetDisplayTimer(2f);
+        if (WeaponManager.instance.GetNumTurretsToPlace() <= 0) GameManager.instance.SetDisplayTimer(2f);
         else player.LoadWeapon(WeaponManager.instance.GetBasicTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
@@ -137,7 +137,7 @@ public class SelectWeapon : MonoBehaviour
     // selects the tier 2 turret
     public void GetTurretT2()
     {
-        if (GameManager.instance.GetT2Price() > ScoreManager.instance.amount) GameManager.instance.SetDisplayTimer(2f);
+        if (WeaponManager.instance.GetNumTurretsToPlace() <= 0) GameManager.instance.SetDisplayTimer(2f);
         else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
@@ -146,7 +146,7 @@ public class SelectWeapon : MonoBehaviour
     // selects the tier 3 turret
     public void GetTurretT3()
     {
-        if (GameManager.instance.GetT3Price() > ScoreManager.instance.amount) GameManager.instance.SetDisplayTimer(2f);
+        if (WeaponManager.instance.GetNumTurretsToPlace() <= 0) GameManager.instance.SetDisplayTimer(2f);
         else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);

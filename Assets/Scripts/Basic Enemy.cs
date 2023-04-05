@@ -11,7 +11,7 @@ public class BasicEnemy : EnemyBase
     void Start()
     {
         Health = 75;
-        speed = 25f * Time.deltaTime;
+        speed = 20f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
         pathwayMarkers = new List<Transform>();

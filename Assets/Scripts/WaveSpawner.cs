@@ -45,6 +45,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 if (spawnTimer <= 0f)
                 {
+                    Debug.Log(WaveManager.instance.GetRound());
                     SpawnEnemy(WaveManager.instance.GetRound());
                     spawnTimer = 1f;
                     Debug.Log(spawnTimer);
@@ -59,10 +60,7 @@ public class WaveSpawner : MonoBehaviour
                 if (WaveManager.instance.enemyhealthCheck.Length <= 0)
                 {
                     tower = GameManager.instance.FindTower(GameManager.instance.GetTrackInst());
-                    if (tower.GetComponent<Tower>().GetHealth() <= 0f)
-                    {
-                        SceneManager.LoadScene("Defeat");
-                    }
+                    if (tower.GetComponent<Tower>().GetHealth() <= 0f) SceneManager.LoadScene("Defeat");
                     else
                     {
                         WaveManager.instance.SetSpawn(false);
@@ -77,6 +75,7 @@ public class WaveSpawner : MonoBehaviour
                             if (!WaveManager.instance.GetRound().Equals(5))
                             {
                                 WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
+                                WeaponManager.instance.SetNumTurretsToPlace();
 
                             }
                             else

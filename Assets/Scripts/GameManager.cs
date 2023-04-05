@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI gameOver;
     Player player;
 
-    string apologies = "I'm sorry, you don't have the money to get this one";
+    string apologies = "Sorry, no turrets availble to place";
 
     bool nextRound;
 

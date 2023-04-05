@@ -11,6 +11,7 @@ public class WaveManager : MonoBehaviour
     GameObject[] round2Pack = new GameObject[2];
     GameObject[] round3Pack = new GameObject[3];
 
+    [HideInInspector]
     public GameObject[] enemyhealthCheck;
 
     int level, round;
@@ -35,8 +36,8 @@ public class WaveManager : MonoBehaviour
         round3Pack[1] = EnemyManager.instance.GetRound2Car();
         round3Pack[2] = EnemyManager.instance.GetRound3Car();
 
-        maxnumEnemies = numenemiestoSpawn = 10;
         level = round = 1;
+        maxnumEnemies = numenemiestoSpawn = round;
     }
 
 
@@ -67,12 +68,12 @@ public class WaveManager : MonoBehaviour
     }
     public void SetMaxNumEnemiesToSpawn()
     {
-        maxnumEnemies += 5;
+        maxnumEnemies = round;
         numenemiestoSpawn = maxnumEnemies;
     }
     public void ResetMaxNumEnemies()
     {
-        maxnumEnemies = numenemiestoSpawn = 10;
+        maxnumEnemies = numenemiestoSpawn = 1;
     }
     public void SetSpawn(bool canSpawn)
     {

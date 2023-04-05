@@ -28,11 +28,8 @@ public class Player : MonoBehaviour
         placingWeapon = true;
         GameManager.instance.GetWeaponsButton().SetActive(false);
         instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
-        Debug.Log(instantiatedmainWeapon);
+        WeaponManager.instance.TurretPlaced();
         GameManager.instance.GetWeaponsPanel().SetActive(false);
-        if (mainWeapon.transform.name.Contains("Basic")) GameManager.instance.SetScore(ScoreManager.instance.amount - GameManager.instance.GetT1Price());
-        if (mainWeapon.transform.name.Contains("Advanced")) GameManager.instance.SetScore(ScoreManager.instance.amount - GameManager.instance.GetT2Price());
-        if (mainWeapon.transform.name.Contains("Ultimate")) GameManager.instance.SetScore(ScoreManager.instance.amount - GameManager.instance.GetT3Price());
     }
     public GameObject instantiatedmainWeapon { get;  set; }
     public GameObject mainWeapon { get; set; }
