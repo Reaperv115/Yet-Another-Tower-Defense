@@ -9,7 +9,7 @@ public class UltimateEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 375;
+        Health = 220;
         speed = 10f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;

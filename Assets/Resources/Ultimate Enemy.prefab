@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2025355762649887245}
   - component: {fileID: -213579417341188451}
   - component: {fileID: -1518110702942764694}
-  - component: {fileID: -7492665360101913287}
+  - component: {fileID: 1094620461372264890}
   m_Layer: 6
   m_Name: Ultimate Enemy
   m_TagString: enemy
@@ -176,7 +176,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 2
---- !u!114 &-7492665360101913287
+--- !u!114 &1094620461372264890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8446665429221902790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd4d741f215a814ea89b347dd4bca96, type: 3}
+  m_Script: {fileID: 11500000, guid: 516d25dc5988144438522c807641b4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8446665429348843205

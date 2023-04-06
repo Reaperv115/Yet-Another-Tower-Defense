@@ -182,7 +182,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Controls: \nhit weapons button to bring up weapons panel to purchase a
-    turret. hit the Rotate 90 or Rotate -90 to rotate your turret. "
+    turret. Your score and the round you're currently on are displayed in the upper
+    right of the screen. You'll find the number of turrets that you're able to place
+    in the upper left of the screen. If an enemy makes it to the tower and does damage,
+    you'll find that your score is decreased based on which type of enemy it was
+    that hit the tower: a basic enemy will deduct 1 point, an advanced 2 points,
+    and an ultimate 3 points."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -546,10 +551,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Run Down:
 
-    Game is pretty straight forward.  you get points to buy
-    turrets, Get more points by destroying enemies and upgrade your aresenal. Also
-    don''t let the enemies destroy the tower... or else you lose. Now go out and
-    defend the tower.'
+    Game is pretty straight forward.  Strategically place turrets
+    to eliminate enemies, but be careful as there''s a set number of turrets you
+    can place each round. Also don''t let the enemies destroy the tower... or else
+    you lose. Now go out and defend the tower.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -655,7 +660,7 @@ RectTransform:
   m_GameObject: {fileID: 984333033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.9375, z: 1}
+  m_LocalScale: {x: 3.9146397, y: 3.9232438, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 789507056}
@@ -664,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -314}
+  m_AnchoredPosition: {x: 0, y: -346}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984333035

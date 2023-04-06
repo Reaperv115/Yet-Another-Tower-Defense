@@ -70,6 +70,7 @@ public class BasicTurret : TurretBase
         {
             audioSource.Play();
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            Debug.Log(target.name);
             switch (target.name)
             {
                 case "Basic Enemy(Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
