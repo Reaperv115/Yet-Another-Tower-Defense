@@ -8,21 +8,20 @@ public class NextLevel : MonoBehaviour
 
     public void ProceedNextLevel()
     {
-        turrets = GameObject.FindGameObjectsWithTag("weapon");
-        foreach(GameObject obj in turrets)
-            Destroy(obj);
-        Destroy(GameManager.instance.GetTrackInst());
         GameManager.instance.SetTrackIndex(WaveManager.instance.GetLevel());
         GameManager.instance.LoadTrackInst();
         GameManager.instance.GetWeaponsButton().gameObject.SetActive(true);
-        gameObject.SetActive(false);
         GameManager.instance.GetVictoryDisplay().GetComponent<TextMeshProUGUI>().text = "";
-        tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
-        tower.GetComponent<Tower>().SetHealth(1f);
         GameManager.instance.GetHealthBar().localScale = new Vector3(tower.GetComponent<Tower>().GetHealth(), 1f);
-        GameManager.instance.SetScore(6);
         WaveManager.instance.SetRound(1);
         WaveManager.instance.ResetMaxNumEnemies();
+        WeaponManager.instance.SetNumTurretsToPlace();
         WaveSpawner.instance.startingPos = GameManager.instance.FindEnemySpawn(GameManager.instance.GetTrack()).transform;
+        turrets = GameObject.FindGameObjectsWithTag("weapon");
+        foreach(GameObject obj in turrets) Destroy(obj);
+        Destroy(GameManager.instance.GetTrackInst());
+        gameObject.SetActive(false);
+        tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
+        tower.GetComponent<Tower>().SetHealth(1f);
     }
 }

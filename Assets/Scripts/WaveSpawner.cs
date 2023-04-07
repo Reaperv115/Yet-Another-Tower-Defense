@@ -69,8 +69,7 @@ public class WaveSpawner : MonoBehaviour
                         WaveManager.instance.SetSpawn(false);
                         GameManager.instance.GetWeaponsButton().SetActive(true);
                         GameManager.instance.GetRestartButton().SetActive(true);
-                        GameManager.instance.SetNextRound(true);
-                        if (WaveManager.instance.GetLevel().Equals(5) && WaveManager.instance.GetRound().Equals(5))
+                        if (WaveManager.instance.GetLevel().Equals(5) && WaveManager.instance.GetRound().Equals(5)) 
                             SceneManager.LoadScene("Victory");
                         else
                         {
@@ -80,6 +79,7 @@ public class WaveSpawner : MonoBehaviour
                                 WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
                                 WaveManager.instance.SetMaxNumEnemiesToSpawn();
                                 WeaponManager.instance.SetNumTurretsToPlace();
+                                GameManager.instance.SetNextRound(true);
 
                             }
                             else
