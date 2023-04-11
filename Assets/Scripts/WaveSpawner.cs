@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SubsystemsImplementation;
@@ -18,6 +19,13 @@ public class WaveSpawner : MonoBehaviour
     GameObject enemInst;
     private float intermission;
 
+    [SerializeField]
+    GameObject nextlevelbtnPosition;
+    GameObject nextlevelBtn;
+    float nextlevelTimer = 6f;
+
+    
+
     private void Awake()
     {
         instance = this;
@@ -29,16 +37,22 @@ public class WaveSpawner : MonoBehaviour
         spawnTimer = 1f;
         startingPos = GameManager.instance.GetEnemyStartingPosition().transform;
         intermission = 5f;
-        
+        nextlevelBtn = GameObject.Find("Next Level");
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(nextlevelTimer);
         if (GameManager.instance.GetNextRound())
         {
             VictoryIntermission();
         }
+        if (GameManager.instance.GetEndofLevel())
+        {
+            LevelVictory();
+        }
+            
         if (WaveManager.instance.CanSpawn())
         {
             if (WaveManager.instance.GetNumEnemiesToSpawn() > 0)
@@ -64,7 +78,6 @@ public class WaveSpawner : MonoBehaviour
                     if (tower.GetComponent<Tower>().GetHealth() <= 0f) SceneManager.LoadScene("Defeat");
                     else
                     {
-                        Debug.Log("enemy health check is zero");
                         // tower wasn't destroyed
                         WaveManager.instance.SetSpawn(false);
                         GameManager.instance.GetWeaponsButton().SetActive(true);
@@ -75,19 +88,20 @@ public class WaveSpawner : MonoBehaviour
                         {
                             if (!WaveManager.instance.GetRound().Equals(5))
                             {
-                                Debug.Log("increasing round");
-                                WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
-                                WaveManager.instance.SetMaxNumEnemiesToSpawn();
-                                WeaponManager.instance.SetNumTurretsToPlace();
-                                GameManager.instance.SetNextRound(true);
+                                SceneManager.LoadScene("Next Level Preparations");
+                                //WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
+                                //WaveManager.instance.SetMaxNumEnemiesToSpawn();
+                                //WeaponManager.instance.SetNumTurretsToPlace();
+                                //GameManager.instance.SetNextRound(true);
 
                             }
                             else
                             {
                                 if (!WaveManager.instance.GetLevel().Equals(5))
                                 {
-                                    GameManager.instance.GetNextLevelButton().SetActive(true);
+                                    
                                     WaveManager.instance.SetLevel(WaveManager.instance.GetLevel() + 1);
+                                    GameManager.instance.SetNextLevel(true);
                                 }
                                 else
                                 {
@@ -152,5 +166,24 @@ public class WaveSpawner : MonoBehaviour
             intermission -= .05f;
             GameManager.instance.YouWON();
         }
+    }
+
+    void LevelVictory()
+    {
+        nextlevelTimer -= Time.deltaTime;
+        GameManager.instance.GetNextLevelPrep().transform.SetParent(GameManager.instance.GetCanvas().transform);
+        GameManager.instance.GetNextLevelPrep().GetComponent<TextMeshProUGUI>().text = "Congrats! You beat the level! Get ready for the next one!";
+
+        //if (nextlevelTimer <= 0f)
+        //{
+        //    nextlevelTimer = 3f;
+        //    GameManager.instance.GetNextLevelPrep().GetComponent<TextMeshProUGUI>().text = "";
+        //    GameManager.instance.SetNextLevel(false);
+        //    nextlevelBtn.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+            
+        //}
     }
 }

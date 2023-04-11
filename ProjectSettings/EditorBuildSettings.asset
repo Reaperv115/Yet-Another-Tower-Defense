@@ -19,11 +19,14 @@ EditorBuildSettings:
     guid: 08b923c504032c1469a76507c9daae91
   - enabled: 0
     path: 
-    guid: 376e829da7d9edf498d84bd1ca8f2488
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: 2905340c2c08217468bde043c63bd9b9
   - enabled: 1
     path: Assets/Scenes/Defeat.unity
     guid: ce875568217e6a940ab02d13ee73164d
+  - enabled: 1
+    path: Assets/Scenes/Next Level Preparations.unity
+    guid: 8378faefe09cba7479d2f55fb4f162ab
   m_configObjects: {}

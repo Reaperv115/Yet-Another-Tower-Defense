@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField]
-    GameObject beginroundButton, weaponsButton, startButton, restart, nextLevel;
+    GameObject beginroundButton, weaponsButton, startButton, restart;
     [SerializeField]
     GameObject scoreBoard, round, victoryDisplay;
     [SerializeField]
@@ -15,7 +15,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI lackofFunds;
 
+    GameObject nextLevel;
 
+    GameObject canvas;
+    [SerializeField]
+    private GameObject nextlevelPrep;
     [SerializeField]
     GameObject weaponsPanel;
     GameObject enemyManager;
@@ -42,6 +46,12 @@ public class GameManager : MonoBehaviour
     int colorIndex = 0;
     int trackIndex;
 
+    public bool endofLevel
+    {
+        get { return endofLevel; }
+        set { endofLevel = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,18 +60,21 @@ public class GameManager : MonoBehaviour
         else
             Debug.LogError("trying to create a duplicate of the game manager");
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
+        //nextLevel = Resources.Load<GameObject>("UI/Next Level");
         enemyManager = GameObject.Find("EnemyManager");
         nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
-        nextLevel.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.cyan, Color.gray, Color.magenta, Color.grey };
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
         currentRound = 1;
         tower = FindTower(GetTrack());
+        canvas = GameObject.Find("Canvas");
+        print(nextlevelPrep);
+        endofLevel = false;
     }
 
     // Update is called once per frame
@@ -90,12 +103,15 @@ public class GameManager : MonoBehaviour
     public GameObject GetWeaponsPanel() { return weaponsPanel; }
     public GameObject GetRestartButton() { return restart; }
     public bool GetNextRound() { return nextRound; }
+    public bool GetEndofLevel() { return endofLevel; }
     public int GetCurrentRound() { return currentRound; }
     public int GetTrackIndex() { return trackIndex; }
     public GameObject GetTrackInst() { return trackInst; }
     public GameObject GetNextLevelButton() { return nextLevel; }
     public RectTransform GetHealthBar() { return healthBar; }
     public TextMeshProUGUI GetLackOfFundsDisplay() { return lackofFunds; }
+    public GameObject GetCanvas() { return canvas; }
+    public GameObject GetNextLevelPrep() { return nextlevelPrep; }
 
 
     // setters
@@ -103,6 +119,7 @@ public class GameManager : MonoBehaviour
     public float GetScore() { return score; }
     public void SetCurrentRound(int newRound) { currentRound = newRound; }
     public void SetNextRound(bool nextround) { nextRound = nextround; }
+    public void SetNextLevel(bool nextlevel) { endofLevel = nextlevel; }
     public void SetTrackIndex(int newIndex) { trackIndex = newIndex; }
     public void SetDisplayTimer(float displaytimer) { lackoffundsdisplayTimer = displaytimer; }
 

@@ -6,6 +6,11 @@ public class NextLevel : MonoBehaviour
     GameObject[] turrets;
     GameObject tower;
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void ProceedNextLevel()
     {
         GameManager.instance.SetTrackIndex(WaveManager.instance.GetLevel());
@@ -23,5 +28,6 @@ public class NextLevel : MonoBehaviour
         gameObject.SetActive(false);
         tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
         tower.GetComponent<Tower>().SetHealth(1f);
+        
     }
 }
