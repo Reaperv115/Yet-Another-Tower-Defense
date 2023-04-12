@@ -17,7 +17,7 @@ public class BasicTurret : TurretBase
         mask = LayerMask.GetMask("enemy");
         visionDistance = 8;
         damage = 2;
-        firerateinSeconds = .5f;
+        //firerateinSeconds = .000005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();

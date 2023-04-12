@@ -73,7 +73,7 @@ public class WaveManager : MonoBehaviour
     }
     public void ResetMaxNumEnemies()
     {
-        maxnumEnemies = numenemiestoSpawn = 1;
+        maxnumEnemies = numenemiestoSpawn = round;
     }
     public void SetSpawn(bool canSpawn)
     {
