@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class LevelBeaten : MonoBehaviour
 {
-    TextMeshProUGUI message;
-    [SerializeField]
     GameObject nextlevelButton;
+    TextMeshProUGUI message;
     float messageTimer;
     // Start is called before the first frame update
     void Start()
     {
         message = GameObject.Find("Level Beaten Message").GetComponent<TextMeshProUGUI>();
+        nextlevelButton = GameObject.Find("Next Level");
         messageTimer = 3f;
     }
 

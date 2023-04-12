@@ -22,7 +22,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     GameObject nextlevelbtnPosition;
     GameObject nextlevelBtn;
-    float nextlevelTimer = 6f;
+    
 
     
 
@@ -43,14 +43,9 @@ public class WaveSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(nextlevelTimer);
         if (GameManager.instance.GetNextRound())
         {
             VictoryIntermission();
-        }
-        if (GameManager.instance.GetEndofLevel())
-        {
-            LevelVictory();
         }
             
         if (WaveManager.instance.CanSpawn())
@@ -88,20 +83,18 @@ public class WaveSpawner : MonoBehaviour
                         {
                             if (!WaveManager.instance.GetRound().Equals(5))
                             {
-                                SceneManager.LoadScene("Next Level Preparations");
-                                //WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
-                                //WaveManager.instance.SetMaxNumEnemiesToSpawn();
-                                //WeaponManager.instance.SetNumTurretsToPlace();
-                                //GameManager.instance.SetNextRound(true);
+                                WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
+                                WaveManager.instance.SetMaxNumEnemiesToSpawn();
+                                WeaponManager.instance.SetNumTurretsToPlace();
+                                GameManager.instance.SetNextRound(true);
 
                             }
                             else
                             {
                                 if (!WaveManager.instance.GetLevel().Equals(5))
                                 {
-                                    
                                     WaveManager.instance.SetLevel(WaveManager.instance.GetLevel() + 1);
-                                    GameManager.instance.SetNextLevel(true);
+                                    GameManager.instance.SetEndofLevel(true);
                                 }
                                 else
                                 {
@@ -168,22 +161,5 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    void LevelVictory()
-    {
-        nextlevelTimer -= Time.deltaTime;
-        GameManager.instance.GetNextLevelPrep().transform.SetParent(GameManager.instance.GetCanvas().transform);
-        GameManager.instance.GetNextLevelPrep().GetComponent<TextMeshProUGUI>().text = "Congrats! You beat the level! Get ready for the next one!";
-
-        //if (nextlevelTimer <= 0f)
-        //{
-        //    nextlevelTimer = 3f;
-        //    GameManager.instance.GetNextLevelPrep().GetComponent<TextMeshProUGUI>().text = "";
-        //    GameManager.instance.SetNextLevel(false);
-        //    nextlevelBtn.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-            
-        //}
-    }
+    
 }

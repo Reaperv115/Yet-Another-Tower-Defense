@@ -46,11 +46,9 @@ public class GameManager : MonoBehaviour
     int colorIndex = 0;
     int trackIndex;
 
-    public bool endofLevel
-    {
-        get { return endofLevel; }
-        set { endofLevel = value; }
-    }
+    public bool endofLevel = false;
+    float nextlevelTimer = 3f;
+    string victoryMessage = "Congrats! You've beaten the level! Get ready for the next one!";
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +58,7 @@ public class GameManager : MonoBehaviour
         else
             Debug.LogError("trying to create a duplicate of the game manager");
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
-        //nextLevel = Resources.Load<GameObject>("UI/Next Level");
+        nextLevel = GameObject.Find("Next Level");
         enemyManager = GameObject.Find("EnemyManager");
         nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
@@ -73,13 +71,29 @@ public class GameManager : MonoBehaviour
         currentRound = 1;
         tower = FindTower(GetTrack());
         canvas = GameObject.Find("Canvas");
-        print(nextlevelPrep);
-        endofLevel = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (endofLevel)
+        {
+            if (nextlevelTimer <= 0f)
+            {
+                victoryMessage = "";
+                nextlevelPrep.GetComponent<TextMeshProUGUI>().text = victoryMessage;
+                nextlevelTimer = 3f;
+                nextLevel.SetActive(true);
+                SetEndofLevel(false);
+            }
+            else
+            {
+                nextlevelTimer -= Time.deltaTime;
+                victoryMessage = "Congrats! You've beaten the level! Get ready for the next one!";
+                nextlevelPrep.GetComponent<TextMeshProUGUI>().text = victoryMessage;
+            }
+        }
+
         if (lackoffundsdisplayTimer > 0)
         {
             lackofFunds.text = apologies;
@@ -120,6 +134,7 @@ public class GameManager : MonoBehaviour
     public void SetCurrentRound(int newRound) { currentRound = newRound; }
     public void SetNextRound(bool nextround) { nextRound = nextround; }
     public void SetNextLevel(bool nextlevel) { endofLevel = nextlevel; }
+    public void SetEndofLevel(bool endlevel) { endofLevel = endlevel; }
     public void SetTrackIndex(int newIndex) { trackIndex = newIndex; }
     public void SetDisplayTimer(float displaytimer) { lackoffundsdisplayTimer = displaytimer; }
 
@@ -147,6 +162,7 @@ public class GameManager : MonoBehaviour
     {
         track = Resources.Load<GameObject>("Levels/" + trackIndex + "/track " + trackIndex);
         trackInst = Instantiate(track, track.transform.position, track.transform.rotation);
+        print(track);
         tower = FindTower(track);
         enemystartingPos = FindEnemySpawn(track);
     }
@@ -191,5 +207,22 @@ public class GameManager : MonoBehaviour
     {
         return enemystartingPos;
     }
+    void LevelVictory()
+    {
 
+
+        if (nextlevelTimer <= 0f)
+        {
+            nextlevelTimer = 3f;
+            GameManager.instance.GetNextLevelPrep().GetComponent<TextMeshProUGUI>().text = "";
+            GameManager.instance.SetNextLevel(false);
+            //nextlevelBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            nextlevelTimer -= Time.deltaTime;
+            GameManager.instance.GetNextLevelPrep().transform.SetParent(GameManager.instance.GetCanvas().transform);
+            GameManager.instance.GetNextLevelPrep().GetComponent<TextMeshProUGUI>().text = "Congrats! You beat the level! Get ready for the next one!";
+        }
+    }
 }
