@@ -58,7 +58,7 @@ public class WaveManager : MonoBehaviour
     {
         return numenemiestoSpawn;
     }
-    public void SetNumEnemiesToSpawn()
+    public void DecrementNumEnemiesToSpawn()
     {
         numenemiestoSpawn -= 1;
     }

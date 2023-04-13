@@ -13,7 +13,6 @@ public class BasicTurret : TurretBase
     void Start()
     {
         damage = 2;
-        print(GameManager.instance.GetLevel());
         switch (WaveManager.instance.GetLevel())
         {
             case 2: damage += (damage / 2); break;

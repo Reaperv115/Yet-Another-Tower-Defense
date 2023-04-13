@@ -108,31 +108,31 @@ public class WaveSpawner : MonoBehaviour
             case 1:
                 enemInst = Instantiate(WaveManager.instance.GetRound1Pack(), startingPos.position, WaveManager.instance.GetRound1Pack().transform.rotation);
                 EnemyManager.instance.enemies.Add(enemInst);
-                WaveManager.instance.SetNumEnemiesToSpawn();
+                WaveManager.instance.DecrementNumEnemiesToSpawn();
                 break;
             case 2:
                 randomEnem = Random.Range(0, WaveManager.instance.GetRound2Pack().Length);
                 enemInst = Instantiate(WaveManager.instance.GetRound2Pack()[randomEnem], startingPos.position, WaveManager.instance.GetRound2Pack()[randomEnem].transform.rotation);
                 EnemyManager.instance.enemies.Add(enemInst);
-                WaveManager.instance.SetNumEnemiesToSpawn();
+                WaveManager.instance.DecrementNumEnemiesToSpawn();
                 break;
             case 3:
                 randomEnem = Random.Range(0, WaveManager.instance.GetRound3Pack().Length);
                 enemInst = Instantiate(WaveManager.instance.GetRound3Pack()[randomEnem], startingPos.position, WaveManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                 EnemyManager.instance.enemies.Add(enemInst);
-                WaveManager.instance.SetNumEnemiesToSpawn();
+                WaveManager.instance.DecrementNumEnemiesToSpawn();
                 break;
             case 4:
                 randomEnem = Random.Range(0, WaveManager.instance.GetRound3Pack().Length);
                 enemInst = Instantiate(WaveManager.instance.GetRound3Pack()[randomEnem], startingPos.position, WaveManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                 EnemyManager.instance.enemies.Add(enemInst);
-                WaveManager.instance.SetNumEnemiesToSpawn();
+                WaveManager.instance.DecrementNumEnemiesToSpawn();
                 break;
             case 5:
                 randomEnem = Random.Range(0, WaveManager.instance.GetRound3Pack().Length);
                 enemInst = Instantiate(WaveManager.instance.GetRound3Pack()[randomEnem], startingPos.position, WaveManager.instance.GetRound3Pack()[randomEnem].transform.rotation);
                 EnemyManager.instance.enemies.Add(enemInst);
-                WaveManager.instance.SetNumEnemiesToSpawn();
+                WaveManager.instance.DecrementNumEnemiesToSpawn();
                 break;
 
                 

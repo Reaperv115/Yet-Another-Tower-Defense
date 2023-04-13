@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     private GameObject nextlevelPrep;
     [SerializeField]
     GameObject weaponsPanel;
-    GameObject enemyManager;
 
     RectTransform healthBar;
 
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
     GameObject track, trackInst;
 
     GameObject tower;
-    TextMeshProUGUI gameOver;
     Player player;
 
     string apologies = "Sorry, no turrets available to place";
@@ -59,7 +57,6 @@ public class GameManager : MonoBehaviour
             Debug.LogError("trying to create a duplicate of the game manager");
         healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         nextLevel = GameObject.Find("Next Level");
-        enemyManager = GameObject.Find("EnemyManager");
         nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);

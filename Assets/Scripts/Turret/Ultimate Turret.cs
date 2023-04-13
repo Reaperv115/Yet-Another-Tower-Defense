@@ -12,7 +12,7 @@ public class UltimateTurret : TurretBase
     // Start is called before the first frame update
     void Start()
     {
-        damage = 75;
+        damage = 100;
         switch (WaveManager.instance.GetLevel())
         {
             case 2: damage += (damage / 2); break;
