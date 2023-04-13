@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UltimateTurret : TurretBase
@@ -11,9 +12,17 @@ public class UltimateTurret : TurretBase
     // Start is called before the first frame update
     void Start()
     {
+        damage = 75;
+        switch (WaveManager.instance.GetLevel())
+        {
+            case 2: damage += (damage / 2); break;
+            case 3: damage += (damage / 2); break;
+            case 4: damage += (damage / 2); break;
+            case 5: damage += (damage / 2); break;
+        }
+        print("Ultimate Turret Damage: " + damage);
         mask = LayerMask.GetMask("enemy");
         visionDistance = 15;
-        damage = 75;
         firerateinSeconds = .005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();

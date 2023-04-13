@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class BasicTurret : TurretBase
 {
@@ -13,9 +12,19 @@ public class BasicTurret : TurretBase
     // Start is called before the first frame update
     void Start()
     {
+        damage = 2;
+        print(GameManager.instance.GetLevel());
+        switch (WaveManager.instance.GetLevel())
+        {
+            case 2: damage += (damage / 2); break;
+            case 3: damage += (damage / 2); break;
+            case 4: damage += (damage / 2); break;
+            case 5: damage += (damage / 2); break;
+        }
+        print("Basic Turret Damage: " + damage);
         mask = LayerMask.GetMask("enemy");
         visionDistance = 8;
-        damage = 2;
+        
         firerateinSeconds = .00005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();

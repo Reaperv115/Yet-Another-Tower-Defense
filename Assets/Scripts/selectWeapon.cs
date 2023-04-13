@@ -4,16 +4,12 @@ using UnityEngine;
 public class SelectWeapon : MonoBehaviour
 {
     Player player;
-    Ray ray;
-    RaycastHit2D hit;
     Touch touch;
 
     Vector3 newworldPoint, oldworldPoint;
     Vector3 mouseWorldPosition;
     bool placingWeapon;
 
-    float rotationAngle = 90;
-    float rotationSpeed;
     float timetoplaceWeapon;
 
     bool activateweaponsPanel;
@@ -23,7 +19,6 @@ public class SelectWeapon : MonoBehaviour
     {
         player = GetComponent<Player>();
         placingWeapon = false;
-        rotationSpeed = rotationAngle;
         timetoplaceWeapon = .05f;
         activateweaponsPanel = false;
     }
@@ -154,22 +149,10 @@ public class SelectWeapon : MonoBehaviour
 
     
 
-    public void isselectingWeapon(bool isPlacing)
-    {
-        placingWeapon = isPlacing;
-    }
+    public void IsSelectingWeapon(bool isPlacing) { placingWeapon = isPlacing; }
 
-    public void ToggleWeaponAdjusting(bool isAdjusting)
-    {
-        GameManager.instance.GetWeaponsButton().SetActive(isAdjusting);
-    }
+    public void ToggleWeaponAdjusting(bool isAdjusting) { GameManager.instance.GetWeaponsButton().SetActive(isAdjusting); }
 
-    public Vector3 GetWeaponPosition()
-    {
-        return mouseWorldPosition;
-    }
-    public Vector3 getMWP()
-    {
-        return mouseWorldPosition;
-    }
+    public Vector3 GetWeaponPosition() { return mouseWorldPosition; }
+    public Vector3 getMWP() { return mouseWorldPosition; }
 }

@@ -1,11 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AdvancedTurret : TurretBase
 {
     RaycastHit2D hit;
     Vector3 offSet;
-    Vector3 dir;
 
 
     float range = 15f;
@@ -13,9 +11,17 @@ public class AdvancedTurret : TurretBase
     // Start is called before the first frame update
     void Start()
     {
+        damage = 75;
+        switch (WaveManager.instance.GetLevel())
+        {
+            case 2: damage += (damage / 2); break;
+            case 3: damage += (damage / 2); break;
+            case 4: damage += (damage / 2); break;
+            case 5: damage += (damage / 2); break;
+        }
+        print("Advanced Turret Damage: " + damage);
         mask = LayerMask.GetMask("enemy");
         visionDistance = 10;
-        damage = 75;
         firerateinSeconds = .005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();

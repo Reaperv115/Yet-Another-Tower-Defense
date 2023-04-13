@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float lackoffundsdisplayTimer = 2f;
+    float nomoreturretstoplacedisplayTimer = 2f;
     SelectWeapon swRef;
     bool placingWeapon;
     
@@ -13,14 +11,9 @@ public class Player : MonoBehaviour
     {
         swRef = GetComponent<SelectWeapon>();
     }
-    private void Update()
-    {
 
-        
-    }
-
-    public float GetDisplayTimer() { return lackoffundsdisplayTimer; }
-    public void SetDisplayTimer(float time) { lackoffundsdisplayTimer = time; }
+    public float GetDisplayTimer() { return nomoreturretstoplacedisplayTimer; }
+    public void SetDisplayTimer(float time) { nomoreturretstoplacedisplayTimer = time; }
     public void LoadWeapon(GameObject weapon)
     {
         mainWeapon = weapon;

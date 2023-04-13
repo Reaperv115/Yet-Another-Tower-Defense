@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -19,15 +17,10 @@ public class Tower : MonoBehaviour
         isgameOver = false;
     }
 
-    public float GetHealth()
-    {
-        return fHealth;
-    }
+    public float GetHealth() { return fHealth; }
 
-    public void SetHealth(float health)
-    {
-        fHealth = health;
-    }
+    public void SetHealth(float health) { fHealth = health; }
+    public bool GetIsGameOver() { return isgameOver; }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,8 +54,4 @@ public class Tower : MonoBehaviour
     }
 
 
-    public bool GetIsGameOver()
-    {
-        return isgameOver;
-    }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +14,6 @@ public class VictorySceneBGColors : MonoBehaviour
     {
         colorIndex = 0;
         congratscolorIndex = colorIndex + 1;
-        Debug.Log(possibleColors.Length);
     }
 
     // Update is called once per frame
@@ -27,26 +24,16 @@ public class VictorySceneBGColors : MonoBehaviour
         if (bgcolorTimer > 1f)
         {
             if (colorIndex.Equals(possibleColors.Length - 2))
-            {
                 colorIndex = 0;
-            }
             else
-            {
                 ++colorIndex;
-            }
             if (congratscolorIndex.Equals(possibleColors.Length - 2))
-            {
                 congratscolorIndex = 0;
-            }
             else
-            {
                 ++congratscolorIndex;
-            }
             bgcolorTimer = 0f;
         }
         else
-        {
             bgcolorTimer += Time.deltaTime;
-        }
     }
 }

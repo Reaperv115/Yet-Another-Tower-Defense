@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainMenuBackground : MonoBehaviour
 {
@@ -28,27 +27,17 @@ public class MainMenuBackground : MonoBehaviour
         if (colorTimer > 1f)
         {
             if (tmp.Equals(backgroundColors.Length - 2))
-            {
                 tmp = 0;
-            }
             else
-            {
                 ++tmp;
-            }
             if (newtmp.Equals(backgroundColors.Length - 2))
-            {
                 newtmp = 0;
-            }
             else
-            {
                 ++newtmp;
-            }
             colorTimer = 0f;
         }
         else
-        {
             colorTimer += Time.deltaTime;
-        }
 
     }
 }

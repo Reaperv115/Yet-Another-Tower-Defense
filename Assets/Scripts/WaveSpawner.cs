@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SubsystemsImplementation;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -21,7 +16,6 @@ public class WaveSpawner : MonoBehaviour
 
     [SerializeField]
     GameObject nextlevelbtnPosition;
-    GameObject nextlevelBtn;
     
 
     
@@ -37,7 +31,6 @@ public class WaveSpawner : MonoBehaviour
         spawnTimer = 1f;
         startingPos = GameManager.instance.GetEnemyStartingPosition().transform;
         intermission = 5f;
-        nextlevelBtn = GameObject.Find("Next Level");
     }
 
     // Update is called once per frame
