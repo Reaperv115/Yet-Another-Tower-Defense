@@ -6,7 +6,6 @@ public class BasicTurret : TurretBase
 {
     RaycastHit2D hit;
     Vector3 offSet;
-    Vector3 dir;
 
 
     float range = 15f;
@@ -17,7 +16,7 @@ public class BasicTurret : TurretBase
         mask = LayerMask.GetMask("enemy");
         visionDistance = 8;
         damage = 2;
-        //firerateinSeconds = .000005f;
+        firerateinSeconds = .00005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
@@ -38,7 +37,19 @@ public class BasicTurret : TurretBase
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
-        if (hit) Fire();
+        if (hit)
+        {
+            if (firerateinSeconds <= 0f)
+            {
+                Fire();
+                firerateinSeconds = .00005f;
+            }
+            else
+            {
+                firerateinSeconds -= Time.deltaTime;
+                audioSource.Stop();
+            }
+        }
         else
         {
             audioSource.Stop();

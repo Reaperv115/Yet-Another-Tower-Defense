@@ -14,9 +14,9 @@ public class AdvancedTurret : TurretBase
     void Start()
     {
         mask = LayerMask.GetMask("enemy");
-        visionDistance = 5;
-        damage = 25;
-        firerateinSeconds = .5f;
+        visionDistance = 10;
+        damage = 75;
+        firerateinSeconds = .005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
@@ -42,7 +42,7 @@ public class AdvancedTurret : TurretBase
             if (firerateinSeconds <= 0f)
             {
                 Fire();
-                firerateinSeconds = .5f;
+                firerateinSeconds = .005f;
             }
             else
             {
@@ -83,6 +83,12 @@ public class AdvancedTurret : TurretBase
         {
             audioSource.Play();
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            switch (target.name)
+            {
+                case "Basic Enemy(Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
+                case "Advanced Enemy(Clone)": target.GetComponent<AdvancedEnemy>().Health -= damage; break;
+                case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
+            }
         }
     }
 }

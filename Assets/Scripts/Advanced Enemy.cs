@@ -9,8 +9,15 @@ public class AdvancedEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 175;
-        speed = 20f * Time.deltaTime;
+        Health = 125;
+        switch (WaveManager.instance.GetRound())
+        {
+            case 2: Health += (Health / 2); print("Advanced enemy: " + Health); break;
+            case 3: Health += (Health / 2); print("Advanced enemy: " + Health); break;
+            case 4: Health += (Health / 2); print("Advanced enemy: " + Health); break;
+            case 5: Health += (Health / 2); print("Advanced enemy: " + Health); break;
+        }
+        speed = 15f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
         pathwayMarkers = new List<Transform>();
@@ -21,6 +28,7 @@ public class AdvancedEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        print("Advanced Enemy Health: " + Health);
         if (Health <= 0f)
         {
             ScoreManager.instance.amount += 2;

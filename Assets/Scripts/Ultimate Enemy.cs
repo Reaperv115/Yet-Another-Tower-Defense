@@ -10,6 +10,13 @@ public class UltimateEnemy : EnemyBase
     void Start()
     {
         Health = 220;
+        switch (WaveManager.instance.GetRound())
+        {
+            case 2: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
+            case 3: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
+            case 4: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
+            case 5: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
+        }
         speed = 10f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
@@ -21,6 +28,7 @@ public class UltimateEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        print("Ultimate Enemy Health: " + Health);
         if (Health <= 0f)
         {
             ScoreManager.instance.amount += 3;

@@ -805,6 +805,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1349338510}
+    - target: {fileID: 4991509022455483856, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 156066308}
+    - target: {fileID: 4991509022455483856, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 5453032570153137443, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

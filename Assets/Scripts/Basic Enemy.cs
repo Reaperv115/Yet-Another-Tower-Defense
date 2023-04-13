@@ -11,6 +11,13 @@ public class BasicEnemy : EnemyBase
     void Start()
     {
         Health = 65;
+        switch (WaveManager.instance.GetRound())
+        {
+            case 2:Health += (Health / 2); print("Basic enemy: " + Health); break;
+            case 3:Health += (Health / 2); print("Basic enemy: " + Health); break;
+            case 4:Health += (Health / 2); print("Basic enemy: " + Health); break;
+            case 5:Health += (Health / 2); print("Basic enemy: " + Health); break;
+        }
         speed = 20f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;
@@ -22,6 +29,7 @@ public class BasicEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        print("Basic Enemy Health: " + Health);
         if (Health <= 0f)
         {
             ScoreManager.instance.amount += 1;

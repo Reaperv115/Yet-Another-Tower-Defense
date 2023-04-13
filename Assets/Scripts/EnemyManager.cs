@@ -43,4 +43,14 @@ public class EnemyManager : MonoBehaviour
         return round3Car;
     }
     //
+
+    public void IncreaseEnemyHealth()
+    {
+        round1Car.GetComponent<BasicEnemy>().Health *= 2;
+        round2Car.GetComponent<AdvancedEnemy>().Health *= 2;
+        round3Car.GetComponent<UltimateEnemy>().Health *= 2;
+        print(round1Car.GetComponent<BasicEnemy>().Health);
+        print(round2Car.GetComponent<AdvancedEnemy>().Health);
+        print(round3Car.GetComponent<UltimateEnemy>().Health);
+    }
 }

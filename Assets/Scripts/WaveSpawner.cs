@@ -141,6 +141,8 @@ public class WaveSpawner : MonoBehaviour
                 EnemyManager.instance.enemies.Add(enemInst);
                 WaveManager.instance.SetNumEnemiesToSpawn();
                 break;
+
+                
         }
     }
 

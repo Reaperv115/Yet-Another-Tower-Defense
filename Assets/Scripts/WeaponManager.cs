@@ -18,14 +18,13 @@ public class WeaponManager : MonoBehaviour
         basicTurret = Resources.Load<GameObject>("Basic Turret");
         advancedTurret = Resources.Load<GameObject>("Advanced Turret");
         ultimateTurret = Resources.Load<GameObject>("Ultimate Turret");
-        numturretstoPlace = 1;
+        numturretstoPlace = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
         availableturretsCounter.GetComponent<TextMeshProUGUI>().text =  "Available Turrets: " + numturretstoPlace.ToString();
-        //Debug.Log(numturretstoPlace);
     }
 
     public GameObject GetBasicTurret() { return basicTurret; }
