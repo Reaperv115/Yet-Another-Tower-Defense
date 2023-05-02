@@ -43,18 +43,27 @@ public class SelectWeapon : MonoBehaviour
                     mouseWorldPosition.z = 0f;
                     if (touch.phase.Equals(TouchPhase.Stationary))
                     {
-                        if (timetoplaceWeapon <= 0f)
+                        if (player.GetIsTooClose())
                         {
-                            player.mainWeapon.transform.position = mouseWorldPosition;
-                            GameManager.instance.GetWeaponsButton().SetActive(true);
-                            GameManager.instance.GetBeginRoundButton().SetActive(true);
-                            GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
-                            player.SetIsPlacing(false);
-                            timetoplaceWeapon = 1f;
-                            GameManager.instance.GetRestartButton().SetActive(true);
+                            GameManager.instance.GetTurretProximityMessage().GetComponent<TextMeshProUGUI>().text = "Too Close To Another Turret!";
+
                         }
                         else
-                            timetoplaceWeapon -= Time.deltaTime;
+                        {
+                            GameManager.instance.GetTurretProximityMessage().GetComponent<TextMeshProUGUI>().text = "";
+                            if (timetoplaceWeapon <= 0f)
+                            {
+                                player.mainWeapon.transform.position = mouseWorldPosition;
+                                GameManager.instance.GetWeaponsButton().SetActive(true);
+                                GameManager.instance.GetBeginRoundButton().SetActive(true);
+                                GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
+                                player.SetIsPlacing(false);
+                                timetoplaceWeapon = 1f;
+                                GameManager.instance.GetRestartButton().SetActive(true);
+                            }
+                            else
+                                timetoplaceWeapon -= Time.deltaTime;
+                        }
                     }
                     else
                     {

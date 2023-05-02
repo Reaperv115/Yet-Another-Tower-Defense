@@ -29,6 +29,7 @@ public class UltimateTurret : TurretBase
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
+        tooClose = false;
     }
 
     // Update is called once per frame
@@ -101,6 +102,24 @@ public class UltimateTurret : TurretBase
                 case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
             }
         }
-    }
 
+
+
+
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(true);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(true);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(false);
+    }
 }

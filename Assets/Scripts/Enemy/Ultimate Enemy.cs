@@ -9,7 +9,7 @@ public class UltimateEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 220;
+        Health = 230;
         switch (WaveManager.instance.GetRound())
         {
             case 2: Health += (Health / 5); break;

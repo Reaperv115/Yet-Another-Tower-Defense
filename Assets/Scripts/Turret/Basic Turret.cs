@@ -7,7 +7,7 @@ public class BasicTurret : TurretBase
     Vector3 offSet;
 
 
-    float range = 15f;
+    float range = 20f;
     Transform target;
     // Start is called before the first frame update
     void Start()
@@ -25,12 +25,13 @@ public class BasicTurret : TurretBase
         enemyMask = LayerMask.GetMask("enemy");
         weaponMask = LayerMask.GetMask("weapon");
         visionDistance = 8;
-        
+
         firerateinSeconds = .00005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
         audioSource.volume = .6f;
+        tooClose = false;
     }
 
     // Update is called once per frame
@@ -102,5 +103,21 @@ public class BasicTurret : TurretBase
                 case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
             }
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(true);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(true);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(false);
     }
 }

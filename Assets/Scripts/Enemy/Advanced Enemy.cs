@@ -9,7 +9,7 @@ public class AdvancedEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 125;
+        Health = 135;
         switch (WaveManager.instance.GetRound())
         {
             case 2: Health += (Health / 5); print("Advanced enemy: " + Health); break;

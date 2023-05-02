@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI weapontoPlace;
     [SerializeField]
     TextMeshProUGUI lackofFunds;
+    [SerializeField]
+    GameObject cam;
+    [SerializeField]
+    GameObject tooclosetoturretMessage;
 
     GameObject nextLevel;
 
@@ -124,6 +128,8 @@ public class GameManager : MonoBehaviour
     public GameObject GetCanvas() { return canvas; }
     public GameObject GetNextLevelPrep() { return nextlevelPrep; }
     public int GetLevel() { return currentLevel; }
+    public GameObject GetCam() { return cam; }
+    public GameObject GetTurretProximityMessage() { return tooclosetoturretMessage; }
 
 
     // setters
@@ -166,7 +172,6 @@ public class GameManager : MonoBehaviour
 
     public void BeginRound()
     {
-        //hasBegun = true;
         WaveManager.instance.SetSpawn(true);
         weaponsButton.gameObject.SetActive(false);
         beginroundButton.gameObject.SetActive(false);

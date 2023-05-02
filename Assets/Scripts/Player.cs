@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     float nomoreturretstoplacedisplayTimer = 2f;
     SelectWeapon swRef;
     bool placingWeapon;
+    bool tooClose = false;
     
     private void Awake()
     {
@@ -29,4 +30,7 @@ public class Player : MonoBehaviour
     public bool IsPlacingWeapon() { return placingWeapon; }
     
     public void SetIsPlacing(bool isPlacing) { placingWeapon = isPlacing; }
+
+    public void SetTooClose(bool istooclose) { tooClose = istooclose;  }
+    public bool GetIsTooClose() { return tooClose; }
 }

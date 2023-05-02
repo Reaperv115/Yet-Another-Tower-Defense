@@ -17,7 +17,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     GameObject nextlevelbtnPosition;
     
-
+    bool canbuyUltimate;
     
 
     private void Awake()
@@ -77,6 +77,11 @@ public class WaveSpawner : MonoBehaviour
                             if (!WaveManager.instance.GetRound().Equals(5))
                             {
                                 WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
+                                if (WaveManager.instance.GetRound().Equals(3))
+                                {
+                                    print("able to buy ultimate turret");
+                                    GameManager.instance.GetWeaponsPanel().transform.GetChild(2).gameObject.SetActive(true);
+                                }
                                 WaveManager.instance.SetMaxNumEnemiesToSpawn();
                                 WeaponManager.instance.SetNumTurretsToPlace();
                                 GameManager.instance.SetNextRound(true);

@@ -29,6 +29,7 @@ public class AdvancedTurret : TurretBase
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
         audioSource.volume = .6f;
+        tooClose = false;
     }
 
     // Update is called once per frame
@@ -100,5 +101,21 @@ public class AdvancedTurret : TurretBase
                 case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
             }
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(true);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(true);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.name.Contains("Turret"))
+            GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(false);
     }
 }
