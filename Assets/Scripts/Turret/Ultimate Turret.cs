@@ -30,11 +30,13 @@ public class UltimateTurret : TurretBase
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
         tooClose = false;
+        health = 100f;
     }
 
     // Update is called once per frame
     void Update()
-    {   // do nothing if no target is close enough
+    {  
+        // do nothing if no target is close enough
         if (target == null)
         {
             audioSource.Stop();
@@ -102,11 +104,9 @@ public class UltimateTurret : TurretBase
                 case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
             }
         }
-
-
-
-
     }
+    public float GetHealth() { return health; }
+    public void SetHealth(float newHealth) { health = newHealth; }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.name.Contains("Turret"))

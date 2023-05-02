@@ -943,6 +943,14 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1968210548814617495, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.17275798
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968210548814617495, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.234
+      objectReference: {fileID: 0}
     - target: {fileID: 2572838506108133753, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

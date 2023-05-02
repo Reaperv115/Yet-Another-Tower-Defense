@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8368646261909082290}
   - component: {fileID: 7264055502042674720}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle flash1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7754160137873334430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7175670866391852072}
   - component: {fileID: 5754932362312374809}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle flash1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 6179361030218114272}
   - component: {fileID: 3603539011088333529}
   - component: {fileID: 2928051160723423394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ultimate Turret
   m_TagString: weapon
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.37500006
+  m_Radius: 0.51
 --- !u!1 &2980723156290925256
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7766137965919517962}
   - component: {fileID: 755264477785531583}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle flash1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1919505615126691044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bullet spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}

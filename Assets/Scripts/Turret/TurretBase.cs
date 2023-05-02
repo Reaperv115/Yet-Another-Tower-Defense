@@ -11,6 +11,7 @@ public class TurretBase : MonoBehaviour
     protected Player player;
     protected AudioSource audioSource;
     protected bool tooClose;
+    protected float health;
     // Start is called before the first frame update
     private void Awake()
     {

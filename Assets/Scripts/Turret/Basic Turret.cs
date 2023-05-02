@@ -9,10 +9,16 @@ public class BasicTurret : TurretBase
 
     float range = 20f;
     Transform target;
+
+    int enem;
+    int turret;
+    int mask;
     // Start is called before the first frame update
     void Start()
     {
-        print("basic turret start");
+        enem = 1 << LayerMask.NameToLayer("enemy");
+        turret = 1 << LayerMask.NameToLayer("weapon");
+        mask = enem | turret;
         damage = 2;
         switch (WaveManager.instance.GetLevel())
         {
@@ -21,7 +27,6 @@ public class BasicTurret : TurretBase
             case 4: damage += (damage / 4); break;
             case 5: damage += (damage / 5); break;
         }
-        print("Basic Turret Damage: " + damage);
         enemyMask = LayerMask.GetMask("enemy");
         weaponMask = LayerMask.GetMask("weapon");
         visionDistance = 8;
@@ -32,11 +37,14 @@ public class BasicTurret : TurretBase
         audioSource.Stop();
         audioSource.volume = .6f;
         tooClose = false;
+        health = 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0f)
+            Destroy(gameObject);
         // do nothing if no target is close enough
         if (target == null)
         {
@@ -47,9 +55,6 @@ public class BasicTurret : TurretBase
         // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
-        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, weaponMask);
-        if (hit)
-            Destroy(hit.transform.gameObject);
         hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, enemyMask);
         if (firerateinSeconds <= 0f)
         {
@@ -96,11 +101,11 @@ public class BasicTurret : TurretBase
         {
             audioSource.Play();
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            switch (target.name)
+            switch (hit.transform.name)
             {
-                case "Basic Enemy(Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
-                case "Advanced Enemy(Clone)": target.GetComponent<AdvancedEnemy>().Health -= damage; break;
-                case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
+                case "Basic Enemy(Clone)": hit.transform.GetComponent<BasicEnemy>().Health -= damage; break;
+                case "Advanced Enemy(Clone)": hit.transform.GetComponent<AdvancedEnemy>().Health -= damage; break;
+                case "Ultimate Enemy(Clone)": hit.transform.GetComponent<UltimateEnemy>().Health -= damage; break;
             }
         }
     }

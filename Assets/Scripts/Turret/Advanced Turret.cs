@@ -30,6 +30,7 @@ public class AdvancedTurret : TurretBase
         audioSource.Stop();
         audioSource.volume = .6f;
         tooClose = false;
+        health = 100f;
     }
 
     // Update is called once per frame
@@ -118,4 +119,6 @@ public class AdvancedTurret : TurretBase
         if (collision.transform.name.Contains("Turret"))
             GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(false);
     }
+    public float GetHealth() { return health; }
+    public void SetHealth(float newHealth) { health = newHealth; }
 }

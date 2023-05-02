@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7052980220373307470}
   - component: {fileID: 905345491955204081}
   - component: {fileID: 5439514423031294806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Basic Turret
   m_TagString: weapon
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3838964312852711894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bullet spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7207642267480210464}
   - component: {fileID: 8346779701894929711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
