@@ -6,7 +6,7 @@ public class TurretBase : MonoBehaviour
     protected static int damage;
     protected float firerateinSeconds;
     protected float visionDistance;
-    protected LayerMask mask;
+    protected LayerMask enemyMask, weaponMask;
     protected Color[] colors = {Color.black, Color.blue, Color.red, Color.cyan, Color.grey};
     protected Player player;
     protected AudioSource audioSource;

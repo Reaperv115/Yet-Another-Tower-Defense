@@ -19,6 +19,8 @@ public class WaveManager : MonoBehaviour
     bool spawn = false;
     int numenemiestoSpawn, maxnumEnemies;
 
+    
+    
     // Start is called before the first frame update
     void Start()
     {

@@ -12,16 +12,18 @@ public class UltimateTurret : TurretBase
     // Start is called before the first frame update
     void Start()
     {
+        print("ultimate turret starting");
         damage = 100;
         switch (WaveManager.instance.GetLevel())
         {
             case 2: damage += (damage / 2); break;
-            case 3: damage += (damage / 2); break;
-            case 4: damage += (damage / 2); break;
-            case 5: damage += (damage / 2); break;
+            case 3: damage += (damage / 3); break;
+            case 4: damage += (damage / 4); break;
+            case 5: damage += (damage / 5); break;
         }
         print("Ultimate Turret Damage: " + damage);
-        mask = LayerMask.GetMask("enemy");
+        enemyMask = LayerMask.GetMask("enemy");
+        weaponMask = LayerMask.GetMask("weapon");
         visionDistance = 15;
         firerateinSeconds = .005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
@@ -41,10 +43,13 @@ public class UltimateTurret : TurretBase
         // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
-        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, mask);
+        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, weaponMask);
         if (hit)
+            Destroy(hit.transform.gameObject);
+        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, enemyMask);
+        if (firerateinSeconds <= 0f)
         {
-            if (firerateinSeconds <= 0f)
+            if (hit)
             {
                 Fire();
                 firerateinSeconds = .005f;
@@ -53,7 +58,6 @@ public class UltimateTurret : TurretBase
             {
                 gameObject.transform.GetChild(1).gameObject.SetActive(false);
                 audioSource.Stop();
-                firerateinSeconds -= Time.deltaTime;
             }
         }
         else

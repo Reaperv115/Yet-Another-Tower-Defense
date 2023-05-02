@@ -12,10 +12,10 @@ public class UltimateEnemy : EnemyBase
         Health = 220;
         switch (WaveManager.instance.GetRound())
         {
-            case 2: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
-            case 3: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
-            case 4: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
-            case 5: Health += (Health / 2); print("Ultimate enemy: " + Health); break;
+            case 2: Health += (Health / 5); break;
+            case 3: Health += (Health / 4); break;
+            case 4: Health += (Health / 3); break;
+            case 5: Health += (Health / 2); break;
         }
         speed = 10f * Time.deltaTime;
         attackTower = false;

@@ -12,9 +12,9 @@ public class AdvancedEnemy : EnemyBase
         Health = 125;
         switch (WaveManager.instance.GetRound())
         {
-            case 2: Health += (Health / 2); print("Advanced enemy: " + Health); break;
-            case 3: Health += (Health / 2); print("Advanced enemy: " + Health); break;
-            case 4: Health += (Health / 2); print("Advanced enemy: " + Health); break;
+            case 2: Health += (Health / 5); print("Advanced enemy: " + Health); break;
+            case 3: Health += (Health / 4); print("Advanced enemy: " + Health); break;
+            case 4: Health += (Health / 3); print("Advanced enemy: " + Health); break;
             case 5: Health += (Health / 2); print("Advanced enemy: " + Health); break;
         }
         speed = 15f * Time.deltaTime;

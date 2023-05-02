@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     GameObject basicTurret, advancedTurret, ultimateTurret;
     [SerializeField]
     GameObject availableturretsCounter;
+    GameObject[] numofturretsinplay;
 
     float numturretstoPlace;
     // Start is called before the first frame update
