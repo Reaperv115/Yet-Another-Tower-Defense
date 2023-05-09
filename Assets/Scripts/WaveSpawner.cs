@@ -79,12 +79,12 @@ public class WaveSpawner : MonoBehaviour
                                 WaveManager.instance.SetRound(WaveManager.instance.GetRound() + 1);
                                 if (WaveManager.instance.GetRound().Equals(3))
                                 {
-                                    print("able to buy ultimate turret");
                                     GameManager.instance.GetWeaponsPanel().transform.GetChild(2).gameObject.SetActive(true);
                                 }
                                 WaveManager.instance.SetMaxNumEnemiesToSpawn();
                                 WeaponManager.instance.SetNumTurretsToPlace();
                                 GameManager.instance.SetNextRound(true);
+                                EnemyManager.instance.IncreaseEnemyHealth();
 
                             }
                             else
@@ -93,6 +93,7 @@ public class WaveSpawner : MonoBehaviour
                                 {
                                     WaveManager.instance.SetLevel(WaveManager.instance.GetLevel() + 1);
                                     GameManager.instance.SetEndofLevel(true);
+                                    GameManager.instance.GetWeaponsPanel().transform.GetChild(2).gameObject.SetActive(false);
                                 }
                                 else
                                 {

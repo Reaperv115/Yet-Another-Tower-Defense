@@ -9,14 +9,15 @@ public class AdvancedEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 135;
+        Health = 75;
         switch (WaveManager.instance.GetRound())
         {
-            case 2: Health += (Health / 5); print("Advanced enemy: " + Health); break;
-            case 3: Health += (Health / 4); print("Advanced enemy: " + Health); break;
-            case 4: Health += (Health / 3); print("Advanced enemy: " + Health); break;
-            case 5: Health += (Health / 2); print("Advanced enemy: " + Health); break;
+            case 2: Health *= 2; break;
+            case 3: Health *= 3; break;
+            case 4: Health *= 4; break;
+            case 5: Health *= 5; break;
         }
+        print("advanced enemy health: " + Health);
         speed = 15f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;

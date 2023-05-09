@@ -9,14 +9,14 @@ public class UltimateEnemy : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
-        Health = 230;
+        Health = 125;
         switch (WaveManager.instance.GetRound())
         {
-            case 2: Health += (Health / 5); break;
-            case 3: Health += (Health / 4); break;
-            case 4: Health += (Health / 3); break;
-            case 5: Health += (Health / 2); break;
+            case 3: Health *= 2; break;
+            case 4: Health *= 3; break;
+            case 5: Health *= 4; break;
         }
+        print("ultimate enemy health: " + Health);
         speed = 10f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;

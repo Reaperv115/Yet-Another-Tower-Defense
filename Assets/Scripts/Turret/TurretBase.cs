@@ -3,7 +3,7 @@ using UnityEngine;
 public class TurretBase : MonoBehaviour
 {
     protected int price;
-    protected static int damage;
+    protected static int _damage;
     protected float firerateinSeconds;
     protected float visionDistance;
     protected LayerMask enemyMask, weaponMask;

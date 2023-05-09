@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AdvancedTurret : TurretBase
 {
@@ -8,23 +9,27 @@ public class AdvancedTurret : TurretBase
 
     float range = 15f;
     Transform target;
+
+    int enem;
+    int turret;
+    int mask;
     // Start is called before the first frame update
     void Start()
     {
-        print("advanced turret starting");
-        damage = 75;
-        switch (WaveManager.instance.GetLevel())
-        {
-            case 2: damage += (damage / 2); break;
-            case 3: damage += (damage / 3); break;
-            case 4: damage += (damage / 4); break;
-            case 5: damage += (damage / 5); break;
-        }
-        print("Advanced Turret Damage: " + damage);
-        enemyMask = LayerMask.GetMask("enemy");
-        weaponMask = LayerMask.GetMask("weapon");
+        enem = 1 << LayerMask.NameToLayer("enemy");
+        turret = 1 << LayerMask.NameToLayer("weapon");
+        mask = enem | turret;
+        _damage = 5;
+        //switch (WaveManager.instance.GetLevel())
+        //{
+        //    case 2: _damage += (_damage / 2); break;
+        //    case 3: _damage += (_damage / 3); break;
+        //    case 4: _damage += (_damage / 4); break;
+        //    case 5: _damage += (_damage / 5); break;
+        //}
+        print("advanced turret damage: " + _damage);
         visionDistance = 10;
-        firerateinSeconds = .005f;
+        firerateinSeconds = .000005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
         audioSource.Stop();
@@ -36,6 +41,8 @@ public class AdvancedTurret : TurretBase
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0f)
+            Destroy(gameObject);
         // do nothing if no target is close enough
         if (target == null)
         {
@@ -46,10 +53,7 @@ public class AdvancedTurret : TurretBase
         // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
-        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, weaponMask);
-        if (hit)
-            Destroy(hit.transform.gameObject);
-        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, enemyMask);
+        hit = Physics2D.Raycast(transform.GetChild(0).position, transform.up * visionDistance, visionDistance, mask);
         if (firerateinSeconds <= 0f)
         {
             if (hit)
@@ -95,11 +99,15 @@ public class AdvancedTurret : TurretBase
         {
             audioSource.Play();
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            switch (target.name)
+            switch (hit.transform.name)
             {
-                case "Basic Enemy(Clone)": target.GetComponent<BasicEnemy>().Health -= damage; break;
-                case "Advanced Enemy(Clone)": target.GetComponent<AdvancedEnemy>().Health -= damage; break;
-                case "Ultimate Enemy(Clone)": target.GetComponent<UltimateEnemy>().Health -= damage; break;
+                case "Basic Enemy(Clone)":    hit.transform.GetComponent<BasicEnemy>().Health -= _damage; break;
+                case "Advanced Enemy(Clone)": hit.transform.GetComponent<AdvancedEnemy>().Health -= _damage; break;
+                case "Ultimate Enemy(Clone)": hit.transform.GetComponent<UltimateEnemy>().Health -= _damage; break;
+
+                case "Basic Turret(Clone)":   hit.transform.GetComponent<BasicTurret>().TakeDamage(); break;
+                case "Advanced Turret(Clone)":hit.transform.GetComponent<AdvancedTurret>().TakeDamage(); break;
+                case "Ultimate Turret(Clone)":hit.transform.GetComponent<UltimateTurret>().TakeDamage(); break;
             }
         }
     }
@@ -121,4 +129,9 @@ public class AdvancedTurret : TurretBase
     }
     public float GetHealth() { return health; }
     public void SetHealth(float newHealth) { health = newHealth; }
+    public void TakeDamage() { SetHealth(health -= _damage); }
+    //public void TakeDamage() 
+    //{ 
+    //    Destroy(gameObject);
+    //}
 }

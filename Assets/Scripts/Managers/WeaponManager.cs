@@ -15,7 +15,10 @@ public class WeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Debug.LogError("trying to create multiple instances of weapon manager");
         basicTurret = Resources.Load<GameObject>("Basic Turret");
         advancedTurret = Resources.Load<GameObject>("Advanced Turret");
         ultimateTurret = Resources.Load<GameObject>("Ultimate Turret");

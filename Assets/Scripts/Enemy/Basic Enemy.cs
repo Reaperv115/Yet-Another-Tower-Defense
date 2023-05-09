@@ -13,11 +13,12 @@ public class BasicEnemy : EnemyBase
         Health = 65;
         switch (WaveManager.instance.GetRound())
         {
-            case 2:Health += (Health / 2); print("Basic enemy: " + Health); break;
-            case 3:Health += (Health / 2); print("Basic enemy: " + Health); break;
-            case 4:Health += (Health / 2); print("Basic enemy: " + Health); break;
-            case 5:Health += (Health / 2); print("Basic enemy: " + Health); break;
+            case 2: Health *= 2; break;
+            case 3: Health *= 3; break;
+            case 4: Health *= 4; break;
+            case 5: Health *= 5; break;
         }
+        print("basic enemy health: " + Health);
         speed = 20f * Time.deltaTime;
         attackTower = false;
         pathIndex = 0;

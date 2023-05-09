@@ -19,18 +19,16 @@ public class BasicTurret : TurretBase
         enem = 1 << LayerMask.NameToLayer("enemy");
         turret = 1 << LayerMask.NameToLayer("weapon");
         mask = enem | turret;
-        damage = 2;
-        switch (WaveManager.instance.GetLevel())
-        {
-            case 2: damage += (damage / 2); break;
-            case 3: damage += (damage / 3); break;
-            case 4: damage += (damage / 4); break;
-            case 5: damage += (damage / 5); break;
-        }
-        enemyMask = LayerMask.GetMask("enemy");
-        weaponMask = LayerMask.GetMask("weapon");
+        _damage = 3;
+        //switch (WaveManager.instance.GetLevel())
+        //{
+        //    case 2: _damage += (_damage / 2); break;
+        //    case 3: _damage += (_damage / 3); break;
+        //    case 4: _damage += (_damage / 4); break;
+        //    case 5: _damage += (_damage / 5); break;
+        //}
+        print("basic turret damage: " + _damage);
         visionDistance = 8;
-
         firerateinSeconds = .00005f;
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
         audioSource = GetComponent<AudioSource>();
@@ -55,7 +53,7 @@ public class BasicTurret : TurretBase
         // making the turret track the enemy when it's close enough
         offSet = target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, offSet);
-        hit = Physics2D.Raycast(transform.position, transform.up * visionDistance, visionDistance, enemyMask);
+        hit = Physics2D.Raycast(transform.GetChild(0).position, transform.up * visionDistance, visionDistance, mask);
         if (firerateinSeconds <= 0f)
         {
             if (hit)
@@ -103,9 +101,13 @@ public class BasicTurret : TurretBase
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
             switch (hit.transform.name)
             {
-                case "Basic Enemy(Clone)": hit.transform.GetComponent<BasicEnemy>().Health -= damage; break;
-                case "Advanced Enemy(Clone)": hit.transform.GetComponent<AdvancedEnemy>().Health -= damage; break;
-                case "Ultimate Enemy(Clone)": hit.transform.GetComponent<UltimateEnemy>().Health -= damage; break;
+                case "Basic Enemy(Clone)":     hit.transform.GetComponent<BasicEnemy>().Health -= _damage; break;
+                case "Advanced Enemy(Clone)":  hit.transform.GetComponent<AdvancedEnemy>().Health -= _damage; break;
+                case "Ultimate Enemy(Clone)":  hit.transform.GetComponent<UltimateEnemy>().Health -= _damage; break;
+
+                case "Basic Turret(Clone)":    hit.transform.GetComponent<BasicTurret>().TakeDamage(); break;
+                case "Advanced Turret(Clone)": hit.transform.GetComponent<AdvancedTurret>().TakeDamage(); break;
+                case "Ultimate Turret(Clone)": hit.transform.GetComponent<UltimateTurret>().TakeDamage(); break;
             }
         }
     }
@@ -125,4 +127,12 @@ public class BasicTurret : TurretBase
         if (collision.transform.name.Contains("Turret"))
             GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(false);
     }
+    void SetHealth(float nhealth) { health = nhealth; }
+    public float GetHealth() { return health; }
+    public void TakeDamage() { SetHealth(health -= _damage); }
+    //public void TakeDamage() 
+    //{
+    //    Destroy(gameObject); 
+    //}
+
 }

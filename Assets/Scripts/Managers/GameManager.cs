@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public bool endofLevel = false;
     float nextlevelTimer = 3f;
     string victoryMessage = "Congrats! You've beaten the level! Get ready for the next one!";
+    GameObject homeButton;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
         currentRound = currentLevel = 1;
         tower = FindTower(GetTrack());
         canvas = GameObject.Find("Canvas");
+        homeButton = GameObject.Find("Go To Home");
     }
 
     // Update is called once per frame
@@ -130,6 +132,7 @@ public class GameManager : MonoBehaviour
     public int GetLevel() { return currentLevel; }
     public GameObject GetCam() { return cam; }
     public GameObject GetTurretProximityMessage() { return tooclosetoturretMessage; }
+    public GameObject GetHomeButton() { return homeButton; }
 
 
     // setters

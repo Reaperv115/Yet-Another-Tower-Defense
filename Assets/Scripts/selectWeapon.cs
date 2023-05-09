@@ -26,90 +26,52 @@ public class SelectWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         GameManager.instance.GetWeaponsPanel().SetActive(activateweaponsPanel);
-        // weapon placement mechanics for android
-        if (Application.platform.Equals(RuntimePlatform.Android))
+        if (player.IsPlacingWeapon())
         {
-            if (player.IsPlacingWeapon())
-            {
-                GameManager.instance.GetWeaponsButton().SetActive(false);
-                
-                if (Input.touchCount > 0)
-                {
-                    touch = Input.GetTouch(0);
-                    newworldPoint = touch.position;
-                    newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                    mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                    mouseWorldPosition.z = 0f;
-                    if (touch.phase.Equals(TouchPhase.Stationary))
-                    {
-                        if (player.GetIsTooClose())
-                        {
-                            GameManager.instance.GetTurretProximityMessage().GetComponent<TextMeshProUGUI>().text = "Too Close To Another Turret!";
+            GameManager.instance.GetWeaponsButton().SetActive(false);
 
-                        }
-                        else
-                        {
-                            GameManager.instance.GetTurretProximityMessage().GetComponent<TextMeshProUGUI>().text = "";
-                            if (timetoplaceWeapon <= 0f)
-                            {
-                                player.mainWeapon.transform.position = mouseWorldPosition;
-                                GameManager.instance.GetWeaponsButton().SetActive(true);
-                                GameManager.instance.GetBeginRoundButton().SetActive(true);
-                                GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
-                                player.SetIsPlacing(false);
-                                timetoplaceWeapon = 1f;
-                                GameManager.instance.GetRestartButton().SetActive(true);
-                            }
-                            else
-                                timetoplaceWeapon -= Time.deltaTime;
-                        }
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+                newworldPoint = touch.position;
+                newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
+                mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
+                mouseWorldPosition.z = 0f;
+                if (touch.phase.Equals(TouchPhase.Stationary))
+                {
+                    if (player.GetIsTooClose())
+                    {
+                        GameManager.instance.GetTurretProximityMessage().GetComponent<TextMeshProUGUI>().text = "Too Close To Another Turret!";
+
                     }
                     else
                     {
-                        timetoplaceWeapon = .05f;
-                        oldworldPoint = newworldPoint;
-                        newworldPoint = touch.position;
-                        if (!newworldPoint.Equals(oldworldPoint))
+                        GameManager.instance.GetTurretProximityMessage().GetComponent<TextMeshProUGUI>().text = "";
+                        if (timetoplaceWeapon <= 0f)
                         {
-                            newworldPoint = touch.position;
-                            newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-                            mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-                            mouseWorldPosition.z = 0f;
-                            Destroy(player.instantiatedmainWeapon);
-                            player.instantiatedmainWeapon = Instantiate(player.mainWeapon, mouseWorldPosition, player.mainWeapon.transform.rotation);
+                            player.mainWeapon.transform.position = mouseWorldPosition;
+                            GameManager.instance.GetWeaponsButton().SetActive(true);
+                            GameManager.instance.GetBeginRoundButton().SetActive(true);
+                            GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = "";
+                            GameManager.instance.GetHomeButton().SetActive(true);
+                            player.SetIsPlacing(false);
+                            timetoplaceWeapon = 1f;
+                            GameManager.instance.GetRestartButton().SetActive(true);
                         }
+                        else
+                            timetoplaceWeapon -= Time.deltaTime;
                     }
-                }
-
-
-            }
-        }
-        // weapon placement mechanics for pc
-        if (Application.platform.Equals(RuntimePlatform.WindowsPlayer))
-        {
-            newworldPoint = Input.mousePosition;
-            newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
-            mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
-            mouseWorldPosition.z = 0f;
-
-            if (player.IsPlacingWeapon())
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    player.mainWeapon.transform.position = mouseWorldPosition;
-                    ToggleWeaponAdjusting(false);
-                    GameManager.instance.GetStartButton().SetActive(true);
-                    player.SetIsPlacing(false);
                 }
                 else
                 {
-                    timetoplaceWeapon = 1.0f;
+                    timetoplaceWeapon = .05f;
                     oldworldPoint = newworldPoint;
-                    newworldPoint = Input.mousePosition;
+                    newworldPoint = touch.position;
                     if (!newworldPoint.Equals(oldworldPoint))
                     {
-                        newworldPoint = Input.mousePosition;
+                        newworldPoint = touch.position;
                         newworldPoint.z = Mathf.Abs(Camera.main.transform.position.z);
                         mouseWorldPosition = Camera.main.ScreenToWorldPoint(newworldPoint);
                         mouseWorldPosition.z = 0f;
@@ -118,6 +80,8 @@ public class SelectWeapon : MonoBehaviour
                     }
                 }
             }
+
+
         }
     }
 
@@ -136,6 +100,7 @@ public class SelectWeapon : MonoBehaviour
         else player.LoadWeapon(WeaponManager.instance.GetBasicTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
+        GameManager.instance.GetHomeButton().SetActive(false);
     }
 
     // selects the tier 2 turret
@@ -145,6 +110,7 @@ public class SelectWeapon : MonoBehaviour
         else player.LoadWeapon(WeaponManager.instance.GetAdvancedTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
+        GameManager.instance.GetHomeButton().SetActive(false);
     }
 
     // selects the tier 3 turret
@@ -154,6 +120,7 @@ public class SelectWeapon : MonoBehaviour
         else player.LoadWeapon(WeaponManager.instance.GetUltimateTurret());
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetRestartButton().SetActive(false);
+        GameManager.instance.GetHomeButton().SetActive(false);
     }
 
     
