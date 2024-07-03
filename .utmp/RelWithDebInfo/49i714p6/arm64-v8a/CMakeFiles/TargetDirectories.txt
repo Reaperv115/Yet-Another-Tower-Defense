@@ -1,0 +1,5 @@
+C:/Dev/Yet-Another-Tower-Defense/.utmp/RelWithDebInfo/49i714p6/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Dev/Yet-Another-Tower-Defense/.utmp/RelWithDebInfo/49i714p6/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Dev/Yet-Another-Tower-Defense/.utmp/RelWithDebInfo/49i714p6/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Dev/Yet-Another-Tower-Defense/.utmp/RelWithDebInfo/49i714p6/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Dev/Yet-Another-Tower-Defense/.utmp/RelWithDebInfo/49i714p6/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
