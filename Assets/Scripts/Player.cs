@@ -4,14 +4,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     float nomoreturretstoplacedisplayTimer = 2f;
-    SelectWeapon swRef;
     bool placingWeapon;
     bool tooClose = false;
     
-    private void Awake()
-    {
-        swRef = GetComponent<SelectWeapon>();
-    }
 
     public float GetDisplayTimer() { return nomoreturretstoplacedisplayTimer; }
     public void SetDisplayTimer(float time) { nomoreturretstoplacedisplayTimer = time; }
@@ -21,7 +16,7 @@ public class Player : MonoBehaviour
         GameManager.instance.GetWeaponToPlaceDisplay().GetComponent<TextMeshProUGUI>().text = mainWeapon.name;
         placingWeapon = true;
         GameManager.instance.GetWeaponsButton().SetActive(false);
-        instantiatedmainWeapon = Instantiate(mainWeapon, swRef.getMWP(), mainWeapon.transform.rotation);
+        instantiatedmainWeapon = Instantiate(mainWeapon, GetComponent<SelectWeapon>().GetMouseWorldPosition(), mainWeapon.transform.rotation);
         WeaponManager.instance.TurretPlaced();
         GameManager.instance.GetWeaponsPanel().SetActive(false);
     }

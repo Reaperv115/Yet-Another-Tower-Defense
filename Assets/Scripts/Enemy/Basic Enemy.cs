@@ -24,6 +24,7 @@ public class BasicEnemy : EnemyBase
         pathIndex = 0;
         pathwayMarkers = new List<Transform>();
         track = GameManager.instance.GetTrack();
+        tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
         GetPathMarkers();
     }
 
@@ -40,7 +41,6 @@ public class BasicEnemy : EnemyBase
         // at the end of the track
         if (attackTower)
         {
-            tower = GameManager.instance.FindTower(GameManager.instance.GetTrack());
             transform.position = Vector3.MoveTowards(transform.position, tower.transform.position, speed);
         }
         // else make the enemy go
@@ -65,8 +65,10 @@ public class BasicEnemy : EnemyBase
     }
 
     // getting track info
-    void GetPathMarkers() { 
-        for (int i = 0; i < track.transform.GetChild(0).transform.childCount; ++i) pathwayMarkers.Add(track.transform.GetChild(0).transform.GetChild(i));
+    void GetPathMarkers() 
+    { 
+        for (int i = 0; i < track.transform.GetChild(0).transform.childCount; ++i) 
+            pathwayMarkers.Add(track.transform.GetChild(0).transform.GetChild(i));
     }
 
 

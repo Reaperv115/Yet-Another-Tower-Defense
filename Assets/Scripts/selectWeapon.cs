@@ -27,7 +27,7 @@ public class SelectWeapon : MonoBehaviour
     void Update()
     {
         
-        GameManager.instance.GetWeaponsPanel().SetActive(activateweaponsPanel);
+        //GameManager.instance.GetWeaponsPanel().SetActive(activateweaponsPanel);
         if (player.IsPlacingWeapon())
         {
             GameManager.instance.GetWeaponsButton().SetActive(false);
@@ -87,7 +87,7 @@ public class SelectWeapon : MonoBehaviour
 
     // used to hide and show weapons selection
     // panel when you hit the weapons button
-    public void onClick()
+    public void UpdateWeaponsPanel()
     {
         activateweaponsPanel = !activateweaponsPanel;
         GameManager.instance.GetWeaponsPanel().SetActive(activateweaponsPanel);
@@ -130,5 +130,5 @@ public class SelectWeapon : MonoBehaviour
     public void ToggleWeaponAdjusting(bool isAdjusting) { GameManager.instance.GetWeaponsButton().SetActive(isAdjusting); }
 
     public Vector3 GetWeaponPosition() { return mouseWorldPosition; }
-    public Vector3 getMWP() { return mouseWorldPosition; }
+    public Vector3 GetMouseWorldPosition() { return mouseWorldPosition; }
 }

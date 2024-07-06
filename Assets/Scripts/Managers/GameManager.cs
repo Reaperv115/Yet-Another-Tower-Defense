@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         beginroundButton.gameObject.SetActive(false);
         restart.gameObject.SetActive(false);
         victorydisplayColors = new List<Color>() { Color.blue, Color.cyan, Color.gray, Color.magenta, Color.grey };
+        victoryMessage = "";
         player = GetComponent<Player>();
         trackIndex = 1;
         LoadTrackInst();
@@ -79,12 +80,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        nextlevelPrep.GetComponent<TextMeshProUGUI>().text = victoryMessage;
         if (endofLevel)
         {
             if (nextlevelTimer <= 0f)
             {
                 victoryMessage = "";
-                nextlevelPrep.GetComponent<TextMeshProUGUI>().text = victoryMessage;
                 nextlevelTimer = 3f;
                 nextLevel.SetActive(true);
                 SetEndofLevel(false);
@@ -93,7 +94,6 @@ public class GameManager : MonoBehaviour
             {
                 nextlevelTimer -= Time.deltaTime;
                 victoryMessage = "Congrats! You've beaten the level! Get ready for the next one!";
-                nextlevelPrep.GetComponent<TextMeshProUGUI>().text = victoryMessage;
             }
         }
 
