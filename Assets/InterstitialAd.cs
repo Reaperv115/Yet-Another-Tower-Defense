@@ -15,6 +15,15 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
             : _androidAdUnitId;
             LoadAd();
     }
+    void Update()
+    {
+        if (GameManager.instance.GetEndofLevel())
+        {
+            ShowAd();
+        }
+    }
+
+    
  
     // Load content to the Ad Unit:
     public void LoadAd()

@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     string victoryMessage = "Congrats! You've beaten the level! Get ready for the next one!";
     GameObject homeButton;
 
+
     // Start is called before the first frame update
     void Start()
     {
