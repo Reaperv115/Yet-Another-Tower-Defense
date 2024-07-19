@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1005,10 +1006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581e53e93b0d40d49bf98267638535ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadBannerButton: {fileID: 0}
-  _showBannerButton: {fileID: 0}
-  _hideBannerButton: {fileID: 0}
-  _bannerPosition: 4
   _androidAdUnitId: Banner_Android
   _iOSAdUnitId: Banner_iOS
 --- !u!1 &1552136217 stripped
@@ -1062,7 +1059,6 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1179,7 +1175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1968210548814617495, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.2340088
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 2572838504510296375, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1417,6 +1413,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6311737818650709331, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
     - {fileID: 5414893472136215326, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
+    - {fileID: 1968210547740017164, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8028115321817315356, guid: b5f498ebc8228ae4682bbd19d96d756e, type: 3}
       insertIndex: -1

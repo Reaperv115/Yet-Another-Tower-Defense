@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject weaponsPanel;
 
-    RectTransform healthBar;
-
     List<Color>victorydisplayColors;
 
     GameObject enemystartingPos;
@@ -61,7 +59,6 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             Debug.LogError("trying to create a duplicate of the game manager");
-        healthBar = GameObject.Find("HealthBar").transform.GetChild(1).GetComponent<RectTransform>();
         nextLevel = GameObject.Find("Next Level");
         nextRound = false;
         weaponsPanel.gameObject.SetActive(false);
@@ -126,7 +123,6 @@ public class GameManager : MonoBehaviour
     public int GetTrackIndex() { return trackIndex; }
     public GameObject GetTrackInst() { return trackInst; }
     public GameObject GetNextLevelButton() { return nextLevel; }
-    public RectTransform GetHealthBar() { return healthBar; }
     public TextMeshProUGUI GetLackOfFundsDisplay() { return lackofFunds; }
     public GameObject GetCanvas() { return canvas; }
     public GameObject GetNextLevelPrep() { return nextlevelPrep; }

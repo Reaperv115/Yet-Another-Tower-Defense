@@ -105,9 +105,9 @@ public class UltimateTurret : TurretBase
                 case "Advanced Enemy(Clone)":  hit.transform.GetComponent<AdvancedEnemy>().Health -= _damage; break;
                 case "Ultimate Enemy(Clone)":  hit.transform.GetComponent<UltimateEnemy>().Health -= _damage; break;
 
-                case "Basic Turret(Clone)":    hit.transform.GetComponent<BasicTurret>().TakeDamage(); break;
-                case "Advanced Turret(Clone)": hit.transform.GetComponent<AdvancedTurret>().TakeDamage(); break;
-                case "Ultimate Turret(Clone)": hit.transform.GetComponent<UltimateTurret>().TakeDamage(); break;
+                case "Basic Turret(Clone)":    hit.transform.GetComponent<BasicTurret>().TakeDamage(hit); break;
+                case "Advanced Turret(Clone)": hit.transform.GetComponent<AdvancedTurret>().TakeDamage(hit); break;
+                case "Ultimate Turret(Clone)": hit.transform.GetComponent<UltimateTurret>().TakeDamage(hit); break;
             }
         }
     }
@@ -128,5 +128,11 @@ public class UltimateTurret : TurretBase
         if (collision.transform.name.Contains("Turret"))
             GameManager.instance.GetCam().GetComponent<Player>().SetTooClose(false);
     }
-    public void TakeDamage() { health -= _damage; }
+    public void TakeDamage(RaycastHit2D hit2D) 
+    { 
+        health -= _damage;
+        Color c = hit2D.transform.gameObject.GetComponent<SpriteRenderer>().color;
+        c.r += _damage;
+        hit2D.transform.gameObject.GetComponent<SpriteRenderer>().color = c; 
+    }
 }

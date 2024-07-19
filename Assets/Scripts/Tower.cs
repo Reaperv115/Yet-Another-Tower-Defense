@@ -27,15 +27,17 @@ public class Tower : MonoBehaviour
     {
         if (collision.transform.tag.Equals("enemy"))
         {
+            Color c = GetComponent<SpriteRenderer>().color;
             Destroy(collision.gameObject);
             fHealth -= .1f;
-            GameManager.instance.GetHealthBar().localScale = new Vector3(fHealth, 1f);
             switch (collision.transform.name)
             {
-                case "Basic Enemy(Clone)": ScoreManager.instance.amount -= 1; break;
-                case "Advanced Enemy(Clone)": ScoreManager.instance.amount -= 2; break;
-                case "Ultimate Enemy(Clone)": ScoreManager.instance.amount -= 3; break;
+                case "Basic Enemy(Clone)":    ScoreManager.instance.amount -= 1; c.g -= 1; break;
+                case "Advanced Enemy(Clone)": ScoreManager.instance.amount -= 2; c.g -= 2; break;
+                case "Ultimate Enemy(Clone)": ScoreManager.instance.amount -= 3; c.g -= 3; break;
             }
+            
+            GetComponent<SpriteRenderer>().color = c;
             if (GetHealth() <= 0f) onDeath.Invoke();
 
         }
